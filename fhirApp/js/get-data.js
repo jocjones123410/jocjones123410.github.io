@@ -58,12 +58,16 @@ const organizationResource = 'Organization';
 		return getResourceFromBundle(bundle, organizationResource);
 	}
 
-const client = new FHIR.client("https://r3.smarthealthit.org");
+var client = new FHIR.client("http://launch.smarthealthit.org/v/r4/sim/eyJoIjoiMSJ9/fhir");
+FHIR.oauth2.ready().then(function(client) {
+//const client = new FHIR.client("https://r3.smarthealthit.org");
+client = new FHIR.client("https://r3.smarthealthit.org");
 client.request("Patient/6f0dafdc-94c5-4ab2-9208-b2872450737a")
 //client.request("Patient?_id=6f0dafdc-94c5-4ab2-9208-b2872450737a&_revinclude=Condition:subject&_revinclude=AllergyIntolerance:patient")
     //.then(displayPatient(testPatientResource))
 	.then(displayReport(testBatch))
     .catch(display);
+	}).catch(console.error);
 /*client.request("/MedicationRequest?patient=6f0dafdc-94c5-4ab2-9208-b2872450737a", {
     resolveReferences: "medicationReference"
 }).then(displayMedication)
