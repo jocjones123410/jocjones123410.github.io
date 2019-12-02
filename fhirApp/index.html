@@ -28,7 +28,7 @@
 			<div id="maritalStatusId"></div>
 		</section>
 		<section id="resourceColumns">
-			<div class="sectionContainer">
+			<div class="sectionContainer" id="conditionSection">
 				<div class="sectionHeader">Conditions</div>
 				<table id="conditionTable">
 					<thead>
@@ -42,7 +42,7 @@
 					<tbody id="conditionEntries"></tbody>
 				</table>
 			</div>
-			<div>
+			<div class="sectionContainer" id="allergySection">
 				<div class="sectionHeader">Allergies</div>
 				<table id="allergyTable">
 					<thead>
@@ -58,7 +58,7 @@
 					<tbody id="allergyEntries"></tbody>
 				</table>
 			</div>
-			<div class="sectionContainer">
+			<div class="sectionContainer" id="medicationSection">
 				<div class="sectionHeader">Medications</div>
 				<table>
 					<thead>
@@ -72,7 +72,7 @@
 					<tbody id="medicationStatmentEntries"></tbody>
 				</table>				
 			</div>
-			<div>
+			<div class="sectionContainer" id="labSection">
 				<div class="sectionHeader">Labs</div>
 				<table>
 					<thead>
@@ -85,26 +85,46 @@
 					</thead>
 					<tbody id="observationEntries"></tbody>
 				</table>
-				<!--<div class="sectionBody" id="labListId"></div>-->
 			</div>
-			<div class="sectionContainer">
+			<div class="sectionContainer" id="coverageSection">
 				<div class="sectionHeader">Coverage</div>
 				<div class="sectionBody" id="coverageId"></div>
 			</div>
-			<div>
-				<div class="sectionHeader">DNR</div>
-				<div class="sectionBody" id="dnrId"></div>
+			<div class="sectionContainer" id="advDirSection">
+				<div class="sectionHeader">Advanced Directive</div>
+				<div class="sectionBody" id="advDirId"></div>
+			</div>
+			<div class="sectionContainer" id="vitalSection">
+				<div class="sectionHeader">Vitals</div>
+				<table>
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Value</th>
+							<th>Date</th>
+						</tr>
+					</thead>
+					<tbody id="vitalEntries"></tbody>
+				</table>
 			</div>
 		</section>
 		<section id="resource">
-			<div class="sectionHeader">Contact Info</div>
-			<div class="sectionBody" id="contactInfoId"></div>		
-			<div class="sectionHeader">Nursing Home Contact</div>
-			<div class="nursingHomeSectionBody">
-				<div class="nhHeader">Organization</div>
-				<div class="nhHeader">Practitioner</div>
-				<div class="subSection" id="organizationId"></div>				
-				<div class="subSection" id="practionerId"></div>
+			<div id="contactInfoSection">
+				<div class="sectionHeader">Emergency Contact Info</div>
+				<div class="sectionBody" id="contactInfoId"></div>		
+			</div>
+			<div id="nursingHomeContactSection">
+				<div class="sectionHeader">Nursing Home Contact</div>
+				<div class="nursingHomeSectionBody">
+					<div id="orgSubSection">
+						<div class="nhHeader">Organization</div>
+						<div class="subSection" id="organizationId"></div>
+					</div>
+					<div id="practitionerSubSection">
+						<div class="nhHeader">Practitioner</div>					
+						<div class="subSection" id="practionerId"></div>
+					</div>					
+				</div>
 			</div>
 		</section>
 	</div>
