@@ -1,5 +1,5 @@
 function displayReport(bundle){
-	//hide('authError');
+	hide('authError');
 	show('report');
 	var patients = getPatients(bundle);
 	var conditions = getConditions(bundle);

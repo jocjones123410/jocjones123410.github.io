@@ -67,7 +67,7 @@ client.request("Patient/6f0dafdc-94c5-4ab2-9208-b2872450737a")
     //.then(displayPatient(testPatientResource))
 	.then(displayReport(testBatch))
     .catch(display);
-	}).catch(console.error);
+	}).catch(show('authError'));
 	
 /*var report = document.getElementById('report');
 var error = document.getElementById('authError');
