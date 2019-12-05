@@ -1,4 +1,5 @@
 function displayReport(bundle){
+	show('report');
 	var patients = getPatients(bundle);
 	var conditions = getConditions(bundle);
 	var allergies = getAllergies(bundle);
@@ -493,4 +494,8 @@ function display(data) {
 
 function hide(elementId){
 	document.getElementById(elementId).style.display = "none";
+}
+
+function show(elementId){
+	document.getElementById(elementId).style.display = "block";
 }
