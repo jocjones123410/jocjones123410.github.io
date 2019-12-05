@@ -58,7 +58,7 @@ const organizationResource = 'Organization';
 		return getResourceFromBundle(bundle, organizationResource);
 	}
 
-//const client = new FHIR.client("http://launch.smarthealthit.org/v/r4/sim/eyJoIjoiMSJ9/fhir");
+//const client = new FHIR.client("https://r3.smarthealthit.org");
 FHIR.oauth2.ready().then(function(client) {
 //const client = new FHIR.client("https://r3.smarthealthit.org");
 client = new FHIR.client("https://r3.smarthealthit.org");
