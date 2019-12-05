@@ -1924,6 +1924,9 @@ var testBatch = {
 					"reference": "#TEST-PATIENT-ID"
 				},
 				"dateTime": "2019-05-21T08:08:46-04:00",
+				"sourceAttachment": {
+					"title": "The terms of the consent in lawyer speak."
+				},
 				"policy": [{
 						"uri": "dummy"
 					}

@@ -1,5 +1,4 @@
-function displayReport(bundle){
-	hide('authError');
+function displayReport(bundle){	
 	show('report');
 	var patients = getPatients(bundle);
 	var conditions = getConditions(bundle);
@@ -21,7 +20,7 @@ function displayReport(bundle){
 	populateVitalsTable(observations);
 	populatePersonalContactSection(patients[0]);
 	populateContactSection(practioners[0], organizations[0]);
-	
+	hide('authError');
 }
 
 function populateConditionTable(conditions){
@@ -167,6 +166,16 @@ function populateCoverageSection(coverage){
 
 function populateAdvancedDirectiveSection(consent){
 	if(consent){
+		var consentDate = "";
+		if(consent.dateTime){
+			consentDate = divWrapper(createLabel('Consent Date: ') + formatDate(consent.dateTime));
+		}
+		
+		var consentSource = "";
+		if(consent.sourceAttachment && consent.sourceAttachment.title){
+			consentSource = divWrapper(createLabel('Consent Source: ') + consent.sourceAttachment.title);
+		}
+		
 		var scope = "";
 		if(consent.scope && consent.scope.coding && consent.scope.coding[0].display){
 			scope = divWrapper(createLabel('Scope: ') + consent.scope.coding[0].display);
@@ -181,7 +190,7 @@ function populateAdvancedDirectiveSection(consent){
 		if(consent.provision && consent.provision.type){
 			provision = divWrapper(createLabel('Provision: ') + consent.provision.type);
 		}
-		var dnrLabelsAndValues = scope + category + provision;
+		var dnrLabelsAndValues = consentDate + consentSource + scope + category + provision;
 		setDomElement('advDirId', dnrLabelsAndValues);
 	}else{
 		hide('advDirSection');
