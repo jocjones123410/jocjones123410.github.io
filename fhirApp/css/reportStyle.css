@@ -6,6 +6,21 @@
 	display:none;
 }
 
+#authError{
+	display:none;
+	border-radius: 25px;
+	background-color: #0747a6;
+	color:#FFFFFF;	
+	font-size:18px;
+	width: 200px;
+	height: 150px;
+	text-shadow:
+		-1px -1px 0 #000,
+		1px -1px 0 #000,
+		-1px 1px 0 #000,
+		1px 1px 0 #000;
+}
+
 header#patientName{
 	background-color: #0747a6;
 	color:#FFFFFF;
@@ -116,3 +131,4 @@ th{
 	padding-bottom: 3px;
 	line-height:1.5;
 }
+
