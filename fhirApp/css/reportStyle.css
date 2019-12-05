@@ -7,18 +7,23 @@
 }
 
 #authError{
-	display:none;
 	border-radius: 25px;
+	padding: 15px;
+	margin:auto;
+	text-align: center;
+	vertical-align: middle;	
 	background-color: #0747a6;
 	color:#FFFFFF;	
-	font-size:18px;
-	width: 200px;
-	height: 150px;
+	font-size:15px;
+	width: 175px;
+	height: 50px;
+	font-weight:bold;
 	text-shadow:
 		-1px -1px 0 #000,
 		1px -1px 0 #000,
 		-1px 1px 0 #000,
 		1px 1px 0 #000;
+	display:none;
 }
 
 header#patientName{
