@@ -6,6 +6,10 @@
 	display:none;
 }
 
+#patientSearch{
+	display:none;
+}
+
 #authError{
 	border-radius: 25px;
 	padding: 15px;

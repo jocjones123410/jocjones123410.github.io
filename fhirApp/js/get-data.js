@@ -58,16 +58,26 @@ const organizationResource = 'Organization';
 		return getResourceFromBundle(bundle, organizationResource);
 	}
 
+	function getReport(){
+		const client = new FHIR.client("https://r3.smarthealthit.org");
+		client.request("Patient/6f0dafdc-94c5-4ab2-9208-b2872450737a")
+			.then(displayReport(testBatch))
+			.catch(display);
+	}
+	
+	FHIR.oauth2.ready().then(function(client) {
+		show('patientSearch');
+	}).catch(show('authError'));
 //const client = new FHIR.client("https://r3.smarthealthit.org");
-FHIR.oauth2.ready().then(function(client) {
+//FHIR.oauth2.ready().then(function(client) {
 //const client = new FHIR.client("https://r3.smarthealthit.org");
-client = new FHIR.client("https://r3.smarthealthit.org");
-client.request("Patient/6f0dafdc-94c5-4ab2-9208-b2872450737a")
+//client = new FHIR.client("https://r3.smarthealthit.org");
+//client.request("Patient/6f0dafdc-94c5-4ab2-9208-b2872450737a")
 //client.request("Patient?_id=6f0dafdc-94c5-4ab2-9208-b2872450737a&_revinclude=Condition:subject&_revinclude=AllergyIntolerance:patient")
     //.then(displayPatient(testPatientResource))
-	.then(displayReport(testBatch))
-    .catch(display);
-	}).catch(show('authError'));
+	//.then(displayReport(testBatch))
+    //.catch(display);
+	//}).catch(show('authError'));
 	
 /*var report = document.getElementById('report');
 var error = document.getElementById('authError');
