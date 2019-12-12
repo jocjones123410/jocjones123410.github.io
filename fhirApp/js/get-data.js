@@ -59,6 +59,7 @@ const organizationResource = 'Organization';
 	}
 	
 	FHIR.oauth2.ready().then(function(client) {
+		hide('authError');
 		show('patientSearch');
 	}).catch(show('authError'));
 //const client = new FHIR.client("https://r3.smarthealthit.org");
