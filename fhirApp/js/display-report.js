@@ -26,9 +26,12 @@ function displayReport(bundle){
 
 function getReport(){
 		const client = new FHIR.client("https://r3.smarthealthit.org");
-		client.request("Patient/6f0dafdc-94c5-4ab2-9208-b2872450737a")
-			.then(displayReport(testBatch))
-			.catch(display);
+		var patientId = document.getElementById("patientId").value;		
+		client.request("Patient/" + patientId)
+			.then(function(data){displayReport(testBatch)})
+			.catch(function(data){alert("No match for patient" + patientId)});
+		//client.request("Patient/6f0dafdc-94c5-4ab2-9208-b2872450737a")
+			
 }
 
 function populateConditionTable(conditions){
