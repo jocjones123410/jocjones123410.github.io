@@ -57,13 +57,6 @@ const organizationResource = 'Organization';
 	function getOrganization(bundle){
 		return getResourceFromBundle(bundle, organizationResource);
 	}
-
-	function getReport(){
-		const client = new FHIR.client("https://r3.smarthealthit.org");
-		client.request("Patient/6f0dafdc-94c5-4ab2-9208-b2872450737a")
-			.then(displayReport(testBatch))
-			.catch(display);
-	}
 	
 	FHIR.oauth2.ready().then(function(client) {
 		show('patientSearch');
