@@ -28,9 +28,9 @@ function getReport(){
 		const client = new FHIR.client("https://r3.smarthealthit.org");
 		var patientId = document.getElementById("patientId").value;		
 		//client.request("Patient/" + patientId + ")
-		client.request("Patient?_id=" + patientId + "&_include=Condition:subject")
+		client.request("Patient?_id=" + patientId) //+ "&_include=Condition:subject")
 			//.then(function(data){displayReport(testBatch)})
-			.then(function(data){displayReport(data)})
+			.then(function(bundle){displayReport(bundle)})
 			.catch(function(data){alert("No match for patient" + patientId)});
 		//client.request("Patient/6f0dafdc-94c5-4ab2-9208-b2872450737a")
 			
