@@ -60,7 +60,7 @@ const organizationResource = 'Organization';
 	
 	FHIR.oauth2.ready().then(function(client) {
 		show('patientSearch');
-		document.getElementById("searchButton").onclick = function(){getReport()};
+		document.getElementById("searchButton").onclick = function(){getReport(client)};
 	}).catch(function(data){show('authError');});
 //const client = new FHIR.client("https://r3.smarthealthit.org");
 //FHIR.oauth2.ready().then(function(client) {
