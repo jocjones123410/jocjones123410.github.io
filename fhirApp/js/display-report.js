@@ -27,7 +27,7 @@ function displayReport(bundle){
 function getReport(){
 		const client = new FHIR.client("https://r3.smarthealthit.org");
 		var patientId = document.getElementById("patientId").value;		
-		client.request("Patient/" + patientId + ")
+		client.request("Patient/" + patientId)
 		//client.request("Patient?_id=" + patientId) //+ "&_include=Condition:subject")
 			//.then(function(data){displayReport(testBatch)})
 			.then(function(data){
