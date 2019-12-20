@@ -25,17 +25,14 @@ function displayReport(bundle){
 }
 
 function getReport(client){
-		//const client = new FHIR.client("https://r3.smarthealthit.org");
 		var patientId = document.getElementById("patientId").value;		
-		//client.request("Patient?_id=6f0dafdc-94c5-4ab2-9208-b2872450737a")
-		client.request("Patient?_id=" + patientId)
+		client.request("Patient?_id=" + patientId + "&_revinclude=Condition:subject")
 			.then(function(data){
 				if(data.entry){
 					displayReport(data)
 				}
 			})
 			.catch(function(data){alert("No match for patient" + patientId)});
-		//client.request("Patient/" + patientId)
 		//client.request("Patient?_id=" + patientId) //+ "&_include=Condition:subject")
 			//.then(function(data){displayReport(testBatch)})			
 		//client.request("Patient/6f0dafdc-94c5-4ab2-9208-b2872450737a")
