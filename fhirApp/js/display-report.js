@@ -26,7 +26,7 @@ function displayReport(bundle){
 
 function getReport(client){
 		var patientId = document.getElementById("patientId").value;		
-		client.request("Patient?_id=" + patientId + "&_revinclude=Condition:subject&_revinclude=AllergyIntolerance:patient")
+		client.request("Patient?_id=" + patientId + "&_revinclude=Condition:subject&_revinclude=AllergyIntolerance:patient&_revinclude=MedicationStatement:subject&_revinclude=Observation:subject")
 			.then(function(data){
 				if(data.entry){
 					displayReport(data)
