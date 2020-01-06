@@ -1,4 +1,4 @@
-const appMode = '';
+const appMode = 'test';
 
 const patientResource = 'Patient';
 const conditionResource = 'Condition';	
@@ -64,7 +64,7 @@ const organizationResource = 'Organization';
 	if('test' === appMode){
 		client = new FHIR.client("https://r3.smarthealthit.org");
 		client.request("Patient/6f0dafdc-94c5-4ab2-9208-b2872450737a")
-		.then(displayPatient(testPatientResource))
+		.then(displayReport(testBatch))
 		.catch(show('authError'));
 	}else{
 		FHIR.oauth2.ready().then(function(client) {
