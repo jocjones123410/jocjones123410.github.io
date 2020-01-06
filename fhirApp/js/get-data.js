@@ -65,7 +65,7 @@ const organizationResource = 'Organization';
 		searchInput.addEventListener("keypress", function(event) {
 		event.preventDefault();
 		if (event.keyCode == 13)
-			searchButton.click();
+			alert('Enter button pressed!');
 		});		
 	}).catch(function(data){show('authError');});
 //const client = new FHIR.client("https://r3.smarthealthit.org");
