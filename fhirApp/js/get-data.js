@@ -58,6 +58,8 @@ const organizationResource = 'Organization';
 		return getResourceFromBundle(bundle, organizationResource);
 	}
 	
+	
+	
 	FHIR.oauth2.ready().then(function(client) {
 		show('patientSearch');
 		var searchButton = document.getElementById("searchButton").onclick = function(){getReport(client)};
@@ -65,7 +67,7 @@ const organizationResource = 'Organization';
 		searchInput.addEventListener("keypress", function(event) {
 		event.preventDefault();
 		if (event.keyCode == 13)
-			alert('Enter button pressed!');
+			getReport(client);
 		});		
 	}).catch(function(data){show('authError');});
 //const client = new FHIR.client("https://r3.smarthealthit.org");
