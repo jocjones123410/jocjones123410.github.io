@@ -311,8 +311,12 @@ function populatePersonalContactSection(patient){
 }
 
 function populateContactSection(practitioner, organization){
-	populatePractitionerSection(practitioner);
-	populateOrganizationSection(organization);
+	if(practitioner != undefined || organization !=undefined){
+		populatePractitionerSection(practitioner);
+		populateOrganizationSection(organization);
+	}else{
+		hide('nursingHomeContactSection');
+	}
 }
 
 function populatePractitionerSection(practitioner){
