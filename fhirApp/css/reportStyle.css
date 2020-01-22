@@ -40,6 +40,14 @@
   }
 }
 
+.patientIdLabel {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: 1rem;
+  color: rgb(218,220,224);
+}
 
 a#searchButton{
 	display:inline-block;
