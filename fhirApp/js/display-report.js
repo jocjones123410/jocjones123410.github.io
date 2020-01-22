@@ -233,6 +233,11 @@ function populateVitalsTable(obs){
 						var value = "";
 						if(comp[x].valueString){
 							value = comp[x].valueString;
+						}else if(comp[x].valueQuantity && comp[x].valueQuantity.value){
+							var unit = "";
+							if(comp[x].valueQuantity.unit)
+								unit = " " + comp[x].valueQuantity.unit;
+							value = comp[x].valueQuantity.value + unit;							 
 						}
 						value = tableDataWrapper(value);
 						vitalRow = name + value + issuedDate;
