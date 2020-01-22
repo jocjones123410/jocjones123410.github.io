@@ -229,10 +229,12 @@ function populateVitalsTable(obs){
 						if(comp[x].code && comp[x].code.coding && comp[x].code.coding[0].display){
 							name = tableDataWrapper(comp[x].code.coding[0].display);
 						}
+						
 						var value = "";
 						if(comp[x].valueString){
-							value = tableDataWrapper(comp[x].valueString);
-						}						
+							value = comp[x].valueString;
+						}
+						value = tableDataWrapper(value);
 						vitalRow = name + value + issuedDate;
 						vitalRow = tableRowWrapper(vitalRow);
 						setDomElement('vitalEntries',vitalRow);
