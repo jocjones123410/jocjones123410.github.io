@@ -10,19 +10,11 @@
 	//display:none;
 //}
 
-a#searchButton{
-	display:inline-block;
-	padding:0.3em 1.2em;
-	margin:0 0.3em 0.3em 0;
-	border-radius:2em;
-	box-sizing: border-box;
-	text-decoration:none;
-	font-family:'Roboto',sans-serif;
-	font-weight:300;
-	color:#FFFFFF;
-	background-color:#4eb5f1;
-	text-align:center;
-	transition: all 0.2s;
+button#searchButton{
+	color: white;
+    border-radius: 4px;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+	background: rgb(66, 184, 221);
 }
 //a.button3:hover{
 // background-color:#4095c6;
