@@ -12,19 +12,17 @@
 
 a#searchButton{
 	display:inline-block;
-	padding:0.46em 1.6em;
-	border:0.1em solid #000000;
-	margin:0 0.2em 0.2em 0;
-	border-radius:0.12em;
+	padding:0.35em 1.2em;
+	border:1px solid rgb(218,220,224);
+	border-radius:4px;
+	margin:0 0.3em 0.3em 0;	
 	box-sizing: border-box;
 	text-decoration:none;
 	font-family:'Roboto',sans-serif;
-	font-weight:300;
-	color:#000000;
-	text-shadow: 0 0.04em 0.04em rgba(0,0,0,0.35);
-	background-color:#3369ff;
+	font-weight:500;
+	color:rgb(26,115,232);
 	text-align:center;
-	transition: all 0.15s;
+	transition: all 0.2s;
 }
 //a.button3:hover{
 // background-color:#4095c6;
