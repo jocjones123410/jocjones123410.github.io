@@ -6,9 +6,9 @@
 	display:none;
 }
 
-#patientSearch{
-	display:none;
-}
+//#patientSearch{
+	//display:none;
+//}
 
 #authError{
 	border-radius: 25px;
@@ -139,5 +139,9 @@ th{
 	text-align:left;
 	padding-bottom: 3px;
 	line-height:1.5;
+}
+
+footer#reportFooter{
+	background-color: #0747a6;
 }
 
