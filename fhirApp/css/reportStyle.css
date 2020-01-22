@@ -24,9 +24,10 @@ a#searchButton{
 	text-align:center;
 	transition: all 0.2s;
 }
-//a.button3:hover{
-// background-color:#4095c6;
-//}
+a#searchButton:hover{
+	color:#ffffff;
+	background-color:rgb(26,115,232);
+}
 //@media all and (max-width:30em){
 // a.button3{
 //  display:block;
