@@ -70,12 +70,13 @@ const organizationResource = 'Organization';
 		FHIR.oauth2.ready().then(function(client) {
 			show('patientSearch');
 			var searchButton = document.getElementById("searchButton").onclick = function(){getReport(client)};
-			var searchInput = document.getElementById("patientId");
+			/*var searchInput = document.getElementById("patientId");
 			searchInput.addEventListener("keypress", function(event) {
 			event.preventDefault();
+			//keyCode 13 is the Enter Key
 			if (event.keyCode == 13)
 				getReport(client);
-			});		
+			});*/		
 		}).catch(function(data){show('authError');});
 	}
 //const client = new FHIR.client("https://r3.smarthealthit.org");
