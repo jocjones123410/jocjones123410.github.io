@@ -142,6 +142,8 @@ th{
 }
 
 footer#reportFooter{
+	height: 20px;
+	width: 100%;
 	background-color: #0747a6;
 }
 
