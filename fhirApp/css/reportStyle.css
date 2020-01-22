@@ -32,6 +32,12 @@
   &::placeholder {
     color: transparent;
   }
+  
+  &:placeholder-shown ~ .patientIdLabel {
+    font-size: 1.3rem;
+    cursor: text;
+    top: 20px;
+  }
 }
 
 
