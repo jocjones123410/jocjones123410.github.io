@@ -24,10 +24,14 @@
   border-bottom: 2px solid rgb(218,220,224);
   outline: 0;
   font-size: 1.3rem;
-  color: #fff;
+  color: #000;
   padding: 7px 0;
   background: transparent;
   transition: border-color 0.2s;
+  
+  &::placeholder {
+    color: transparent;
+  }
 }
 
 
