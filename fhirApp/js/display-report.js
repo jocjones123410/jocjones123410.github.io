@@ -29,7 +29,10 @@ function getReport(client){
 		client.request("Patient?_id=" + patientId + "&_revinclude=Condition:subject&_revinclude=AllergyIntolerance:patient&_revinclude=MedicationStatement:subject&_revinclude=Observation:subject")
 			.then(function(data){
 				if(data.entry){
+					hide('inputError');
 					displayReport(data)
+				}else{
+					show('inputError');
 				}
 			})
 			.catch(function(data){alert("No match for patient" + patientId)});

@@ -96,6 +96,10 @@ section#resourceColumns{
 	grid-template-columns:repeat(6, auto);
 }
 
+#inputError{
+	display: none;
+}
+
 tr:nth-child(even){
 	background-color: #f2f2f2;
 }
