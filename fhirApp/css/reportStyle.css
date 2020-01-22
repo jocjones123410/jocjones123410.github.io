@@ -18,7 +18,8 @@ a#searchButton{
 	margin:0 0.3em 0.3em 0;	
 	box-sizing: border-box;
 	text-decoration:none;
-	font-family:'Roboto',sans-serif;
+	font-family: Roboto, 'Segoe UI', Tahoma, sans-serif;
+    font-size: 15px;
 	font-weight:500;
 	color:rgb(26,115,232);
 	text-align:center;
@@ -28,12 +29,12 @@ a#searchButton:hover{
 	color:#ffffff;
 	background-color:rgb(26,115,232);
 }
-//@media all and (max-width:30em){
-// a.button3{
-//  display:block;
-//  margin:0.2em auto;
-// }
-//}
+@media all and (max-width:30em){
+	a#searchButton{
+		display:block;
+		margin:0.4em auto;
+	}
+}
 
 #authError{
 	border-radius: 25px;
