@@ -10,66 +10,6 @@
 	//display:none;
 //}
 
-#patientSearch {
-  position: relative;
-  padding: 15px 0 0;
-  margin-top: 10px;
-  width: 25%;
-}
-
-#patientId{
-  font-family: inherit;
-  width: 75%;
-  border: 0;
-  border-bottom: 2px solid rgb(218,220,224);
-  outline: 0;
-  font-size: 1.3rem;
-  color: #000;
-  padding: 7px 0;
-  background: transparent;
-  transition: border-color 0.2s;
-  
-  &::placeholder {
-    color: transparent;
-  }
-  
-  &:placeholder-shown ~ .patientIdLabel {
-    font-size: 1.3rem;
-    cursor: text;
-    top: 20px;
-  }
-}
-
-.patientIdLabel {
-  position: absolute;
-  top: 0;
-  display: block;
-  transition: 0.2s;
-  font-size: 1rem;
-  color: rgb(218,220,224);
-}
-
-#patientId:focus {
-  ~ .patientIdLabel {
-    position: absolute;
-    top: 0;
-    display: block;
-    transition: 0.2s;
-    font-size: 1rem;
-    color: #1a73e8;
-    font-weight:700;    
-  }
-  padding-bottom: 6px;  
-  font-weight: 700;
-  border-width: 3px;
-  border-image: linear-gradient(to right, #c9dcf5,#1a73e8);
-  border-image-slice: 1;
-}
-
-#patientId{
-  &:required,&:invalid { box-shadow:none; }
-}
-
 a#searchButton{
 	display:inline-block;
 	padding:0.35em 1.2em;
