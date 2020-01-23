@@ -10,6 +10,20 @@
 	//display:none;
 //}
 
+#patientSearch{
+	position:absolute;
+	left:50%;
+	top:50%;
+	transform: translate(-50%,-50%);
+    background-color: rgba(0, 0, 0, 0.89);
+	border-radius:3px;
+	padding:70px 100px;
+}
+.input-container{
+	position:relative;
+	margin-bottom:25px;
+}
+
 a#searchButton{
 	display:inline-block;
 	padding:0.35em 1.2em;
