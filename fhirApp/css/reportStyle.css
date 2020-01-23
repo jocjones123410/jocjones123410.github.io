@@ -28,7 +28,7 @@
 	top:0px;
 	left:0px;
 	font-size:16px;
-	color:#fff;	
+	color:#000;	
     pointer-event:none;
 	transition: all 0.5s ease-in-out;
 }
@@ -39,7 +39,20 @@
   width:100%;
   padding:8px 0 5px 0;
   font-size:16px;
-  color:#fff;
+  color:#000;
+}
+
+.input-container input:focus{ 
+ border:none;	
+ outline:none;
+ border-bottom:1px solid #e74c3c;	
+}
+
+.input-container input:focus ~ label,
+.input-container input:valid ~ label{
+	top:-12px;
+	font-size:12px;
+	
 }
 
 a#searchButton{
