@@ -74,6 +74,17 @@ $gray: #9b9b9b;
   &:required,&:invalid { box-shadow:none; }
 }
 
+body {
+  font-family: 'Poppins', sans-serif; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-size: 1.5rem;
+  background-color:#222222;
+}
+
 
 
 
@@ -278,10 +289,10 @@ td, th{
 	padding:3px;
 }
 
-body {
-	font-family: Arial,Helvetica Neue,Helvetica,sans-serif; 
-    font-size:12px;
-}
+//body {
+	//font-family: Arial,Helvetica Neue,Helvetica,sans-serif; 
+    //font-size:12px;
+//}
 
 th{
 	text-align:left;
