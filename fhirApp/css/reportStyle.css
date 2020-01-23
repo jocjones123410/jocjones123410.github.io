@@ -49,6 +49,23 @@
   color: rgb(218,220,224);
 }
 
+#patientId:focus {
+  ~ .patientIdLabel {
+    position: absolute;
+    top: 0;
+    display: block;
+    transition: 0.2s;
+    font-size: 1rem;
+    color: #11998e;
+    font-weight:700;    
+  }
+  padding-bottom: 6px;  
+  font-weight: 700;
+  border-width: 3px;
+  border-image: linear-gradient(to right, #11998e,#38ef7d);
+  border-image-slice: 1;
+}
+
 a#searchButton{
 	display:inline-block;
 	padding:0.35em 1.2em;
