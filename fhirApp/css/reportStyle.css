@@ -55,8 +55,11 @@
 	
 }
 
-a#searchButton{
+.search{
 	display:inline-block;
+}
+	
+a#searchButton{
 	padding:0.35em 1.2em;
 	border:1px solid rgb(218,220,224);
 	border-radius:4px;
