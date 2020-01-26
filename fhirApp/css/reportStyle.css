@@ -23,7 +23,8 @@ body{
 	width:30%;
 	transform: translate(-50%,-50%);
 	border-radius:3px;
-	padding:70px 100px;
+	padding:15px;
+	background-color: rgba(0, 0, 0, 0.2);
 }
 .input-container{
 	position:relative;
