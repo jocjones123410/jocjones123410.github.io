@@ -28,7 +28,7 @@ body{
 }
 .input-container{
 	position:relative;
-	margin-bottom:25px;
+	//margin-bottom:25px;
 	font-family: Roboto, 'Segoe UI', Tahoma, sans-serif;
 	width:100%;
 }
