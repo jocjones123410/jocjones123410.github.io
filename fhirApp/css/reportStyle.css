@@ -12,8 +12,8 @@ body{
     background-origin: content-box;
     background-repeat: no-repeat;
     background-size: cover;
-	//min-height:100vh;
-	font-family: 'Noto Sans', sans-serif;
+	min-height:100vh;
+	overflow:hidden;
 }
 
 #patientSearch{
@@ -38,7 +38,7 @@ body{
 	top:0px;
 	left:0px;
 	font-size:1.3rem;
-	color:rgb(0,0,0);	
+	color:#fff;	
     pointer-event:none;
 	transition: all 0.5s ease-in-out;
 }
