@@ -24,7 +24,7 @@ body{
 	transform: translate(-50%,-50%);
 	border-radius:3px;
 	padding:15px;
-	background-color: rgba(0, 0, 0, 0.2);
+	background-color: rgba(0, 0, 0, 0.1);
 }
 .input-container{
 	position:relative;
@@ -38,7 +38,7 @@ body{
 	top:0px;
 	left:0px;
 	font-size:1.3rem;
-	color:rgb(218,220,224);	
+	color:rgb(0,0,0);	
     pointer-event:none;
 	transition: all 0.5s ease-in-out;
 }
@@ -85,6 +85,7 @@ a#searchButton{
 	text-align:center;
 	background-color:rgb(26,115,232);
 	transition: all 0.2s;
+	margin-left: 15px;
 }
 a#searchButton:hover{
 	background-color:rgb(66,133,244);
