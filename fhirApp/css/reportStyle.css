@@ -11,8 +11,9 @@ body{
 	background-position: center;
     background-origin: content-box;
     background-repeat: no-repeat;
-    background-size: cover;
-	min-height:100vh;
+    //background-size: cover;
+	background-size: 100% 25%;
+	//min-height:100vh;
 	font-family: 'Noto Sans', sans-serif;
 }
 
