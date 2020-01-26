@@ -12,8 +12,7 @@ body{
     background-origin: content-box;
     background-repeat: no-repeat;
     background-size: cover;
-	min-height:100vh;
-	overflow:hidden;
+	//min-height:100vh;
 	font-family: 'Noto Sans', sans-serif;
 }
 
@@ -39,7 +38,7 @@ body{
 	top:0px;
 	left:0px;
 	font-size:1.3rem;
-	color:rgb(218,220,224);	
+	color:rgb(0,0,0);	
     pointer-event:none;
 	transition: all 0.5s ease-in-out;
 }
@@ -238,4 +237,3 @@ footer#reportFooter{
 	width: 100%;
 	background-color: #0747a6;
 }
-
