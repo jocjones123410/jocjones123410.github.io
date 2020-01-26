@@ -6,6 +6,16 @@
 	display:none;
 }
 
+body{
+	background-image: url("https://images.pexels.com/photos/48603/pexels-photo-48603.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+	background-position: center;
+    background-origin: content-box;
+    background-repeat: no-repeat;
+    background-size: cover;
+	min-height:100vh;
+	font-family: 'Noto Sans', sans-serif;
+}
+
 #patientSearch{
 	position:absolute;
 	left:50%;
