@@ -33,7 +33,7 @@
 }
 .input-container input{ 
   border:0;
-  border-bottom:1px solid rgb(218,220,224);  
+  border-bottom:1px solid rgb(220,220,220);  
   background:transparent;
   padding:8px 0 5px 0;
   font-size:1.3rem;
@@ -45,7 +45,7 @@
 .input-container input:focus{ 
  border:none;	
  outline:none;
- border-bottom:1px solid rgb(218,220,224);	
+ border-bottom:1px solid rgb(220,220,220);	
 }
 
 .input-container input:focus ~ label,
@@ -61,7 +61,7 @@
 	
 a#searchButton{
 	padding:0.35em 1.2em;
-	border:1px solid rgb(218,220,224);
+	border:1px solid rgb(220,220,220);
 	border-radius:4px;
 	margin:0 0.3em 0.3em 0;	
 	box-sizing: border-box;
