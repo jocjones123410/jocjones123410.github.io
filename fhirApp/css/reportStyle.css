@@ -12,7 +12,7 @@ body{
     background-origin: content-box;
     background-repeat: no-repeat;
     background-size: cover;
-	min-height:100vh;
+	//min-height:100vh;
 	font-family: 'Noto Sans', sans-serif;
 }
 
