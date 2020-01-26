@@ -6,10 +6,6 @@
 	display:none;
 }
 
-//#patientSearch{
-	//display:none;
-//}
-
 #patientSearch{
 	position:absolute;
 	left:50%;
@@ -31,7 +27,7 @@
 	top:0px;
 	left:0px;
 	font-size:1.3rem;
-	color:#000;	
+	color:rgb(26,115,232);	
     pointer-event:none;
 	transition: all 0.5s ease-in-out;
 }
@@ -41,7 +37,7 @@
   background:transparent;
   padding:8px 0 5px 0;
   font-size:1.3rem;
-  color:#000;
+  color:rgb(218,220,224);
   width:75%;
   margin-right:5px;
 }
