@@ -33,7 +33,7 @@
 }
 .input-container input{ 
   border:0;
-  border-bottom:1px solid rgb(220,220,220);  
+  border-bottom:1px solid rgb(176,176,176);  
   background:transparent;
   padding:8px 0 5px 0;
   font-size:1.3rem;
@@ -45,7 +45,7 @@
 .input-container input:focus{ 
  border:none;	
  outline:none;
- border-bottom:1px solid rgb(220,220,220);	
+ border-bottom:1px solid rgb(176,176,176);	
 }
 
 .input-container input:focus ~ label,
@@ -69,13 +69,15 @@ a#searchButton{
 	font-family: Roboto, 'Segoe UI', Tahoma, sans-serif;
     font-size: 15px;
 	font-weight:500;
-	color:rgb(26,115,232);
+	//color:rgb(26,115,232);
+	color:#ffffff;
 	text-align:center;
+	background-color:rgb(26,115,232);
 	transition: all 0.2s;
 }
 a#searchButton:hover{
-	color:#ffffff;
-	background-color:rgb(26,115,232);
+	//color:#ffffff;
+	background-color:rgba(66,133,244,0.04);
 }
 @media all and (max-width:30em){
 	a#searchButton{
