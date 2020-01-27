@@ -30,6 +30,8 @@ function getReport(client){
 			.then(function(data){
 				if(data.entry){
 					hide('inputError');
+					var body = document.getElementsByTagName("body")[0];
+					body.style.background = 'none';
 					displayReport(data)
 				}else{
 					show('inputError');
