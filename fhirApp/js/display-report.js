@@ -32,6 +32,7 @@ function getReport(client){
 					hide('inputError');
 					var body = document.getElementsByTagName("body")[0];
 					body.style.background = 'none';
+					body.style.overflow = "auto";
 					displayReport(data)
 				}else{
 					show('inputError');
