@@ -41,7 +41,9 @@ const organizationResource = 'Organization';
 	}
 	
 	function getObservations(bundle){
-		return getResourceFromBundle(bundle,observationResource);
+		var observations = getResourceFromBundle(bundle,observationResource);
+		observations.sort((a, b) => (a.issued < b.issued) ? 1 : -1);
+		return observations;
 	}
 	
 	function getCoverage(bundle){
