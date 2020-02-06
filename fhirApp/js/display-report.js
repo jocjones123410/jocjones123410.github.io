@@ -61,7 +61,8 @@ function compare(a, b) {
 
 function populateConditionTable(conditions){
 	if(conditions.length > 0){
-		conditions.sort(compare);
+		//conditions.sort(compare);
+		conditions.sort((a, b) => (a.onsetDateTime > b.onsetDateTime) ? 1 : -1);
 		for(var i=0;i<conditions.length;i++){ 
 			if("active" === conditions[i].clinicalStatus){
 				var onsetDate = '';
