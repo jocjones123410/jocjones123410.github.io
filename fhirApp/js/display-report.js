@@ -51,9 +51,9 @@ function compare(a, b) {
   const onsetB = b.onsetDateTime;
 
   let comparison = 0;
-  if (onsetA > onsetB) {
+  if (onsetA < onsetB) {
     comparison = 1;
-  } else if (onsetA < onsetB) {
+  } else if (onsetA > onsetB) {
     comparison = -1;
   }
   return comparison;
