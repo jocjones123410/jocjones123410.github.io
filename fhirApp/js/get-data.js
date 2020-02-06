@@ -29,7 +29,9 @@ const organizationResource = 'Organization';
 	}
 	
 	function getConditions(bundle){
-		return getResourceFromBundle(bundle,conditionResource);
+		var conditions = getResourceFromBundle(bundle,conditionResource);
+		conditions.sort((a, b) => (a.onsetDateTime < b.onsetDateTime) ? 1 : -1);
+		return conditions;
 	}
 	
 	function getAllergies(bundle){
