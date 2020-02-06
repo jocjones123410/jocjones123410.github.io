@@ -47,6 +47,7 @@ function getReport(client){
 
 function populateConditionTable(conditions){
 	if(conditions.length > 0){
+		condtions.sort((a, b) => (a.onsetDate > b.onsetDate) ? 1: -1)
 		for(var i=0;i<conditions.length;i++){ 
 			if("active" === conditions[i].clinicalStatus){
 				var onsetDate = '';
