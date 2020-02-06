@@ -45,24 +45,9 @@ function getReport(client){
 			
 }
 
-function compare(a, b) {
-  // Use toUpperCase() to ignore character casing
-  const onsetA = a.onsetDateTime;
-  const onsetB = b.onsetDateTime;
-
-  let comparison = 0;
-  if (onsetA < onsetB) {
-    comparison = 1;
-  } else if (onsetA > onsetB) {
-    comparison = -1;
-  }
-  return comparison;
-}
-
 function populateConditionTable(conditions){
 	if(conditions.length > 0){
-		//conditions.sort(compare);
-		conditions.sort((a, b) => (a.onsetDateTime > b.onsetDateTime) ? 1 : -1);
+		conditions.sort((a, b) => (a.onsetDateTime < b.onsetDateTime) ? 1 : -1);
 		for(var i=0;i<conditions.length;i++){ 
 			if("active" === conditions[i].clinicalStatus){
 				var onsetDate = '';
