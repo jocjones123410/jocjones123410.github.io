@@ -22,4 +22,13 @@
 		font-size:30px;		
 		border-bottom:#333 1px solid;
 	}
+	
+	table{ 
+		page-break-inside:auto 
+	}
+	
+	tr{ 
+		page-break-inside:avoid; 
+		page-break-after:auto 
+	}
 }
