@@ -1,4 +1,4 @@
-const appMode = '';
+const appMode = 'test';
 
 const patientResource = 'Patient';
 const conditionResource = 'Condition';	
