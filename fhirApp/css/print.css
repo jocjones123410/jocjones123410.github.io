@@ -1,6 +1,5 @@
 @media print {
 	#report{
-		width:95%
-		margin: 1cm;
+		width:90vh;
 	}
 }
