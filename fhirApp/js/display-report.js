@@ -1,6 +1,4 @@
-function displayReport(bundle){	
-	hide('patientSearch');
-	show('report');
+function displayReport(bundle){		
 	var patients = getPatients(bundle);
 	var conditions = getConditions(bundle);
 	var allergies = getAllergies(bundle);
@@ -10,6 +8,13 @@ function displayReport(bundle){
 	var consent = getConsent(bundle);
 	var practioners = getPractitioner(bundle);
 	var organizations = getOrganization(bundle);
+	var body = document.getElementsByTagName("body")[0];
+	
+	hide('patientSearch');
+	hide('inputError');	
+	body.style.background = 'none';
+	body.style.overflow = "auto";
+	show('report');
 	
 	populatePatientDemographics(patients[0]);
 	populateConditionTable(conditions);
@@ -28,11 +33,7 @@ function getReport(client){
 		var patientId = document.getElementById("patientId").value;		
 		client.request("Patient?_id=" + patientId + "&_revinclude=Condition:subject&_revinclude=AllergyIntolerance:patient&_revinclude=MedicationStatement:subject&_revinclude=Observation:subject")
 			.then(function(data){
-				if(data.entry){
-					hide('inputError');
-					var body = document.getElementsByTagName("body")[0];
-					body.style.background = 'none';
-					body.style.overflow = "auto";
+				if(data.entry){					
 					displayReport(data)
 				}else{
 					show('inputError');
