@@ -1,3 +1,6 @@
 @media print {
-	margin: 1cm;
+	#report{
+		width:95%
+		margin: 1cm;
+	}
 }
