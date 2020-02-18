@@ -7,7 +7,7 @@
 }
 
 body{
-	//background-image: url("https://images.pexels.com/photos/48603/pexels-photo-48603.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+	background-image: url("https://images.pexels.com/photos/48603/pexels-photo-48603.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
 	background-position: center;
     background-origin: content-box;
     background-repeat: no-repeat;
@@ -38,8 +38,8 @@ body{
 	top:0px;
 	left:0px;
 	font-size:1.3rem;
-	//color:#fff;	
-	color:#909090
+	color:#fff;	
+	//color:#909090
     pointer-event:none;
 	transition: all 0.5s ease-in-out;
 }
