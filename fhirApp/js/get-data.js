@@ -1,4 +1,4 @@
-const appMode = 'test';
+const appMode = '';
 
 const patientResource = 'Patient';
 const conditionResource = 'Condition';	
@@ -35,7 +35,7 @@ const organizationResource = 'Organization';
 	}
 	
 	function getAllergies(bundle){
-		return getResourceFromBundle(bundle,allergyResource);
+		return getResourceFromBundle(bundle,allergyResource);				
 	}
 	
 	function getMedications(bundle){
@@ -73,14 +73,7 @@ const organizationResource = 'Organization';
 	}else{
 		FHIR.oauth2.ready().then(function(client) {
 			show('patientSearch');
-			var searchButton = document.getElementById("searchButton").onclick = function(){getReport(client)};
-			/*var searchInput = document.getElementById("patientId");
-			searchInput.addEventListener("keypress", function(event) {
-			event.preventDefault();
-			//keyCode 13 is the Enter Key
-			if (event.keyCode == 13)
-				getReport(client);
-			});*/		
+			var searchButton = document.getElementById("searchButton").onclick = function(){getReport(client)};			
 		}).catch(function(data){show('authError');});
 	}
 //const client = new FHIR.client("https://r3.smarthealthit.org");
@@ -94,14 +87,13 @@ const organizationResource = 'Organization';
     //.catch(display);
 	//}).catch(show('authError'));
 	
-/*var report = document.getElementById('report');
-var error = document.getElementById('authError');
-  if (report.style.display === "none") {
-    error.style.display = "block";
-  } else {
-    error.style.display = "none";
-  }
+/*
 client.request("/MedicationRequest?patient=6f0dafdc-94c5-4ab2-9208-b2872450737a", {
     resolveReferences: "medicationReference"
 }).then(displayMedication)
 	.catch(display);*/
+
+	
+//This will get the patient by the MRN	
+//https://r3.smarthealthit.org/Patient?identifier:otype=http://hospital.smarthealthit.org|11eab7ea-963a-48ee-8a4f-ca789862f858
+	
