@@ -40,7 +40,7 @@ function getReport(client){
 					console.log(data.entry[0].resource.id);
 					patientId = data.entry[0].resource.id;
 				}
-			});
+			}).then(
 		client.request("Patient?_id=" + patientId + "&_revinclude=Condition:subject&_revinclude=AllergyIntolerance:patient&_revinclude=MedicationStatement:subject&_revinclude=Observation:subject")
 			.then(function(data){
 				if(data.entry){					
@@ -49,7 +49,7 @@ function getReport(client){
 					show('inputError');
 				}
 			})
-			.catch(function(data){alert("No match for patient" + patientId)});
+			.catch(function(data){alert("No match for patient" + patientId)}));
 		//client.request("Patient?_id=" + patientId) //+ "&_include=Condition:subject")
 			//.then(function(data){displayReport(testBatch)})			
 		//client.request("Patient/6f0dafdc-94c5-4ab2-9208-b2872450737a")
