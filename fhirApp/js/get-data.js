@@ -65,7 +65,8 @@ const organizationResource = 'Organization';
 	}
 	
 	function getPatientId(client){
-		var mrn = document.getElementById("mrn").value;
+		return "6f0dafdc-94c5-4ab2-9208-b2872450737a";
+		/*var mrn = document.getElementById("mrn").value;
 		var patientId = '';
 		client.request("Patient?identifier:otype=http://hospital.smarthealthit.org|" + mrn)
 			.then(function(data){
@@ -73,7 +74,7 @@ const organizationResource = 'Organization';
 					patientId = data.entry[0].resource.id;				
 				}
 			});
-		return patientId;
+		return patientId;*/
 	}
 	
 	if('test' === appMode){
