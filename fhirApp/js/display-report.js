@@ -41,7 +41,7 @@ async function getReport(client){
 					patientId = data.entry[0].resource.id;
 				}
 			});*/
-		await new Promise(r => setTimeout(r, 1000));
+		await new Promise(r => setTimeout(r, 2000));
 		client.request("Patient?_id=" + patientId + "&_revinclude=Condition:subject&_revinclude=AllergyIntolerance:patient&_revinclude=MedicationStatement:subject&_revinclude=Observation:subject")
 			.then(function(data){
 				if(data.entry){					

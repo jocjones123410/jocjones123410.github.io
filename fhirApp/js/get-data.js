@@ -68,8 +68,9 @@ const organizationResource = 'Organization';
 		var mrn = document.getElementById("mrn").value;		
 		client.request("Patient?identifier:otype=http://hospital.smarthealthit.org|" + mrn)
 			.then(function(data){
-				if(data.entry[0].resource.id){		
-					return data.entry[0].resource.id;					
+				if(data.entry[0].resource.id){
+					var patientId = data.entry[0].resource.id;
+					return patientId;					
 				}
 				return '';
 			});			
