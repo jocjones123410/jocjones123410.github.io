@@ -65,15 +65,15 @@ const organizationResource = 'Organization';
 	}
 	
 	function getPatientId(client){
-		var mrn = document.getElementById("mrn").value;		
+		var mrn = document.getElementById("mrn").value;
+		var patientId = '';
 		client.request("Patient?identifier:otype=http://hospital.smarthealthit.org|" + mrn)
 			.then(function(data){
 				if(data.entry[0].resource.id){
-					var patientId = data.entry[0].resource.id;
-					return patientId;					
+					patientId = data.entry[0].resource.id;				
 				}
-				return '';
-			});			
+			});
+		return patientId;
 	}
 	
 	if('test' === appMode){
