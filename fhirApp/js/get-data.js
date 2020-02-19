@@ -69,16 +69,10 @@ const organizationResource = 'Organization';
 		client.request("Patient?identifier:otype=http://hospital.smarthealthit.org|" + mrn)
 			.then(function(data){
 				if(data.entry[0].resource.id){		
-					console.log(data.entry[0]);
-					console.log(data.entry[0].resource);
-					console.log(data.entry[0].resource.id);
-					var patientId = data.entry[0].resource.id;
-					return patientId;
-				}else{
-					show('inputError');
+					return data.entry[0].resource.id;					
 				}
-			})
-			.catch(function(data){alert("No match for patient" + patientId)});
+				return '';
+			});			
 	}
 	
 	if('test' === appMode){
