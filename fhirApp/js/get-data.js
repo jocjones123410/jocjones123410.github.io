@@ -64,6 +64,18 @@ const organizationResource = 'Organization';
 		return getResourceFromBundle(bundle, organizationResource);
 	}
 	
+	function getPatientId(client){
+		var mrn = document.getElementById("mrn").value;		
+		client.request("Patient?identifier:otype=http://hospital.smarthealthit.org|" + mrn)
+			.then(function(data){
+				if(data.entry){					
+					displayReport(data)
+				}else{
+					show('inputError');
+				}
+			})
+			.catch(function(data){alert("No match for patient" + patientId)});
+	}
 	
 	if('test' === appMode){
 		client = new FHIR.client("https://r3.smarthealthit.org");
@@ -73,7 +85,8 @@ const organizationResource = 'Organization';
 	}else{
 		FHIR.oauth2.ready().then(function(client) {
 			show('patientSearch');
-			var searchButton = document.getElementById("searchButton").onclick = function(){getReport(client)};			
+			//var searchButton = document.getElementById("searchButton").onclick = function(){getReport(client)};
+			var searchButton = document.getElementById("searchButton").onclick = function(){getPatientId(client)};			
 		}).catch(function(data){show('authError');});
 	}
 //const client = new FHIR.client("https://r3.smarthealthit.org");
