@@ -72,7 +72,8 @@ const organizationResource = 'Organization';
 					console.log(data.entry[0]);
 					console.log(data.entry[0].resource);
 					console.log(data.entry[0].resource.id);
-					return data.entry[0].resource.id;
+					var patientId = data.entry[0].resource.id;
+					return patientId;
 				}else{
 					show('inputError');
 				}
