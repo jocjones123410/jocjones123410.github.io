@@ -31,16 +31,15 @@ function displayReport(bundle){
 
 async function getReport(client){
 		//var patientId = document.getElementById("patientId").value;		
-		//var patientId = getPatientId(client);
 		var patientId = getPatientId(client);
-		/*var mrn = document.getElementById("mrn").value;		
+		var mrn = document.getElementById("mrn").value;		
 		client.request("Patient?identifier:otype=http://hospital.smarthealthit.org|" + mrn)
 			.then(function(data){
 				if(data.entry[0].resource.id){							
 					console.log(data.entry[0].resource.id);
 					patientId = data.entry[0].resource.id;
 				}
-			});*/
+			});
 		await new Promise(r => setTimeout(r, 2000));
 		client.request("Patient?_id=" + patientId + "&_revinclude=Condition:subject&_revinclude=AllergyIntolerance:patient&_revinclude=MedicationStatement:subject&_revinclude=Observation:subject")
 			.then(function(data){
