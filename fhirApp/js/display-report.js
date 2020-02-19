@@ -30,9 +30,9 @@ function displayReport(bundle){
 }
 
 async function getReport(client){
-		//var patientId = document.getElementById("patientId").value;
+		//var patientId = document.getElementById("patientId").value;		
 		//var patientId = getPatientId(client);
-		var patientId = getPatientId(client);
+		console.log(getPatientId(client));
 		/*var mrn = document.getElementById("mrn").value;		
 		client.request("Patient?identifier:otype=http://hospital.smarthealthit.org|" + mrn)
 			.then(function(data){
