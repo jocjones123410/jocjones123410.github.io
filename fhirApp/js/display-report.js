@@ -33,6 +33,7 @@ function renderReport(client, patientId){
 	hide('patientSearch');
 	hide('inputError');
 	hide('authError');
+	var body = document.getElementsByTagName("body")[0];
 	body.style.background = 'none';
 	body.style.overflow = "auto";
 	
