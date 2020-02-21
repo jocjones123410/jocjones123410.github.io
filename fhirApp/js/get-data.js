@@ -32,11 +32,15 @@ const organizationResource = 'Organization';
 		return getResourceFromBundle(bundle, patientResource);
 	}
 	
+	function getConditionResource(client, patientId){
+		return client.request(conditionResource + "?subject=" + patientId);
+	}
+	
 	function getConditions(bundle){
 		var conditions = getResourceFromBundle(bundle,conditionResource);
 		conditions.sort((a, b) => (a.onsetDateTime < b.onsetDateTime) ? 1 : -1);
 		return conditions;
-	}
+	}	
 	
 	function getAllergies(bundle){
 		return getResourceFromBundle(bundle,allergyResource);				

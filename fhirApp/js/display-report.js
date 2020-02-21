@@ -1,4 +1,4 @@
-function displayReport(bundle){	
+/*function displayReport(bundle){	
 	var patients = getPatients(bundle);
 	var conditions = getConditions(bundle);
 	var allergies = getAllergies(bundle);
@@ -27,7 +27,7 @@ function displayReport(bundle){
 	populatePersonalContactSection(patients[0]);
 	populateContactSection(practioners[0], organizations[0]);
 	hide('authError');
-}
+}*/
 
 function renderReport(client, patientId){	
 	hide('patientSearch');
@@ -38,6 +38,7 @@ function renderReport(client, patientId){
 	body.style.overflow = "auto";
 	
 	renderPatientDemographics(client, patientId);
+	renderConditions(client,patientId);
 	
 	show('report');
 }
@@ -45,6 +46,12 @@ function renderReport(client, patientId){
 function renderPatientDemographics(client, patientId){
 	getPatientResource(client, patientId).then(function(data){
 		populatePatientDemographics(data);
+	});
+}
+
+function renderConditions(client, patientId){
+	getConditionResource(client, patientId).then(function(data){
+		populateConditionTable(data);
 	});
 }
 
