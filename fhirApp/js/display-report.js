@@ -300,7 +300,7 @@ function populateAdvancedDirectiveSection(consentBundle){
 }
 
 function populateVitalsTable(observationBundle){
-	if(populateVitalsTable.total > 0){
+	if(observationBundle.total > 0){
 		var obs = observationBundle.entry;
 		var vitalRow = null;
 		for(var i=0;i<obs.length;i++){			
