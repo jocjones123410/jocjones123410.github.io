@@ -164,7 +164,7 @@ function populateAllergyTable(allergyBundle){
 }
 
 function populateMedicationsTable(medicationStatementBundle){
-	if(medicationStatementBundle.entry.length > 0){
+	if(medicationStatementBundle.entry && medicationStatementBundle.entry.length > 0){
 		var medications = medicationStatementBundle.entry;
 		var medRow = null;
 		for(var i=0;i<medications.length;i++){
