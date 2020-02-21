@@ -42,6 +42,10 @@ const organizationResource = 'Organization';
 		return conditions;
 	}	
 	
+	function getAllergyResource(client, patientId){
+		return client.request(allergyResource + "?patient=" + patientId);
+	}
+	
 	function getAllergies(bundle){
 		return getResourceFromBundle(bundle,allergyResource);				
 	}

@@ -55,6 +55,12 @@ function renderConditions(client, patientId){
 	});
 }
 
+function renderAllergies(client, patientId){
+	getAllergyResource(client, patientId).then(function(data){
+		populateAllergyTable(data);
+	}
+}
+
 async function getReport(client){
 		//var patientId = document.getElementById("patientId").value;		
 		//var patientId = getPatientId(client);
@@ -84,7 +90,7 @@ async function getReport(client){
 }
 
 function populateConditionTable(conditionBundle){
-	if(conditionBundle.entry.length > 0){
+	if(conditionBundle.entry.length > 0){		
 		var conditions = conditionBundle.entry;	
 		for(var i=0;i<conditions.length;i++){ 
 			if("active" === conditions[i].resource.clinicalStatus){
@@ -107,22 +113,23 @@ function populateConditionTable(conditionBundle){
 	}
 }
 
-function populateAllergyTable(allergies){
-	if(allergies.length > 0){
+function populateAllergyTable(allergyBundle){
+	if(allergyBundle.length > 0){
+		var allergies = allergyBundle.entry;
 		for(var i=0;i<allergies.length;i++){
-			if("active" === allergies[i].clinicalStatus){
-				if(allergies[i].code.coding){
-					var assertedDate = tableDataWrapper(formatDate(allergies[i].assertedDate));
+			if("active" === allergies[i].resource.clinicalStatus){
+				if(allergies[i].resource.code.coding){
+					var assertedDate = tableDataWrapper(formatDate(allergies[i].resource.assertedDate));
 					var categoryVal = "";
 					
-					if(allergies[i].category){
-						categoryVal = allergies[i].category[0];
+					if(allergies[i].resource.category){
+						categoryVal = allergies[i].resource.category[0];
 					}						
 					var category = tableDataWrapper(categoryVal);
-					var entry = tableDataWrapper(allergies[i].code.coding[0].display);
-					var criticality = tableDataWrapper(allergies[i].criticality);
-					var clinicalSts = tableDataWrapper(allergies[i].clinicalStatus);
-					var verificationSts = tableDataWrapper(allergies[i].verificationStatus);
+					var entry = tableDataWrapper(allergies[i].resource.code.coding[0].display);
+					var criticality = tableDataWrapper(allergies[i].resource.criticality);
+					var clinicalSts = tableDataWrapper(allergies[i].resource.clinicalStatus);
+					var verificationSts = tableDataWrapper(allergies[i].resource.verificationStatus);
 					var allergyRow = assertedDate + category + entry + criticality + clinicalSts + verificationSts;					
 					allergyRow = tableRowWrapper(allergyRow);
 					setDomElement('allergyEntries', allergyRow);
