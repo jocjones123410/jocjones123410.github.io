@@ -87,16 +87,16 @@ function populateConditionTable(conditionBundle){
 	if(conditionBundle.entry.length > 0){
 		var conditions = conditionBundle.entry;	
 		for(var i=0;i<conditions.length;i++){ 
-			if("active" === conditions[i].clinicalStatus){
+			if("active" === conditions[i].resource.clinicalStatus){
 				var onsetDate = '';
 				var display = '';
 				var clinicalStatus = '';
 				var verificationStatus = '';
 				
-				onsetDate = tableDataWrapper(formatDate(conditions[i].onsetDateTime));				
-				display = tableDataWrapper(conditions[i].code.coding[0].display);
-				clinicalStatus = tableDataWrapper(conditions[i].clinicalStatus);
-				verificationStatus = tableDataWrapper(conditions[i].verificationStatus);
+				onsetDate = tableDataWrapper(formatDate(conditions[i].resource.onsetDateTime));				
+				display = tableDataWrapper(conditions[i].resource.code.coding[0].display);
+				clinicalStatus = tableDataWrapper(conditions[i].resource.clinicalStatus);
+				verificationStatus = tableDataWrapper(conditions[i].resource.verificationStatus);
 				var conditionRow = onsetDate + display + clinicalStatus + verificationStatus;
 				conditionRow = tableRowWrapper(conditionRow);
 				setDomElement('conditionEntries',conditionRow);			
