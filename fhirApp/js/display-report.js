@@ -75,6 +75,7 @@ function renderMedications(client, patientId){
 function renderObservations(client, patientId){
 	getObservations(client, patientId).then(function(data){
 		populateLabsTable(data);
+		populateVitalsTable(data);
 	});
 }
 
@@ -89,6 +90,7 @@ function renderAdvancedDirective(client, patientId){
 		populateAdvancedDirectiveSection(data);
 	});
 }
+		
 	
 async function getReport(client){
 		//var patientId = document.getElementById("patientId").value;		
@@ -297,16 +299,17 @@ function populateAdvancedDirectiveSection(consentBundle){
 	}
 }
 
-function populateVitalsTable(obs){
-	if(obs.length > 0){
+function populateVitalsTable(observationBundle){
+	if(populateVitalsTable.total > 0){
+		var obs = observationBundle.entry;
 		var vitalRow = null;
 		for(var i=0;i<obs.length;i++){			
 			var categoryVal = "";						
-			if(obs[i].category && obs[i].category[0].coding){
-				categoryVal = obs[i].category[0].coding[0].code;
-				if('vital-signs' === categoryVal.toLowerCase() && obs[i].component){
-					var comp = obs[i].component;					
-					var issuedDate = tableDataWrapper(formatDate(obs[i].issued));					
+			if(obs[i].resource.category && obs[i].resource.category[0].coding){
+				categoryVal = obs[i].resource.category[0].coding[0].code;
+				if('vital-signs' === categoryVal.toLowerCase() && obs[i].resource.component){
+					var comp = obs[i].resource.component;					
+					var issuedDate = tableDataWrapper(formatDate(obs[i].resource.issued));					
 					
 					for(var x=0;x<comp.length;x++){					
 						var name = "";
