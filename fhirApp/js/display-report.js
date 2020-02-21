@@ -39,6 +39,7 @@ function renderReport(client, patientId){
 	
 	renderPatientDemographics(client, patientId);
 	renderConditions(client,patientId);
+	renderAllergies(client,patientId);
 	
 	show('report');
 }
@@ -58,7 +59,7 @@ function renderConditions(client, patientId){
 function renderAllergies(client, patientId){
 	getAllergyResource(client, patientId).then(function(data){
 		populateAllergyTable(data);
-	}
+	});
 }
 
 async function getReport(client){
