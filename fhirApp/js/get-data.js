@@ -76,9 +76,13 @@ const organizationResource = 'Organization';
 		return getResourceFromBundle(bundle,coverageResource);
 	}*/
 	
-	function getConsent(bundle){
-		return getResourceFromBundle(bundle, consentResource);
+	function getConsent(client, patientId){
+		return client.request(consentResource + "?patient=" + patientId);
 	}
+	
+	/*function getConsent(bundle){
+		return getResourceFromBundle(bundle, consentResource);
+	}*/
 	
 	function getPractitioner(bundle){
 		return getResourceFromBundle(bundle, practitionerResource);

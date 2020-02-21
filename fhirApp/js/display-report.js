@@ -43,6 +43,7 @@ function renderReport(client, patientId){
 	renderMedications(client, patientId);
 	renderObservations(client, patientId);
 	renderCoverage(client, patientId);
+	renderAdvancedDirective(client, patientId);
 	
 	show('report');
 }
@@ -83,6 +84,12 @@ function renderCoverage(client, patientId){
 	});
 }
 
+function renderAdvancedDirective(client, patientId){
+	getConsent(client, patientId).then(function(data){
+		populateAdvancedDirectiveSection(data);
+	});
+}
+	
 async function getReport(client){
 		//var patientId = document.getElementById("patientId").value;		
 		//var patientId = getPatientId(client);
@@ -256,8 +263,9 @@ function populateCoverageSection(coverageBundle){
 	}
 }
 
-function populateAdvancedDirectiveSection(consent){
-	if(consent){
+function populateAdvancedDirectiveSection(consentBundle){
+	if(consentBundle.total > 0){
+		var consent = consentBundle.entry;
 		var consentDate = "";
 		if(consent.dateTime){
 			consentDate = divWrapper(createLabel('Consent Date: ') + formatDate(consent.dateTime));
