@@ -59,7 +59,7 @@ const organizationResource = 'Organization';
 	}*/
 	
 	function getObservations(client, patientId){
-		return client.request(observationResource + "?suject=" + patientId);
+		return client.request(observationResource + "?subject=" + patientId);
 	}
 	
 	/*function getObservations(bundle){
