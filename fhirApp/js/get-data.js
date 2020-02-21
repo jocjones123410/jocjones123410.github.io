@@ -68,9 +68,13 @@ const organizationResource = 'Organization';
 		return observations;
 	}*/
 	
-	function getCoverage(bundle){
-		return getResourceFromBundle(bundle,coverageResource);
+	function getCoverage(client, patientId){
+		return client.request(coverageResource + "?beneficiary=" + patientId);
 	}
+	
+	/*function getCoverage(bundle){
+		return getResourceFromBundle(bundle,coverageResource);
+	}*/
 	
 	function getConsent(bundle){
 		return getResourceFromBundle(bundle, consentResource);

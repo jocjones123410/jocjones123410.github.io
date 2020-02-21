@@ -42,6 +42,7 @@ function renderReport(client, patientId){
 	renderAllergies(client, patientId);
 	renderMedications(client, patientId);
 	renderObservations(client, patientId);
+	renderCoverage(client, patientId);
 	
 	show('report');
 }
@@ -73,6 +74,12 @@ function renderMedications(client, patientId){
 function renderObservations(client, patientId){
 	getObservations(client, patientId).then(function(data){
 		populateLabsTable(data);
+	});
+}
+
+function renderCoverage(client, patientId){
+	getCoverage(client, patientId).then(function(data){
+		populateCoverageSection(data);
 	});
 }
 
