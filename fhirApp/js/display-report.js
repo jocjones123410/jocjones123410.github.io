@@ -30,7 +30,8 @@ function displayReport(bundle){
 }
 
 function renderReport(client, patientId){
-	var patient = getPatientResource(client, patientId)
+	var patient = getPatientResource(client, patientId);
+	console.log(patient);
 }
 
 async function getReport(client){
