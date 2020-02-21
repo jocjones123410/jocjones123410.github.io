@@ -29,8 +29,16 @@ function displayReport(bundle){
 	hide('authError');
 }
 
-function renderReport(client, patientId){
+function renderReport(client, patientId){	
+	hide('patientSearch');
+	hide('inputError');
+	hide('authError');
+	body.style.background = 'none';
+	body.style.overflow = "auto";
+	
 	renderPatientDemographics(client, patientId);
+	
+	show('report');
 }
 
 function renderPatientDemographics(client, patientId){
