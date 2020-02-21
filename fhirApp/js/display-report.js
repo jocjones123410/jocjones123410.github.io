@@ -41,6 +41,7 @@ function renderReport(client, patientId){
 	renderConditions(client, patientId);
 	renderAllergies(client, patientId);
 	renderMedications(client, patientId);
+	renderObservations(client, patientId);
 	
 	show('report');
 }
@@ -66,6 +67,12 @@ function renderAllergies(client, patientId){
 function renderMedications(client, patientId){
 	getMedications(client, patientId).then(function(data){
 		populateMedicationsTable(data);
+	});
+}
+
+function renderObservations(client, patientId){
+	getObservations(client, patientId).then(function(data){
+		populateLabsTable(data);
 	});
 }
 
@@ -171,26 +178,27 @@ function populateMedicationsTable(medicationStatementBundle){
 	}
 }
 
-function populateLabsTable(obs){
-	if(obs.length > 0){
+function populateLabsTable(observationBundle){
+	if(observationBundle.entry.length > 0){
+		var obs = observationBundle.entry;
 		var labRow = null;
 		for(var i=0;i<obs.length;i++){			
 			var categoryVal = "";						
-			if(obs[i].category && obs[i].category[0].coding){
-				categoryVal = obs[i].category[0].coding[0].code;
+			if(obs[i].resource.category && obs[i].resource.category[0].coding){
+				categoryVal = obs[i].resource.category[0].coding[0].code;
 				if('laboratory' === categoryVal.toLowerCase()){						
 					var effectiveDate = tableDataWrapper(formatDate(obs[i].effectiveDateTime));
 					var category = tableDataWrapper(categoryVal);
-					var entry = tableDataWrapper(obs[i].code.text);
+					var entry = tableDataWrapper(obs[i].resource.code.text);
 					var quantityValUnit = "";
 			
 					if(obs[i].valueQuantity){
 						var qtValue = "";
 						var qtUnit = "";
-						if(obs[i].valueQuantity.value != undefined){
+						if(obs[i].resource.valueQuantity.value != undefined){
 							qtValue = obs[i].valueQuantity.value;
 						}
-						if(obs[i].valueQuantity.unit != undefined){
+						if(obs[i].resource.valueQuantity.unit != undefined){
 							qtUnit = obs[i].valueQuantity.unit;
 						}
 						quantityValUnit = qtValue + " " + qtUnit;

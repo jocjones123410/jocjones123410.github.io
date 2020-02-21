@@ -58,11 +58,15 @@ const organizationResource = 'Organization';
 		return getResourceFromBundle(bundle,medicationStatementResource);
 	}*/
 	
-	function getObservations(bundle){
+	function getObservations(client, patientId){
+		return client.request(observationResource + "?suject=" + patientId);
+	}
+	
+	/*function getObservations(bundle){
 		var observations = getResourceFromBundle(bundle,observationResource);
 		observations.sort((a, b) => (a.issued < b.issued) ? 1 : -1);
 		return observations;
-	}
+	}*/
 	
 	function getCoverage(bundle){
 		return getResourceFromBundle(bundle,coverageResource);
