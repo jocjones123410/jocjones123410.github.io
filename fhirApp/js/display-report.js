@@ -115,7 +115,7 @@ function populateConditionTable(conditionBundle){
 }
 
 function populateAllergyTable(allergyBundle){
-	if(allergyBundle.length > 0){
+	if(allergyBundle.entry.length > 0){
 		var allergies = allergyBundle.entry;
 		for(var i=0;i<allergies.length;i++){
 			if("active" === allergies[i].resource.clinicalStatus){
