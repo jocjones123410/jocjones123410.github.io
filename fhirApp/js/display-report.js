@@ -194,19 +194,19 @@ function populateLabsTable(observationBundle){
 			if(obs[i].resource.category && obs[i].resource.category[0].coding){
 				categoryVal = obs[i].resource.category[0].coding[0].code;
 				if('laboratory' === categoryVal.toLowerCase()){						
-					var effectiveDate = tableDataWrapper(formatDate(obs[i].effectiveDateTime));
+					var effectiveDate = tableDataWrapper(formatDate(obs[i].resource.effectiveDateTime));
 					var category = tableDataWrapper(categoryVal);
 					var entry = tableDataWrapper(obs[i].resource.code.text);
 					var quantityValUnit = "";
 			
-					if(obs[i].valueQuantity){
+					if(obs[i].resource.valueQuantity){
 						var qtValue = "";
 						var qtUnit = "";
 						if(obs[i].resource.valueQuantity.value != undefined){
-							qtValue = obs[i].valueQuantity.value;
+							qtValue = obs[i].resource.valueQuantity.value;
 						}
 						if(obs[i].resource.valueQuantity.unit != undefined){
-							qtUnit = obs[i].valueQuantity.unit;
+							qtUnit = obs[i].resource.valueQuantity.unit;
 						}
 						quantityValUnit = qtValue + " " + qtUnit;
 					}
