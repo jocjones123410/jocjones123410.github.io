@@ -83,8 +83,9 @@ async function getReport(client){
 			
 }
 
-function populateConditionTable(conditions){
-	if(conditions.entry.length > 0){		
+function populateConditionTable(conditionBundle){
+	if(conditionBundle.entry.length > 0){
+		var conditions = conditionBundle.entry;	
 		for(var i=0;i<conditions.length;i++){ 
 			if("active" === conditions[i].clinicalStatus){
 				var onsetDate = '';
