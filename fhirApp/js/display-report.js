@@ -112,7 +112,7 @@ async function getReport(client){
 }
 
 function populateConditionTable(conditionBundle){
-	if(conditionBundle.entry.length > 0){		
+	if(conditionBundle.total > 0){		
 		var conditions = conditionBundle.entry;	
 		for(var i=0;i<conditions.length;i++){ 
 			if("active" === conditions[i].resource.clinicalStatus){
@@ -136,7 +136,7 @@ function populateConditionTable(conditionBundle){
 }
 
 function populateAllergyTable(allergyBundle){
-	if(allergyBundle.entry.length > 0){
+	if(allergyBundle.total > 0){
 		var allergies = allergyBundle.entry;
 		for(var i=0;i<allergies.length;i++){
 			if("active" === allergies[i].resource.clinicalStatus){
@@ -164,7 +164,7 @@ function populateAllergyTable(allergyBundle){
 }
 
 function populateMedicationsTable(medicationStatementBundle){
-	if(medicationStatementBundle.entry && medicationStatementBundle.entry.length > 0){
+	if(medicationStatementBundle.total > 0){
 		var medications = medicationStatementBundle.entry;
 		var medRow = null;
 		for(var i=0;i<medications.length;i++){
@@ -186,7 +186,7 @@ function populateMedicationsTable(medicationStatementBundle){
 }
 
 function populateLabsTable(observationBundle){
-	if(observationBundle.entry.length > 0){
+	if(observationBundle.total > 0){
 		var obs = observationBundle.entry;
 		var labRow = null;
 		for(var i=0;i<obs.length;i++){			
@@ -224,8 +224,8 @@ function populateLabsTable(observationBundle){
 	}
 }
 
-function populateCoverageSection(coverage){
-	if(coverage){
+function populateCoverageSection(coverageBundle){
+	if(coverageBundle.total > 0){
 		var type = "";
 		if(coverage.type && coverage.type.coding && coverage.type.coding[0].display){
 			type = divWrapper(createLabel('Type: ') + coverage.type.coding[0].display);
