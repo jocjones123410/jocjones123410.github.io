@@ -1,4 +1,4 @@
-function displayReport(bundle){		
+function displayReport(bundle){	
 	var patients = getPatients(bundle);
 	var conditions = getConditions(bundle);
 	var allergies = getAllergies(bundle);
@@ -29,6 +29,10 @@ function displayReport(bundle){
 	hide('authError');
 }
 
+function renderReport(client, patientId){
+	var patient = getPatientResource(client, patientId)
+}
+
 async function getReport(client){
 		//var patientId = document.getElementById("patientId").value;		
 		//var patientId = getPatientId(client);
@@ -42,7 +46,8 @@ async function getReport(client){
 				}
 			});
 		await new Promise(r => setTimeout(r, 2000));
-		client.request("Patient?_id=" + patientId + "&_revinclude=Condition:subject&_revinclude=AllergyIntolerance:patient&_revinclude=MedicationStatement:subject&_revinclude=Observation:subject")
+		displayReport(client, patientId);
+		/*client.request("Patient?_id=" + patientId + "&_revinclude=Condition:subject&_revinclude=AllergyIntolerance:patient&_revinclude=MedicationStatement:subject&_revinclude=Observation:subject")
 			.then(function(data){
 				if(data.entry){					
 					displayReport(data)
@@ -50,7 +55,7 @@ async function getReport(client){
 					show('inputError');
 				}
 			})
-			.catch(function(data){alert("No match for patient" + patientId)});
+			.catch(function(data){alert("No match for patient" + patientId)});*/
 		//client.request("Patient?_id=" + patientId) //+ "&_include=Condition:subject")
 			//.then(function(data){displayReport(testBatch)})			
 		//client.request("Patient/6f0dafdc-94c5-4ab2-9208-b2872450737a")

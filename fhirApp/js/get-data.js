@@ -24,6 +24,10 @@ const organizationResource = 'Organization';
 		}			
 	}
 	
+	function getPatientResource(client, patientId){
+		return client.request(patientResource + "/" + patientId);
+	}
+	
 	function getPatients(bundle){
 		return getResourceFromBundle(bundle, patientResource);
 	}
