@@ -34,7 +34,9 @@ function renderReport(client, patientId){
 }
 
 function renderPatientDemographics(client, patientId){
-	getPatientResource(client, patientId).then(populatePatientDemographics(result));
+	getPatientResource(client, patientId).then(function(data){
+		populatePatientDemographics(data);
+	});
 }
 
 async function getReport(client){
@@ -45,7 +47,6 @@ async function getReport(client){
 		client.request("Patient?identifier:otype=http://hospital.smarthealthit.org|" + mrn)
 			.then(function(data){
 				if(data.entry[0].resource.id){							
-					console.log(data.entry[0].resource.id);
 					patientId = data.entry[0].resource.id;
 				}
 			});
