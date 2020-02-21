@@ -38,8 +38,9 @@ function renderReport(client, patientId){
 	body.style.overflow = "auto";
 	
 	renderPatientDemographics(client, patientId);
-	renderConditions(client,patientId);
-	renderAllergies(client,patientId);
+	renderConditions(client, patientId);
+	renderAllergies(client, patientId);
+	renderMedications(client, patientId);
 	
 	show('report');
 }
@@ -59,6 +60,12 @@ function renderConditions(client, patientId){
 function renderAllergies(client, patientId){
 	getAllergyResource(client, patientId).then(function(data){
 		populateAllergyTable(data);
+	});
+}
+
+function renderMedications(client, patientId){
+	getMedications(client, patientId).then(function(data){
+		populateMedicationsTable(data);
 	});
 }
 
@@ -142,16 +149,17 @@ function populateAllergyTable(allergyBundle){
 	}
 }
 
-function populateMedicationsTable(medications){
-	if(medications.length > 0){
+function populateMedicationsTable(medicationStatementBundle){
+	if(medicationStatementBundle.entry.length > 0){
+		var medications = medicationStatementBundle.entry;
 		var medRow = null;
 		for(var i=0;i<medications.length;i++){
-			var status = medications[i].status;
+			var status = medications[i].resource.status;
 			if(medications[i].status && 'active' === status.toLowerCase()){ 
 				var statusElement = tableDataWrapper(status);
-				var assertedDate = tableDataWrapper(medications[i].dateAsserted);			
-				var medication = tableDataWrapper(medications[i].medicationCodeableConcept.text);
-				var taken = tableDataWrapper(medications[i].taken);
+				var assertedDate = tableDataWrapper(medications[i].resource.dateAsserted);			
+				var medication = tableDataWrapper(medications[i].resource.medicationCodeableConcept.text);
+				var taken = tableDataWrapper(medications[i].resource.taken);
 				medRow = assertedDate + statusElement + medication + taken;
 				medRow = tableRowWrapper(medRow);
 				setDomElement('medicationStatmentEntries',medRow);

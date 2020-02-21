@@ -28,31 +28,35 @@ const organizationResource = 'Organization';
 		return client.request(patientResource + "/" + patientId);
 	}
 	
-	function getPatients(bundle){
+	/*function getPatients(bundle){
 		return getResourceFromBundle(bundle, patientResource);
-	}
+	}*/
 	
 	function getConditionResource(client, patientId){
 		return client.request(conditionResource + "?subject=" + patientId);
 	}
 	
-	function getConditions(bundle){
+	/*function getConditions(bundle){
 		var conditions = getResourceFromBundle(bundle,conditionResource);
 		conditions.sort((a, b) => (a.onsetDateTime < b.onsetDateTime) ? 1 : -1);
 		return conditions;
-	}	
+	}*/	
 	
 	function getAllergyResource(client, patientId){
 		return client.request(allergyResource + "?patient=" + patientId);
 	}
 	
-	function getAllergies(bundle){
+	/*function getAllergies(bundle){
 		return getResourceFromBundle(bundle,allergyResource);				
+	}*/
+	
+	function getMedications(client, patientId){
+		return client.request(medicationStatementResource + "?subject=" + patientId);
 	}
 	
-	function getMedications(bundle){
+	/*function getMedications(bundle){
 		return getResourceFromBundle(bundle,medicationStatementResource);
-	}
+	}*/
 	
 	function getObservations(bundle){
 		var observations = getResourceFromBundle(bundle,observationResource);
