@@ -51,6 +51,8 @@ function renderReport(client, patientId){
 function renderPatientDemographics(client, patientId){
 	getPatientResource(client, patientId).then(function(data){
 		populatePatientDemographics(data);
+		populatePersonalContactSection(data);
+		
 	});
 }
 
