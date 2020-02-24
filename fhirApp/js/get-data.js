@@ -7,6 +7,9 @@ const MEDICATION_STATEMENT_TYPE = 'MedicationStatement';
 const OBSERVATION_TYPE = 'Observation';
 const COVERAGE_TYPE = 'Coverage';
 const CONSENT_TYPE = 'Consent';
+const SUBJECT_PARAMETER = '?subject=';
+const PATIENT_PARAMETER = '?patient=';
+const BENEFICIARY_PARAMETER = '?beneficiary=';
 const practitionerResource = 'Practitioner';
 const organizationResource = 'Organization';
 	
@@ -33,7 +36,7 @@ const organizationResource = 'Organization';
 	}*/
 	
 	function getConditionResource(client, patientId){
-		return client.request(CONDITION_TYPE + "?subject=" + patientId);
+		return client.request(CONDITION_TYPE + SUBJECT_PARAMETER + patientId);
 	}
 	
 	/*function getConditions(bundle){
@@ -43,7 +46,7 @@ const organizationResource = 'Organization';
 	}*/	
 	
 	function getAllergyResource(client, patientId){
-		return client.request(ALLERGY_INTOLERANCE_TYPE + "?patient=" + patientId);
+		return client.request(ALLERGY_INTOLERANCE_TYPE + PATIENT_PARAMETER + patientId);
 	}
 	
 	/*function getAllergies(bundle){
@@ -51,7 +54,7 @@ const organizationResource = 'Organization';
 	}*/
 	
 	function getMedications(client, patientId){
-		return client.request(MEDICATION_STATEMENT_TYPE + "?subject=" + patientId);
+		return client.request(MEDICATION_STATEMENT_TYPE + SUBJECT_PARAMETER + patientId);
 	}
 	
 	/*function getMedications(bundle){
@@ -59,7 +62,7 @@ const organizationResource = 'Organization';
 	}*/
 	
 	function getObservations(client, patientId){
-		return client.request(OBSERVATION_TYPE + "?subject=" + patientId);
+		return client.request(OBSERVATION_TYPE + SUBJECT_PARAMETER + patientId);
 	}
 	
 	/*function getObservations(bundle){
@@ -69,7 +72,7 @@ const organizationResource = 'Organization';
 	}*/
 	
 	function getCoverage(client, patientId){
-		return client.request(COVERAGE_TYPE + "?beneficiary=" + patientId);
+		return client.request(COVERAGE_TYPE + BENEFICIARY_PARAMETER + patientId);
 	}
 	
 	/*function getCoverage(bundle){
@@ -77,7 +80,7 @@ const organizationResource = 'Organization';
 	}*/
 	
 	function getConsent(client, patientId){
-		return client.request(CONSENT_TYPE + "?patient=" + patientId);
+		return client.request(CONSENT_TYPE + PATIENT_PARAMETER + patientId);
 	}
 	
 	/*function getConsent(bundle){
