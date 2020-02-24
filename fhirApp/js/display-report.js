@@ -52,7 +52,7 @@ function renderPatientDemographics(client, patientId){
 	getPatientResource(client, patientId).then(function(data){
 		populatePatientDemographics(data);
 		populatePersonalContactSection(data);
-		
+		populateContactSection(data);
 	});
 }
 
@@ -413,6 +413,14 @@ function populateContactSection(practitioner, organization){
 	}else{
 		hide('nursingHomeContactSection');
 	}
+}
+
+function populateContactSection(patient){
+	if(patient.generalPractitioner || patient.managingOrganization){
+		populatePractitionerSection(patient.generalPractitioner);
+		populateOrganizationSection(patient.managingOrganization);
+	}else
+		hide('nursingHomeContactSection');
 }
 
 function populatePractitionerSection(practitioner){
