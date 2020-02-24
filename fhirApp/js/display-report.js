@@ -30,12 +30,7 @@
 }*/
 
 function renderReport(client, patientId){	
-	hide('patientSearch');
-	hide('inputError');
-	hide('authError');
-	var body = document.getElementsByTagName("body")[0];
-	body.style.background = 'none';
-	body.style.overflow = "auto";
+	initReportDisplay();
 	
 	renderPatientDemographics(client, patientId);
 	renderConditions(client, patientId);
@@ -44,8 +39,6 @@ function renderReport(client, patientId){
 	renderObservations(client, patientId);
 	renderCoverage(client, patientId);
 	renderAdvancedDirective(client, patientId);
-	
-	show('report');
 }
 
 function renderPatientDemographics(client, patientId){
@@ -632,4 +625,14 @@ function hide(elementId){
 
 function show(elementId){
 	document.getElementById(elementId).style.display = "block";
+}
+
+function initReportDisplay(){
+	hide('patientSearch');
+	hide('inputError');
+	hide('authError');
+	var body = document.getElementsByTagName("body")[0];
+	body.style.background = 'none';
+	body.style.overflow = "auto";
+	show('report');
 }
