@@ -1,12 +1,12 @@
 const appMode = '';
 
-const patientResource = 'Patient';
-const conditionResource = 'Condition';	
-const allergyResource = 'AllergyIntolerance';
-const medicationStatementResource = 'MedicationStatement';
-const observationResource = 'Observation';
-const coverageResource = 'Coverage';
-const consentResource = 'Consent';
+const PATIENT_TYPE = 'Patient';
+const CONDITION_TYPE = 'Condition';	
+const ALLERGY_INTOLERANCE_TYPE = 'AllergyIntolerance';
+const MEDICATION_STATEMENT_TYPE = 'MedicationStatement';
+const OBSERVATION_TYPE = 'Observation';
+const COVERAGE_TYPE = 'Coverage';
+const CONSENT_TYPE = 'Consent';
 const practitionerResource = 'Practitioner';
 const organizationResource = 'Organization';
 	
@@ -25,7 +25,7 @@ const organizationResource = 'Organization';
 	}
 	
 	function getPatientResource(client, patientId){
-		return client.request(patientResource + "/" + patientId);
+		return client.request(PATIENT_TYPE + "/" + patientId);
 	}
 	
 	/*function getPatients(bundle){
@@ -33,7 +33,7 @@ const organizationResource = 'Organization';
 	}*/
 	
 	function getConditionResource(client, patientId){
-		return client.request(conditionResource + "?subject=" + patientId);
+		return client.request(CONDITION_TYPE + "?subject=" + patientId);
 	}
 	
 	/*function getConditions(bundle){
@@ -43,7 +43,7 @@ const organizationResource = 'Organization';
 	}*/	
 	
 	function getAllergyResource(client, patientId){
-		return client.request(allergyResource + "?patient=" + patientId);
+		return client.request(ALLERGY_INTOLERANCE_TYPE + "?patient=" + patientId);
 	}
 	
 	/*function getAllergies(bundle){
@@ -51,7 +51,7 @@ const organizationResource = 'Organization';
 	}*/
 	
 	function getMedications(client, patientId){
-		return client.request(medicationStatementResource + "?subject=" + patientId);
+		return client.request(MEDICATION_STATEMENT_TYPE + "?subject=" + patientId);
 	}
 	
 	/*function getMedications(bundle){
@@ -59,7 +59,7 @@ const organizationResource = 'Organization';
 	}*/
 	
 	function getObservations(client, patientId){
-		return client.request(observationResource + "?subject=" + patientId);
+		return client.request(OBSERVATION_TYPE + "?subject=" + patientId);
 	}
 	
 	/*function getObservations(bundle){
@@ -69,7 +69,7 @@ const organizationResource = 'Organization';
 	}*/
 	
 	function getCoverage(client, patientId){
-		return client.request(coverageResource + "?beneficiary=" + patientId);
+		return client.request(COVERAGE_TYPE + "?beneficiary=" + patientId);
 	}
 	
 	/*function getCoverage(bundle){
@@ -77,7 +77,7 @@ const organizationResource = 'Organization';
 	}*/
 	
 	function getConsent(client, patientId){
-		return client.request(consentResource + "?patient=" + patientId);
+		return client.request(CONSENT_TYPE + "?patient=" + patientId);
 	}
 	
 	/*function getConsent(bundle){
