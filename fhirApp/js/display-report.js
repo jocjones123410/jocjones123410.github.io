@@ -117,7 +117,8 @@ async function getReport(client){
 
 function populateConditionTable(conditionBundle){
 	if(conditionBundle.total > 0){		
-		var conditions = conditionBundle.entry;	
+		var conditions = conditionBundle.entry;
+		conditions.sort((a, b) => (a.resource.onsetDateTime < b.resource.onsetDateTime) ? 1 : -1);
 		for(var i=0;i<conditions.length;i++){ 
 			if("active" === conditions[i].resource.clinicalStatus){
 				var onsetDate = '';
