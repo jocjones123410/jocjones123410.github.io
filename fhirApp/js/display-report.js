@@ -215,6 +215,7 @@ function populateCoverageSection(coverageBundle){
 			}			
 		}
 	}else{
+		setDomElement('coverageId', NO_DATA_AVAILABLE);
 		//hide('coverageSection');
 	}
 }
@@ -355,25 +356,27 @@ function populatePersonalContactSection(patient){
 			setDomElement('contactInfoId', contactLabelsAndValues);
 		}
 	}else{
+		setDomElement('contactInfoId', NO_DATA_AVAILABLE);
 		//hide('contactInfoSection');
 	}
 }
 
-function populateContactSection(practitioner, organization){
+/*function populateContactSection(practitioner, organization){
 	if(practitioner != undefined || organization !=undefined){
 		populatePractitionerSection(practitioner);
 		populateOrganizationSection(organization);
 	}else{
 		//hide('nursingHomeContactSection');
 	}
-}
+}*/
 
 function populateContactSection(patient){
 	if(patient.generalPractitioner || patient.managingOrganization){
 		populatePractitionerSection(patient.generalPractitioner);
 		populateOrganizationSection(patient.managingOrganization);
-	}//else
+	}else{
 		//hide('nursingHomeContactSection');
+	}
 }
 
 function populatePractitionerSection(practitioner){
@@ -409,6 +412,7 @@ function populatePractitionerSection(practitioner){
 		var practitionerLabelsAndValues = name + gender + phone;
 		setDomElement('practionerId', practitionerLabelsAndValues);
 	}else{
+		setDomElement('practionerId', NO_DATA_AVAILABLE);
 		//hide('practitionerSubSection');
 	}
 }
@@ -460,6 +464,7 @@ function populateOrganizationSection(org){
 		var orgLabelsAndValues = name + type + address + phone;
 		setDomElement('organizationId', orgLabelsAndValues);
 	}else{
+		setDomElement('organizationId', NO_DATA_AVAILABLE);
 		//hide('orgSubSection');
 	}
 }
