@@ -1,3 +1,4 @@
+const NO_DATA_AVAILABLE = 'No data available';
 
 function renderReport(client, patientId){	
 	//initReportDisplay();
@@ -248,6 +249,7 @@ function populateAdvancedDirectiveSection(consentBundle){
 		var dnrLabelsAndValues = consentDate + consentSource + scope + category + provision;
 		setDomElement('advDirId', dnrLabelsAndValues);
 	}else{
+		setDomElement('advDirId', NO_DATA_AVAILABLE);
 		//hide('advDirSection');
 	}
 }
