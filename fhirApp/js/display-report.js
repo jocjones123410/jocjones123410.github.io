@@ -144,6 +144,7 @@ function populateMedicationsTable(medicationStatementBundle){
 		}
 		//if(medRow == null)hide('medicationSection');
 	}else{
+		setDomElement('medicationStatmentEntries',NO_DATA_AVAILABLE);
 		//hide('medicationSection');
 	}
 }
