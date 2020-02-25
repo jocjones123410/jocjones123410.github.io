@@ -465,6 +465,8 @@ function populateOrganizationSection(org){
 		var orgLabelsAndValues = name + type + address + phone;
 		setDomElement('organizationId', orgLabelsAndValues);
 	}else{
+		hide('organizationHeader');
+		hide('practitionerHeader');
 		setDomElement('organizationId', NO_DATA_AVAILABLE);
 		//hide('orgSubSection');
 	}
