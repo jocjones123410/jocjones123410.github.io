@@ -370,7 +370,7 @@ function populateContactSection(patient){
 	if(patient.generalPractitioner || patient.managingOrganization){
 		populatePractitionerSection(patient.generalPractitioner);
 		populateOrganizationSection(patient.managingOrganization);
-	}else
+	}//else
 		//hide('nursingHomeContactSection');
 }
 
