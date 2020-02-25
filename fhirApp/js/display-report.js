@@ -93,7 +93,7 @@ function populateConditionTable(conditionBundle){
 			}
 		}
 	}else{
-		hide('conditionSection');		
+		//hide('conditionSection');		
 	}
 }
 
@@ -121,7 +121,7 @@ function populateAllergyTable(allergyBundle){
 			}	
 		}
 	}else{
-		hide('allergySection');
+		//hide('allergySection');
 	}
 }
 
@@ -141,9 +141,9 @@ function populateMedicationsTable(medicationStatementBundle){
 				setDomElement('medicationStatmentEntries',medRow);
 			}
 		}
-		if(medRow == null)hide('medicationSection');
+		//if(medRow == null)hide('medicationSection');
 	}else{
-		hide('medicationSection');
+		//hide('medicationSection');
 	}
 }
 
@@ -180,9 +180,9 @@ function populateLabsTable(observationBundle){
 				}
 			}
 		}
-		if(labRow == null)hide('labSection');
+		//if(labRow == null)hide('labSection');
 	}else{
-		hide('labSection');
+		//hide('labSection');
 	}
 }
 
@@ -214,7 +214,7 @@ function populateCoverageSection(coverageBundle){
 			}			
 		}
 	}else{
-		hide('coverageSection');
+		//hide('coverageSection');
 	}
 }
 
@@ -248,7 +248,7 @@ function populateAdvancedDirectiveSection(consentBundle){
 		var dnrLabelsAndValues = consentDate + consentSource + scope + category + provision;
 		setDomElement('advDirId', dnrLabelsAndValues);
 	}else{
-		hide('advDirSection');
+		//hide('advDirSection');
 	}
 }
 
@@ -287,9 +287,9 @@ function populateVitalsTable(observationBundle){
 				}
 			}
 		}
-		if(vitalRow == null)hide('vitalSection');
+		//if(vitalRow == null)hide('vitalSection');
 	}else{
-		hide('vitalSection');
+		//hide('vitalSection');
 	}
 }
 
@@ -353,7 +353,7 @@ function populatePersonalContactSection(patient){
 			setDomElement('contactInfoId', contactLabelsAndValues);
 		}
 	}else{
-		hide('contactInfoSection');
+		//hide('contactInfoSection');
 	}
 }
 
@@ -362,7 +362,7 @@ function populateContactSection(practitioner, organization){
 		populatePractitionerSection(practitioner);
 		populateOrganizationSection(organization);
 	}else{
-		hide('nursingHomeContactSection');
+		//hide('nursingHomeContactSection');
 	}
 }
 
@@ -371,7 +371,7 @@ function populateContactSection(patient){
 		populatePractitionerSection(patient.generalPractitioner);
 		populateOrganizationSection(patient.managingOrganization);
 	}else
-		hide('nursingHomeContactSection');
+		//hide('nursingHomeContactSection');
 }
 
 function populatePractitionerSection(practitioner){
@@ -407,7 +407,7 @@ function populatePractitionerSection(practitioner){
 		var practitionerLabelsAndValues = name + gender + phone;
 		setDomElement('practionerId', practitionerLabelsAndValues);
 	}else{
-		hide('practitionerSubSection');
+		//hide('practitionerSubSection');
 	}
 }
 
@@ -458,7 +458,7 @@ function populateOrganizationSection(org){
 		var orgLabelsAndValues = name + type + address + phone;
 		setDomElement('organizationId', orgLabelsAndValues);
 	}else{
-		hide('orgSubSection');
+		//hide('orgSubSection');
 	}
 }
 
