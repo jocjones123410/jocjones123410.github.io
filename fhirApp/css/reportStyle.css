@@ -186,6 +186,7 @@ section#resourceColumns{
 
 #inputError{
 	display: none;
+	color:red;
 }
 
 tr:nth-child(even){

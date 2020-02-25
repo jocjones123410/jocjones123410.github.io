@@ -66,22 +66,7 @@ async function getReport(client){
 					patientId = data.entry[0].resource.id;
 					renderReport(client, patientId);
 				}
-			}).catch(function(data){show('inputError')});
-		//await new Promise(r => setTimeout(r, 2000));
-		//renderReport(client, patientId);
-		/*client.request("Patient?_id=" + patientId + "&_revinclude=Condition:subject&_revinclude=AllergyIntolerance:patient&_revinclude=MedicationStatement:subject&_revinclude=Observation:subject")
-			.then(function(data){
-				if(data.entry){					
-					displayReport(data)
-				}else{
-					show('inputError');
-				}
-			})
-			.catch(function(data){alert("No match for patient" + patientId)});*/
-		//client.request("Patient?_id=" + patientId) //+ "&_include=Condition:subject")
-			//.then(function(data){displayReport(testBatch)})			
-		//client.request("Patient/6f0dafdc-94c5-4ab2-9208-b2872450737a")
-			
+			}).catch(function(data){show('inputError')});			
 }
 
 function populateConditionTable(conditionBundle){
