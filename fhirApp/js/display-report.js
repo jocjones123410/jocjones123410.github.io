@@ -68,7 +68,7 @@ async function getReport(client){
 				}else{
 					show('inputError');
 				}
-			});
+			}).catch(function(data){alert("MRN not found!)});
 		//await new Promise(r => setTimeout(r, 2000));
 		//renderReport(client, patientId);
 		/*client.request("Patient?_id=" + patientId + "&_revinclude=Condition:subject&_revinclude=AllergyIntolerance:patient&_revinclude=MedicationStatement:subject&_revinclude=Observation:subject")
