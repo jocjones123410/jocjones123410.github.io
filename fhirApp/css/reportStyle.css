@@ -24,6 +24,7 @@ body{
 	border-radius:3px;
 	padding:15px;
 	background-color: rgba(0, 0, 0, 0.1);
+	width: 40%;
 }
 .input-container{
 	position:relative;
@@ -47,7 +48,7 @@ body{
   padding:8px 0 5px 0;
   font-size:1.3rem;
   color:#000;
-  width: 25em;
+  width: 100%;
   margin-right:5px;
 }
 
