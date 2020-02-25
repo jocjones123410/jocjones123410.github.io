@@ -9,10 +9,12 @@ function renderReport(client, patientId){
 	renderObservations(client, patientId);
 	renderCoverage(client, patientId);
 	renderAdvancedDirective(client, patientId);
+	
+	show('report');
 }
 
 function renderPatientDemographics(client, patientId){
-	getPatientResource(client, patientId).then(function(data){
+	getPatient(client, patientId).then(function(data){
 		populatePatientDemographics(data);
 		populatePersonalContactSection(data);
 		populateContactSection(data);
@@ -20,13 +22,13 @@ function renderPatientDemographics(client, patientId){
 }
 
 function renderConditions(client, patientId){
-	getConditionResource(client, patientId).then(function(data){
+	getConditions(client, patientId).then(function(data){
 		populateConditionTable(data);
 	});
 }
 
 function renderAllergies(client, patientId){
-	getAllergyResource(client, patientId).then(function(data){
+	getAllergies(client, patientId).then(function(data){
 		populateAllergyTable(data);
 	});
 }

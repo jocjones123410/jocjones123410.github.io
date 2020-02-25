@@ -27,31 +27,17 @@ const organizationResource = 'Organization';
 		}			
 	}
 	
-	function getPatientResource(client, patientId){
+	function getPatient(client, patientId){
 		return client.request(PATIENT_TYPE + "/" + patientId);
 	}
 	
-	/*function getPatients(bundle){
-		return getResourceFromBundle(bundle, patientResource);
-	}*/
-	
-	function getConditionResource(client, patientId){
+	function getConditions(client, patientId){
 		return client.request(CONDITION_TYPE + SUBJECT_PARAMETER + patientId);
-	}
+	}	
 	
-	/*function getConditions(bundle){
-		var conditions = getResourceFromBundle(bundle,conditionResource);
-		conditions.sort((a, b) => (a.onsetDateTime < b.onsetDateTime) ? 1 : -1);
-		return conditions;
-	}*/	
-	
-	function getAllergyResource(client, patientId){
+	function getAllergies(client, patientId){
 		return client.request(ALLERGY_INTOLERANCE_TYPE + PATIENT_PARAMETER + patientId);
 	}
-	
-	/*function getAllergies(bundle){
-		return getResourceFromBundle(bundle,allergyResource);				
-	}*/
 	
 	function getMedications(client, patientId){
 		return client.request(MEDICATION_STATEMENT_TYPE + SUBJECT_PARAMETER + patientId);
@@ -95,19 +81,6 @@ const organizationResource = 'Organization';
 		return getResourceFromBundle(bundle, organizationResource);
 	}
 	
-	function getPatientId(client){
-		return "6f0dafdc-94c5-4ab2-9208-b2872450737a";
-		/*var mrn = document.getElementById("mrn").value;
-		var patientId = '';
-		client.request("Patient?identifier:otype=http://hospital.smarthealthit.org|" + mrn)
-			.then(function(data){
-				if(data.entry[0].resource.id){
-					patientId = data.entry[0].resource.id;				
-				}
-			});
-		return patientId;*/
-	}
-	
 	if('test' === appMode){
 		client = new FHIR.client("https://r3.smarthealthit.org");
 		client.request("Patient/6f0dafdc-94c5-4ab2-9208-b2872450737a")
@@ -116,8 +89,7 @@ const organizationResource = 'Organization';
 	}else{
 		FHIR.oauth2.ready().then(function(client) {
 			show('patientSearch');
-			var searchButton = document.getElementById("searchButton").onclick = function(){getReport(client)};
-			//var searchButton = document.getElementById("searchButton").onclick = function(){getPatientId(client)};			
+			var searchButton = document.getElementById("searchButton").onclick = function(){getReport(client)};			
 		}).catch(function(data){show('authError');});
 	}
 //const client = new FHIR.client("https://r3.smarthealthit.org");
