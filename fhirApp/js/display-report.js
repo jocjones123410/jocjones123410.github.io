@@ -64,12 +64,13 @@ async function getReport(client){
 			.then(function(data){
 				if(data.entry[0].resource.id){							
 					patientId = data.entry[0].resource.id;
+					renderReport(client, patientId);
 				}else{
 					show('inputError');
 				}
 			});
-		await new Promise(r => setTimeout(r, 2000));
-		renderReport(client, patientId);
+		//await new Promise(r => setTimeout(r, 2000));
+		//renderReport(client, patientId);
 		/*client.request("Patient?_id=" + patientId + "&_revinclude=Condition:subject&_revinclude=AllergyIntolerance:patient&_revinclude=MedicationStatement:subject&_revinclude=Observation:subject")
 			.then(function(data){
 				if(data.entry){					
