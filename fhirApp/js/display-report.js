@@ -375,6 +375,7 @@ function populateContactSection(patient){
 		populatePractitionerSection(patient.generalPractitioner);
 		populateOrganizationSection(patient.managingOrganization);
 	}else{
+		setDomElement('nursingHomeId', NO_DATA_AVAILABLE);
 		//hide('nursingHomeContactSection');
 	}
 }
