@@ -1,6 +1,6 @@
 
 function renderReport(client, patientId){	
-	initReportDisplay();
+	//initReportDisplay();
 	
 	renderPatientDemographics(client, patientId);
 	renderConditions(client, patientId);
@@ -10,6 +10,7 @@ function renderReport(client, patientId){
 	renderCoverage(client, patientId);
 	renderAdvancedDirective(client, patientId);
 	
+	initReportDisplay();
 	show('report');
 }
 
