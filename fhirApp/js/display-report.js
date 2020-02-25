@@ -1,33 +1,3 @@
-/*function displayReport(bundle){	
-	var patients = getPatients(bundle);
-	var conditions = getConditions(bundle);
-	var allergies = getAllergies(bundle);
-	var medications = getMedications(bundle);
-	var observations = getObservations(bundle);
-	var coverage = getCoverage(bundle);
-	var consent = getConsent(bundle);
-	var practioners = getPractitioner(bundle);
-	var organizations = getOrganization(bundle);
-	var body = document.getElementsByTagName("body")[0];
-	
-	hide('patientSearch');
-	hide('inputError');	
-	body.style.background = 'none';
-	body.style.overflow = "auto";
-	show('report');
-	
-	populatePatientDemographics(patients[0]);
-	populateConditionTable(conditions);
-	populateAllergyTable(allergies);
-	populateMedicationsTable(medications);
-	populateLabsTable(observations);
-	populateCoverageSection(coverage[0]);
-	populateAdvancedDirectiveSection(consent[0]);
-	populateVitalsTable(observations);
-	populatePersonalContactSection(patients[0]);
-	populateContactSection(practioners[0], organizations[0]);
-	hide('authError');
-}*/
 
 function renderReport(client, patientId){	
 	initReportDisplay();
@@ -87,15 +57,15 @@ function renderAdvancedDirective(client, patientId){
 }
 		
 	
-async function getReport(client){
-		//var patientId = document.getElementById("patientId").value;		
-		//var patientId = getPatientId(client);
+async function getReport(client){		
 		var patientId = '';
 		var mrn = document.getElementById("mrn").value;		
 		client.request("Patient?identifier:otype=http://hospital.smarthealthit.org|" + mrn)
 			.then(function(data){
 				if(data.entry[0].resource.id){							
 					patientId = data.entry[0].resource.id;
+				}else{
+					show('inputError');
 				}
 			});
 		await new Promise(r => setTimeout(r, 2000));
