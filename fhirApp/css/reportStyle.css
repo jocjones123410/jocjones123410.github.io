@@ -28,9 +28,8 @@ body{
 }
 .input-container{
 	position:relative;
-	//margin-bottom:25px;
-	font-family: Roboto, 'Segoe UI', Tahoma, sans-serif;
-	width:100%;
+	display: flex;
+	font-family: Roboto, 'Segoe UI', Tahoma, sans-serif;	
 }
 
 .input-container label{
@@ -39,7 +38,6 @@ body{
 	left:0px;
 	font-size:1.3rem;
 	color:#fff;	
-	//color:#909090
     pointer-event:none;
 	transition: all 0.5s ease-in-out;
 }
@@ -50,7 +48,7 @@ body{
   padding:8px 0 5px 0;
   font-size:1.3rem;
   color:#000;
-  width:75%;
+  width: 25em;
   margin-right:5px;
 }
 
@@ -81,7 +79,6 @@ a#searchButton{
 	font-family: Roboto, 'Segoe UI', Tahoma, sans-serif;
     font-size: 15px;
 	font-weight:500;
-	//color:rgb(26,115,232);
 	color:#ffffff;
 	text-align:center;
 	background-color:rgb(26,115,232);
@@ -159,7 +156,6 @@ section#resourceColumns{
 }
 
 .sectionHeader{
-	//font-weight: bold;
 	text-align:left;
 	background-color: #0747a6;
 	color:#FFFFFF;
