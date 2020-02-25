@@ -95,7 +95,7 @@ function populateConditionTable(conditionBundle){
 		}
 	}else{		
 		hide('conditionTable');	
-		setDomElement('noData', NO_DATA_AVAILABLE);
+		setDomElement('noCondData', NO_DATA_AVAILABLE);
 	}
 }
 
@@ -124,7 +124,7 @@ function populateAllergyTable(allergyBundle){
 		}
 	}else{
 		hide('allergyTable');
-		setDomElement('noData', NO_DATA_AVAILABLE);
+		setDomElement('noAllergyData', NO_DATA_AVAILABLE);
 	}
 }
 
@@ -147,7 +147,7 @@ function populateMedicationsTable(medicationStatementBundle){
 		//if(medRow == null)hide('medicationSection');
 	}else{
 		hide('medsTable');
-		setDomElement('noData',NO_DATA_AVAILABLE);		
+		setDomElement('noMedData',NO_DATA_AVAILABLE);		
 	}
 }
 
@@ -187,7 +187,7 @@ function populateLabsTable(observationBundle){
 		//if(labRow == null)hide('labSection');
 	}else{
 		hide('labsTable');
-		setDomElement('noData', NO_DATA_AVAILABLE);
+		setDomElement('noLabData', NO_DATA_AVAILABLE);
 	}
 }
 
@@ -295,7 +295,7 @@ function populateVitalsTable(observationBundle){
 		//if(vitalRow == null)hide('vitalSection');
 	}else{
 		hide('vitalsTable');
-		setDomElement('noData', NO_DATA_AVAILABLE);
+		setDomElement('noVitalsData', NO_DATA_AVAILABLE);
 	}
 }
 
