@@ -93,8 +93,9 @@ function populateConditionTable(conditionBundle){
 				setDomElement('conditionEntries',conditionRow);			
 			}
 		}
-	}else{
-		//hide('conditionSection');		
+	}else{		
+		hide('conditionTable');	
+		setDomElement('noData', NO_DATA_AVAILABLE);
 	}
 }
 
@@ -122,7 +123,8 @@ function populateAllergyTable(allergyBundle){
 			}	
 		}
 	}else{
-		//hide('allergySection');
+		hide('allergyTable');
+		setDomElement('noData', NO_DATA_AVAILABLE);
 	}
 }
 
@@ -146,7 +148,6 @@ function populateMedicationsTable(medicationStatementBundle){
 	}else{
 		hide('medsTable');
 		setDomElement('noData',NO_DATA_AVAILABLE);		
-		//hide('medicationSection');
 	}
 }
 
@@ -185,7 +186,8 @@ function populateLabsTable(observationBundle){
 		}
 		//if(labRow == null)hide('labSection');
 	}else{
-		//hide('labSection');
+		hide('labsTable');
+		setDomElement('noData', NO_DATA_AVAILABLE);
 	}
 }
 
@@ -217,8 +219,7 @@ function populateCoverageSection(coverageBundle){
 			}			
 		}
 	}else{
-		setDomElement('coverageId', NO_DATA_AVAILABLE);
-		//hide('coverageSection');
+		setDomElement('coverageId', NO_DATA_AVAILABLE);		
 	}
 }
 
@@ -253,7 +254,6 @@ function populateAdvancedDirectiveSection(consentBundle){
 		setDomElement('advDirId', dnrLabelsAndValues);
 	}else{
 		setDomElement('advDirId', NO_DATA_AVAILABLE);
-		//hide('advDirSection');
 	}
 }
 
@@ -294,7 +294,8 @@ function populateVitalsTable(observationBundle){
 		}
 		//if(vitalRow == null)hide('vitalSection');
 	}else{
-		//hide('vitalSection');
+		hide('vitalsTable');
+		setDomElement('noData', NO_DATA_AVAILABLE);
 	}
 }
 
