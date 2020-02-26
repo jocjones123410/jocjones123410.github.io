@@ -603,7 +603,6 @@ function show(elementId){
 function noDataMessage(hideId, showId){
 	hide(hideId);
 	setDomElement(showId, NO_DATA_AVAILABLE);
-	show(showId);
 }
 
 function initReportDisplay(){
