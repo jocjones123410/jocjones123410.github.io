@@ -84,8 +84,8 @@ async function getReport(client){
 
 function populateConditionTable(conditionBundle){
 	if(conditionBundle.total > 0){		
-		var conditions = conditionBundle.entry;
-		conditions.sort((a, b) => (a.resource.onsetDateTime < b.resource.onsetDateTime) ? 1 : -1);
+		var conditions = sortByDateDesc(conditionBundle.entry);		
+		//conditions.sort((a, b) => (a.resource.onsetDateTime < b.resource.onsetDateTime) ? 1 : -1);
 		for(var i=0;i<conditions.length;i++){ 
 			if("active" === conditions[i].resource.clinicalStatus){
 				var onsetDate = '';
@@ -591,6 +591,10 @@ function formatDate(dateToFormat){
 	var yyyy = date.getFullYear();
 	return mm + '-' + dd + '-' + yyyy;
 }  
+ 
+function sortByDateDesc(resourceList){	
+	return resourceList.sort((a, b) => (a.resource.onsetDateTime < b.resource.onsetDateTime) ? 1 : -1);	
+}	
  
 function display(data) {
     const output = document.getElementById("display");
