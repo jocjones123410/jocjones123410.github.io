@@ -3,17 +3,17 @@ const NO_DATA_AVAILABLE = 'No data available';
 function renderReport(client, patientId){	
 	initReportDisplay();
 	
-	Promise.all([
+	/*Promise.all([
 	renderPatientDemographics(client, patientId),
 	renderConditions(client, patientId),
 	renderAllergies(client, patientId)
-	//renderMedications(client, patientId),
-	//renderObservations(client, patientId),
-	//renderCoverage(client, patientId),
-	//renderAdvancedDirective(client, patientId)
+	renderMedications(client, patientId),
+	renderObservations(client, patientId),
+	renderCoverage(client, patientId),
+	renderAdvancedDirective(client, patientId)
 	]).then(function(data){
 		show('report');
-	});
+	});*/
 	
 	let patient = getPatient(client, patientId);
 	let conditions = getConditions(client, patientId);
@@ -24,6 +24,7 @@ function renderReport(client, patientId){
 	populateContactSection(patient);
 	populateConditionTable(conditions);
 	populateAllergyTable(allergies);
+	
 	show('report');
 	/*renderReportSections(client, patientId).then(function(data){
 		show('report');
