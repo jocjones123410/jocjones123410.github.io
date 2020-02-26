@@ -6,11 +6,12 @@ function renderReport(client, patientId){
 	Promise.all([
 	renderPatientDemographics(client, patientId),
 	renderConditions(client, patientId),
-	renderAllergies(client, patientId),
-	renderMedications(client, patientId),
-	renderObservations(client, patientId),
-	renderCoverage(client, patientId),
-	renderAdvancedDirective(client, patientId)]).then(function(data){
+	renderAllergies(client, patientId)
+	//renderMedications(client, patientId),
+	//renderObservations(client, patientId),
+	//renderCoverage(client, patientId),
+	//renderAdvancedDirective(client, patientId)
+	]).then(function(data){
 		show('report');
 	});
 	
