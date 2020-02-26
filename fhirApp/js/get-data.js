@@ -52,13 +52,10 @@ const organizationResource = 'Organization';
 	if('test' === appMode){
 		client = new FHIR.client(properties.baseUrl);
 		show('patientSearch');
-		var searchButton = document.getElementById("searchButton").onclick = function(){getReport(client)};
-		/*client.request("Patient/6f0dafdc-94c5-4ab2-9208-b2872450737a")
-		.then(displayReport(testBatch))
-		.catch();*/
+		document.getElementById("searchButton").onclick = function(){getReport(client)};		
 	}else{
 		FHIR.oauth2.ready().then(function(client) {
 			show('patientSearch');
-			var searchButton = document.getElementById("searchButton").onclick = function(){getReport(client)};			
+			document.getElementById("searchButton").onclick = function(){getReport(client)};			
 		}).catch(function(data){show('authError');});
 	}
