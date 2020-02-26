@@ -202,27 +202,27 @@ function populateLabsTable(observationBundle){
 
 function populateCoverageSection(coverageBundle){
 	if(coverageBundle.total > 0){
-		var type = "";
+		let type = "";
 		if(coverage.type && coverage.type.coding && coverage.type.coding[0].display){
 			type = divWrapper(createLabel('Type: ') + coverage.type.coding[0].display);
 		}
 		
-		var relationship = "";
+		let relationship = "";
 		if(coverage.relationship && coverage.relationship.coding && coverage.relationship.coding[0].code){			
 			relationship = divWrapper(createLabel('Relationship: ') + coverage.relationship.coding[0].code);
 		}
 		
-		var period = "";
+		let period = "";
 		if(coverage.period){
 			period = divWrapper(createLabel('Span: ') + coverage.period.start + " - " + coverage.period.end);
 		}
 		
-		var detailsLabel = divWrapper(createLabel('Details: '));
+		let detailsLabel = divWrapper(createLabel('Details: '));
 		setDomElement('coverageId', type + relationship + period + detailsLabel);
 		if(coverage.class){
-			for(var i=0;i<coverage.class.length;i++){
+			for(let i=0;i<coverage.class.length;i++){
 				if(coverage.class[i].name){
-					var detailName = '<div style="padding-left:30px">' + coverage.class[i].name + '</div>';
+					let detailName = '<div style="padding-left:30px">' + coverage.class[i].name + '</div>';
 					setDomElement('coverageId', detailName);
 				}
 			}			
@@ -234,32 +234,32 @@ function populateCoverageSection(coverageBundle){
 
 function populateAdvancedDirectiveSection(consentBundle){
 	if(consentBundle.total > 0){
-		var consent = consentBundle.entry;
-		var consentDate = "";
+		let consent = consentBundle.entry;
+		let consentDate = "";
 		if(consent.dateTime){
 			consentDate = divWrapper(createLabel('Consent Date: ') + formatDate(consent.dateTime));
 		}
 		
-		var consentSource = "";
+		let consentSource = "";
 		if(consent.sourceAttachment && consent.sourceAttachment.title){
 			consentSource = divWrapper(createLabel('Consent Source: ') + consent.sourceAttachment.title);
 		}
 		
-		var scope = "";
+		let scope = "";
 		if(consent.scope && consent.scope.coding && consent.scope.coding[0].display){
 			scope = divWrapper(createLabel('Scope: ') + consent.scope.coding[0].display);
 		}
 		 
-		var category = "";
+		let category = "";
 		if(consent.category && consent.category[0] && consent.category[0].coding && consent.category[0].coding[0].display){
 			category = divWrapper(createLabel('Category: ') + consent.category[0].coding[0].display);
 		}
 		
-		var provision = "";
+		let provision = "";
 		if(consent.provision && consent.provision.type){
 			provision = divWrapper(createLabel('Provision: ') + consent.provision.type);
 		}
-		var dnrLabelsAndValues = consentDate + consentSource + scope + category + provision;
+		let dnrLabelsAndValues = consentDate + consentSource + scope + category + provision;
 		setDomElement('advDirId', dnrLabelsAndValues);
 	}else{
 		setDomElement('advDirId', NO_DATA_AVAILABLE);
@@ -268,27 +268,27 @@ function populateAdvancedDirectiveSection(consentBundle){
 
 function populateVitalsTable(observationBundle){
 	if(observationBundle.total > 0){
-		var obs = observationBundle.entry;
-		var vitalRow = null;
-		for(var i=0;i<obs.length;i++){			
-			var categoryVal = "";						
+		let obs = observationBundle.entry;
+		let vitalRow = null;
+		for(let i=0;i<obs.length;i++){			
+			let categoryVal = "";						
 			if(obs[i].resource.category && obs[i].resource.category[0].coding){
 				categoryVal = obs[i].resource.category[0].coding[0].code;
 				if('vital-signs' === categoryVal.toLowerCase() && obs[i].resource.component){
-					var comp = obs[i].resource.component;					
-					var issuedDate = tableDataWrapper(formatDate(obs[i].resource.issued));					
+					let comp = obs[i].resource.component;					
+					let issuedDate = tableDataWrapper(formatDate(obs[i].resource.issued));					
 					
-					for(var x=0;x<comp.length;x++){					
-						var name = "";
+					for(let x=0;x<comp.length;x++){					
+						let name = "";
 						if(comp[x].code && comp[x].code.coding && comp[x].code.coding[0].display){
 							name = tableDataWrapper(comp[x].code.coding[0].display);
 						}
 						
-						var value = "";
+						let value = "";
 						if(comp[x].valueString){
 							value = comp[x].valueString;
 						}else if(comp[x].valueQuantity && comp[x].valueQuantity.value){
-							var unit = "";
+							let unit = "";
 							if(comp[x].valueQuantity.unit)
 								unit = " " + comp[x].valueQuantity.unit;
 							value = comp[x].valueQuantity.value + unit;							 
@@ -310,16 +310,16 @@ function populateVitalsTable(observationBundle){
 
 function populatePersonalContactSection(patient){
 	if (patient.contact) {
-		for(var i=0;i<patient.contact.length;i++){
-			var relationship = "";
+		for(let i=0;i<patient.contact.length;i++){
+			let relationship = "";
 			if(patient.contact[i].relationship && patient.contact[i].relationship[0].text){
 				relationship = divWrapper(createLabel('Relationship: ') + patient.contact[i].relationship[0].text);
 			}
 			
-			var contactTele = "";
+			let contactTele = "";
 			if(patient.contact[i].telecom){
-				var system = "";
-				var value = "";
+				let system = "";
+				let value = "";
 				if(patient.contact[i].telecom[0].system){
 					system = patient.contact[i].telecom[0].system;
 				}
@@ -329,10 +329,10 @@ function populatePersonalContactSection(patient){
 				contactTele = divWrapper(createLabel('Contact: ') + system + ':' + value);
 			}
 			
-			var contactName = "";
+			let contactName = "";
 			if(patient.contact[i].name){
-				var givenName = "";
-				var familyName = "";
+				let givenName = "";
+				let familyName = "";
 				if(patient.contact[i].name.given){
 					givenName = patient.contact[i].name.given.join(" ");
 				}
@@ -342,12 +342,12 @@ function populatePersonalContactSection(patient){
 				contactName = divWrapper(createLabel('Name: ') + givenName + ' ' + familyName);
 			}
 			
-			var contactAddress = "";
+			let contactAddress = "";
 			if(patient.contact[i].address){
-				var line = "";
-				var city = "";
-				var state = "";
-				var postalCode= "";
+				let line = "";
+				let city = "";
+				let state = "";
+				let postalCode= "";
 				
 				if(patient.contact[i].address.line){
 					line = patient.contact[i].address.line;
@@ -364,7 +364,7 @@ function populatePersonalContactSection(patient){
 				
 				contactAddress = divWrapper(createLabel('Address: ') + line + ' ' + city + ', ' + state + ' ' + postalCode);
 			}
-			var contactLabelsAndValues = contactName + relationship + contactTele + contactAddress;
+			let contactLabelsAndValues = contactName + relationship + contactTele + contactAddress;
 			setDomElement('contactInfoId', contactLabelsAndValues);
 		}
 	}else{
@@ -372,15 +372,6 @@ function populatePersonalContactSection(patient){
 		//hide('contactInfoSection');
 	}
 }
-
-/*function populateContactSection(practitioner, organization){
-	if(practitioner != undefined || organization !=undefined){
-		populatePractitionerSection(practitioner);
-		populateOrganizationSection(organization);
-	}else{
-		//hide('nursingHomeContactSection');
-	}
-}*/
 
 function populateContactSection(patient){
 	if(patient.generalPractitioner || patient.managingOrganization){
@@ -390,17 +381,16 @@ function populateContactSection(patient){
 		hide('organizationHeader');
 		hide('practitionerHeader');
 		setDomElement('nursingHomeId', NO_DATA_AVAILABLE);
-		//hide('nursingHomeContactSection');
 	}
 }
 
 function populatePractitionerSection(practitioner){
 	if(practitioner) {
-		var name = "";
+		let name = "";
 		if(practitioner.name){
-			var prefix = "";
-			var given = "";
-			var family = "";
+			let prefix = "";
+			let given = "";
+			let family = "";
 			
 			if(practitioner.name[0].prefix){
 				prefix = practitioner.name[0].prefix + " ";
@@ -414,17 +404,17 @@ function populatePractitionerSection(practitioner){
 			name = divWrapper(createLabel('Name: ') + prefix + given + family);
 		}
 		
-		var gender = "";
+		let gender = "";
 		if(practitioner.gender){
 			gender = divWrapper(createLabel('Gender: ') + practitioner.gender);
 		}
 		
-		var phone = "";
+		let phone = "";
 		if(practitioner.telecom && practitioner.telecom[0].value){
 			phone = divWrapper(createLabel('Phone: ') + practitioner.telecom[0].value);
 		}
 		
-		var practitionerLabelsAndValues = name + gender + phone;
+		let practitionerLabelsAndValues = name + gender + phone;
 		setDomElement('practionerId', practitionerLabelsAndValues);
 	}else{
 		setDomElement('practionerId', NO_DATA_AVAILABLE);
@@ -434,22 +424,22 @@ function populatePractitionerSection(practitioner){
 
 function populateOrganizationSection(org){
 	if(org){
-		var name = "";
+		let name = "";
 		if(org.name){
 			name = divWrapper(createLabel('Name: ') + org.name);
 		}
 		
-		var type = "";
+		let type = "";
 		if(org.type && org.type[0].coding && org.type[0].coding[0].display){
 			type = divWrapper(createLabel('Type: ') + org.type[0].coding[0].display);
 		}
 		
-		var address = "";
+		let address = "";
 		if(org.address){
-			var line = "";
-			var city = "";
-			var state = "";
-			var postalCode = "";
+			let line = "";
+			let city = "";
+			let state = "";
+			let postalCode = "";
 			
 			if(org.address[0].line){
 				line = org.address[0].line[0] + " ";
@@ -458,7 +448,7 @@ function populateOrganizationSection(org){
 				city = org.address[0].city;
 			}
 			if(org.address[0].state){
-				var comma = "";
+				let comma = "";
 				if(city !== ""){
 					comma = ", ";
 				}
@@ -471,16 +461,15 @@ function populateOrganizationSection(org){
 			address = divWrapper(createLabel('Address: ') + line + city + state + postalCode);
 		}
 		
-		var phone = "";
+		let phone = "";
 		if(org.telecom && org.telecom[0].value){
 			phone = divWrapper(createLabel('Phone: ') + org.telecom[0].value);
 		}
 		
-		var orgLabelsAndValues = name + type + address + phone;
+		let orgLabelsAndValues = name + type + address + phone;
 		setDomElement('organizationId', orgLabelsAndValues);
 	}else{		
 		setDomElement('organizationId', NO_DATA_AVAILABLE);
-		//hide('orgSubSection');
 	}
 }
 
@@ -579,16 +568,16 @@ function formatDate(dateToFormat){
 	if(dateToFormat === null || dateToFormat === "" || dateToFormat === undefined){
 		return "";
 	}
-	var date = new Date(dateToFormat);
-	var dd = date.getDate();
+	let date = new Date(dateToFormat);
+	let dd = date.getDate();
 	if(dd < 10){
 		dd = '0' + dd;
 	}
-	var mm = date.getMonth();
+	let mm = date.getMonth();
 	if(mm < 10){
 		mm = '0' + mm;
 	}
-	var yyyy = date.getFullYear();
+	let yyyy = date.getFullYear();
 	return mm + '-' + dd + '-' + yyyy;
 }  	
  
@@ -611,7 +600,7 @@ function initReportDisplay(){
 	hide('patientSearch');
 	hide('inputError');
 	hide('authError');
-	var body = document.getElementsByTagName("body")[0];
+	let body = document.getElementsByTagName("body")[0];
 	body.style.background = 'none';
 	body.style.overflow = "auto";	
 }
