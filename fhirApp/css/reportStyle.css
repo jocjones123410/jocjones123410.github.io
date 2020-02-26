@@ -230,7 +230,7 @@ th{
 	line-height:1.5;
 }
 
-div.noData:empty{
+div.sectionBody:empty{
 	display:none;
 }
 
