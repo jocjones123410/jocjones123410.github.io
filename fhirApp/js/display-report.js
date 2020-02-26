@@ -3,17 +3,20 @@ const NO_DATA_AVAILABLE = 'No data available';
 function renderReport(client, patientId){	
 	initReportDisplay();
 	
-	/*renderPatientDemographics(client, patientId);
-	renderConditions(client, patientId);
-	renderAllergies(client, patientId);
-	renderMedications(client, patientId);
-	renderObservations(client, patientId);
-	renderCoverage(client, patientId);
-	renderAdvancedDirective(client, patientId);*/
-	
-	renderReportSections(client, patientId).then(function(data){
+	Promise.all([
+	renderPatientDemographics(client, patientId),
+	renderConditions(client, patientId),
+	renderAllergies(client, patientId),
+	renderMedications(client, patientId),
+	renderObservations(client, patientId),
+	renderCoverage(client, patientId),
+	renderAdvancedDirective(client, patientId)]).then(function(data){
 		show('report');
 	});
+	
+	/*renderReportSections(client, patientId).then(function(data){
+		show('report');
+	});*/
 }
 
 async function renderReportSections(client, patientId){
