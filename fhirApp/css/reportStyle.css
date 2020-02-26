@@ -230,9 +230,12 @@ th{
 	line-height:1.5;
 }
 
+div.noData:empty{
+	display:none;
+}
+
 .noData{
 	padding:10px;
-	visibility: hidden;
 }
 
 footer#reportFooter{
