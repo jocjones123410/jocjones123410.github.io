@@ -112,6 +112,7 @@ function populateConditionTable(conditionBundle){
 function populateAllergyTable(allergyBundle){
 	if(allergyBundle.total > 0){
 		let allergies = allergyBundle.entry;
+		allergies.sort((a, b) => (a.resource.assertedDate < b.resource.assertedDate) ? 1 : -1);
 		for(let i=0;i<allergies.length;i++){
 			if("active" === allergies[i].resource.clinicalStatus){
 				if(allergies[i].resource.code.coding){
@@ -142,6 +143,7 @@ function populateAllergyTable(allergyBundle){
 function populateMedicationsTable(medicationStatementBundle){
 	if(medicationStatementBundle.total > 0){
 		let medications = medicationStatementBundle.entry;
+		medications.sort((a, b) => (a.resource.dateAsserted < b.resource.dateAsserted) ? 1 : -1);
 		let medRow = null;
 		for(let i=0;i<medications.length;i++){
 			let status = medications[i].resource.status;
@@ -166,6 +168,7 @@ function populateMedicationsTable(medicationStatementBundle){
 function populateLabsTable(observationBundle){
 	if(observationBundle.total > 0){
 		let obs = observationBundle.entry;
+		obs.sort((a, b) => (a.resource.effectiveDateTime < b.resource.effectiveDateTime) ? 1 : -1);
 		let labRow = null;
 		for(let i=0;i<obs.length;i++){			
 			let categoryVal = "";						
@@ -273,6 +276,7 @@ function populateAdvancedDirectiveSection(consentBundle){
 function populateVitalsTable(observationBundle){
 	if(observationBundle.total > 0){
 		let obs = observationBundle.entry;
+		obs.sort((a, b) => (a.resource.issued < b.resource.issued) ? 1 : -1);
 		let vitalRow = null;
 		for(let i=0;i<obs.length;i++){			
 			let categoryVal = "";						
