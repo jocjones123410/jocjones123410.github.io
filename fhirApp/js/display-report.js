@@ -3,6 +3,20 @@ const NO_DATA_AVAILABLE = 'No data available';
 function renderReport(client, patientId){	
 	initReportDisplay();
 	
+	/*renderPatientDemographics(client, patientId);
+	renderConditions(client, patientId);
+	renderAllergies(client, patientId);
+	renderMedications(client, patientId);
+	renderObservations(client, patientId);
+	renderCoverage(client, patientId);
+	renderAdvancedDirective(client, patientId);*/
+	
+	renderReportSections(client, patientId).then(function(data){
+		show('report');
+	});
+}
+
+function renderReportSections(client, patientId){
 	renderPatientDemographics(client, patientId);
 	renderConditions(client, patientId);
 	renderAllergies(client, patientId);
@@ -10,8 +24,6 @@ function renderReport(client, patientId){
 	renderObservations(client, patientId);
 	renderCoverage(client, patientId);
 	renderAdvancedDirective(client, patientId);
-	
-	show('report');
 }
 
 function renderPatientDemographics(client, patientId){
