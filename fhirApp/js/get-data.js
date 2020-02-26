@@ -28,24 +28,15 @@ const organizationResource = 'Organization';
 	}
 	
 	function getPatient(client, patientId){
-		//return client.request(PATIENT_TYPE + "/" + patientId);
-		client.request(PATIENT_TYPE + "/" + patientId).then(function(data){
-			return data;
-		});
+		return client.request(PATIENT_TYPE + "/" + patientId);		
 	}
 	
 	function getConditions(client, patientId){
-		//return 
-		client.request(CONDITION_TYPE + SUBJECT_PARAMETER + patientId).then(function(data){
-			return data;
-		});
+		return client.request(CONDITION_TYPE + SUBJECT_PARAMETER + patientId);
 	}	
 	
 	function getAllergies(client, patientId){
-		//return 
-		client.request(ALLERGY_INTOLERANCE_TYPE + PATIENT_PARAMETER + patientId).then(function(data){
-			return data;
-		});
+		return client.request(ALLERGY_INTOLERANCE_TYPE + PATIENT_PARAMETER + patientId);
 	}
 	
 	function getMedications(client, patientId){
@@ -74,9 +65,11 @@ const organizationResource = 'Organization';
 	
 	if('test' === appMode){
 		client = new FHIR.client("https://r3.smarthealthit.org");
-		client.request("Patient/6f0dafdc-94c5-4ab2-9208-b2872450737a")
+		show('patientSearch');
+		var searchButton = document.getElementById("searchButton").onclick = function(){getReport(client)};
+		/*client.request("Patient/6f0dafdc-94c5-4ab2-9208-b2872450737a")
 		.then(displayReport(testBatch))
-		.catch();
+		.catch();*/
 	}else{
 		FHIR.oauth2.ready().then(function(client) {
 			show('patientSearch');
