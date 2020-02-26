@@ -28,15 +28,24 @@ const organizationResource = 'Organization';
 	}
 	
 	function getPatient(client, patientId){
-		return client.request(PATIENT_TYPE + "/" + patientId);
+		//return client.request(PATIENT_TYPE + "/" + patientId);
+		client.request(PATIENT_TYPE + "/" + patientId).then(function(data){
+			return data;
+		});
 	}
 	
 	function getConditions(client, patientId){
-		return client.request(CONDITION_TYPE + SUBJECT_PARAMETER + patientId);
+		//return 
+		client.request(CONDITION_TYPE + SUBJECT_PARAMETER + patientId).then(function(data){
+			return data;
+		});
 	}	
 	
 	function getAllergies(client, patientId){
-		return client.request(ALLERGY_INTOLERANCE_TYPE + PATIENT_PARAMETER + patientId);
+		//return 
+		client.request(ALLERGY_INTOLERANCE_TYPE + PATIENT_PARAMETER + patientId).then(function(data){
+			return data;
+		});
 	}
 	
 	function getMedications(client, patientId){

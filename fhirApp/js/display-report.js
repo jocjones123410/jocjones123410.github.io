@@ -15,12 +15,22 @@ function renderReport(client, patientId){
 		show('report');
 	});
 	
+	let patient = getPatient(client, patientId);
+	let conditions = getConditions(client, patientId);
+	let allergies = getAllergies(client, patientId);
+	
+	populatePatientDemographics(patient);
+	populatePersonalContactSection(patient);
+	populateContactSection(patient);
+	populateConditionTable(conditions);
+	populateAllergyTable(allergies);
+	show('report');
 	/*renderReportSections(client, patientId).then(function(data){
 		show('report');
 	});*/
 }
 
-async function renderReportSections(client, patientId){
+/*async function renderReportSections(client, patientId){
 	renderPatientDemographics(client, patientId);
 	renderConditions(client, patientId);
 	renderAllergies(client, patientId);
@@ -28,7 +38,7 @@ async function renderReportSections(client, patientId){
 	renderObservations(client, patientId);
 	renderCoverage(client, patientId);
 	renderAdvancedDirective(client, patientId);
-}
+}*/
 
 function renderPatientDemographics(client, patientId){
 	getPatient(client, patientId).then(function(data){
