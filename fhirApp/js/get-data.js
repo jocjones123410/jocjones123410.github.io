@@ -1,4 +1,4 @@
-const appMode = '';
+const appMode = 'test';
 
 const PATIENT_TYPE = 'Patient';
 const CONDITION_TYPE = 'Condition';	
