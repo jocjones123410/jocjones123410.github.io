@@ -2,37 +2,16 @@ const NO_DATA_AVAILABLE = 'No data available';
 
 async function renderReport(client, patientId){	
 	initReportDisplay();
-	
-	/*Promise.all([
-	renderPatientDemographics(client, patientId),
-	renderConditions(client, patientId),
-	renderAllergies(client, patientId)
-	renderMedications(client, patientId),
-	renderObservations(client, patientId),
-	renderCoverage(client, patientId),
-	renderAdvancedDirective(client, patientId)
-	]).then(function(data){
-		show('report');
-	});*/
-	
-	await renderPatientDemographics(client, patientId);
-	await renderConditions(client, patientId);
-	await renderAllergies(client, patientId);
-	
-	/*let patient = getPatient(client, patientId);
-	let conditions = getConditions(client, patientId);
-	let allergies = getAllergies(client, patientId);
-	
-	populatePatientDemographics(patient);
-	populatePersonalContactSection(patient);
-	populateContactSection(patient);
-	populateConditionTable(conditions);
-	populateAllergyTable(allergies);*/
+		
+	renderPatientDemographics(client, patientId);
+	renderConditions(client, patientId);
+	renderAllergies(client, patientId);
+	renderMedications(client, patientId);
+	renderObservations(client, patientId);
+	renderCoverage(client, patientId);
+	renderAdvancedDirective(client, patientId);
 	
 	show('report');
-	/*renderReportSections(client, patientId).then(function(data){
-		show('report');
-	});*/
 }
 
 /*async function renderReportSections(client, patientId){
