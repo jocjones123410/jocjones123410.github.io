@@ -1,7 +1,7 @@
 const NO_DATA_AVAILABLE = 'No data available';
 
 function renderReport(client, patientId){	
-	//initReportDisplay();
+	initReportDisplay();
 	
 	renderPatientDemographics(client, patientId);
 	renderConditions(client, patientId);
@@ -11,7 +11,6 @@ function renderReport(client, patientId){
 	renderCoverage(client, patientId);
 	renderAdvancedDirective(client, patientId);
 	
-	initReportDisplay();
 	show('report');
 }
 
@@ -604,6 +603,5 @@ function initReportDisplay(){
 	hide('authError');
 	var body = document.getElementsByTagName("body")[0];
 	body.style.background = 'none';
-	body.style.overflow = "auto";
-	show('report');
+	body.style.overflow = "auto";	
 }
