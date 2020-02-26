@@ -11,21 +11,7 @@ const SUBJECT_PARAMETER = '?subject=';
 const PATIENT_PARAMETER = '?patient=';
 const BENEFICIARY_PARAMETER = '?beneficiary=';
 const practitionerResource = 'Practitioner';
-const organizationResource = 'Organization';
-	
-	function getResourceFromBundle(bundle, type){
-		if(bundle.entry){
-			var resources = [];
-			for(var i = 0;i < bundle.entry.length;i++){
-				if(bundle.entry[i].resource.resourceType){
-					if(type === bundle.entry[i].resource.resourceType){
-						resources.push(bundle.entry[i].resource);
-					}
-				}
-			}	
-			return resources;
-		}			
-	}
+const organizationResource = 'Organization';		
 	
 	function getPatient(client, patientId){
 		return client.request(PATIENT_TYPE + "/" + patientId);		
@@ -64,7 +50,7 @@ const organizationResource = 'Organization';
 	}
 	
 	if('test' === appMode){
-		client = new FHIR.client("https://r3.smarthealthit.org");
+		client = new FHIR.client(properties.baseUrl);
 		show('patientSearch');
 		var searchButton = document.getElementById("searchButton").onclick = function(){getReport(client)};
 		/*client.request("Patient/6f0dafdc-94c5-4ab2-9208-b2872450737a")
