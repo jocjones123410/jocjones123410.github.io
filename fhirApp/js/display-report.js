@@ -71,8 +71,8 @@ function renderAdvancedDirective(client, patientId){
 		
 	
 async function getReport(client){		
-		var patientId = '';
-		var mrn = document.getElementById("mrn").value;		
+		let patientId = '';
+		let mrn = document.getElementById("mrn").value;		
 		client.request("Patient?identifier:otype=http://hospital.smarthealthit.org|" + mrn)
 			.then(function(data){
 				if(data.entry[0].resource.id){							
@@ -84,20 +84,20 @@ async function getReport(client){
 
 function populateConditionTable(conditionBundle){
 	if(conditionBundle.total > 0){		
-		var conditions = sortByDateDesc(conditionBundle.entry);		
-		//conditions.sort((a, b) => (a.resource.onsetDateTime < b.resource.onsetDateTime) ? 1 : -1);
-		for(var i=0;i<conditions.length;i++){ 
+		let conditions = conditionBundle.entry;		
+		conditions.sort((a, b) => (a.resource.onsetDateTime < b.resource.onsetDateTime) ? 1 : -1);
+		for(let i=0;i<conditions.length;i++){ 
 			if("active" === conditions[i].resource.clinicalStatus){
-				var onsetDate = '';
-				var display = '';
-				var clinicalStatus = '';
-				var verificationStatus = '';
+				let onsetDate = '';
+				let display = '';
+				let clinicalStatus = '';
+				let verificationStatus = '';
 				
 				onsetDate = tableDataWrapper(formatDate(conditions[i].resource.onsetDateTime));				
 				display = tableDataWrapper(conditions[i].resource.code.coding[0].display);
 				clinicalStatus = tableDataWrapper(conditions[i].resource.clinicalStatus);
 				verificationStatus = tableDataWrapper(conditions[i].resource.verificationStatus);
-				var conditionRow = onsetDate + display + clinicalStatus + verificationStatus;
+				let conditionRow = onsetDate + display + clinicalStatus + verificationStatus;
 				conditionRow = tableRowWrapper(conditionRow);
 				setDomElement('conditionEntries',conditionRow);			
 			}
@@ -110,22 +110,22 @@ function populateConditionTable(conditionBundle){
 
 function populateAllergyTable(allergyBundle){
 	if(allergyBundle.total > 0){
-		var allergies = allergyBundle.entry;
-		for(var i=0;i<allergies.length;i++){
+		let allergies = allergyBundle.entry;
+		for(let i=0;i<allergies.length;i++){
 			if("active" === allergies[i].resource.clinicalStatus){
 				if(allergies[i].resource.code.coding){
-					var assertedDate = tableDataWrapper(formatDate(allergies[i].resource.assertedDate));
-					var categoryVal = "";
+					let assertedDate = tableDataWrapper(formatDate(allergies[i].resource.assertedDate));
+					let categoryVal = "";
 					
 					if(allergies[i].resource.category){
 						categoryVal = allergies[i].resource.category[0];
 					}						
-					var category = tableDataWrapper(categoryVal);
-					var entry = tableDataWrapper(allergies[i].resource.code.coding[0].display);
-					var criticality = tableDataWrapper(allergies[i].resource.criticality);
-					var clinicalSts = tableDataWrapper(allergies[i].resource.clinicalStatus);
-					var verificationSts = tableDataWrapper(allergies[i].resource.verificationStatus);
-					var allergyRow = assertedDate + category + entry + criticality + clinicalSts + verificationSts;					
+					let category = tableDataWrapper(categoryVal);
+					let entry = tableDataWrapper(allergies[i].resource.code.coding[0].display);
+					let criticality = tableDataWrapper(allergies[i].resource.criticality);
+					let clinicalSts = tableDataWrapper(allergies[i].resource.clinicalStatus);
+					let verificationSts = tableDataWrapper(allergies[i].resource.verificationStatus);
+					let allergyRow = assertedDate + category + entry + criticality + clinicalSts + verificationSts;					
 					allergyRow = tableRowWrapper(allergyRow);
 					setDomElement('allergyEntries', allergyRow);
 				}
@@ -139,15 +139,15 @@ function populateAllergyTable(allergyBundle){
 
 function populateMedicationsTable(medicationStatementBundle){
 	if(medicationStatementBundle.total > 0){
-		var medications = medicationStatementBundle.entry;
-		var medRow = null;
-		for(var i=0;i<medications.length;i++){
-			var status = medications[i].resource.status;
+		let medications = medicationStatementBundle.entry;
+		let medRow = null;
+		for(let i=0;i<medications.length;i++){
+			let status = medications[i].resource.status;
 			if(medications[i].status && 'active' === status.toLowerCase()){ 
-				var statusElement = tableDataWrapper(status);
-				var assertedDate = tableDataWrapper(medications[i].resource.dateAsserted);			
-				var medication = tableDataWrapper(medications[i].resource.medicationCodeableConcept.text);
-				var taken = tableDataWrapper(medications[i].resource.taken);
+				let statusElement = tableDataWrapper(status);
+				let assertedDate = tableDataWrapper(medications[i].resource.dateAsserted);			
+				let medication = tableDataWrapper(medications[i].resource.medicationCodeableConcept.text);
+				let taken = tableDataWrapper(medications[i].resource.taken);
 				medRow = assertedDate + statusElement + medication + taken;
 				medRow = tableRowWrapper(medRow);
 				setDomElement('medicationStatmentEntries',medRow);
@@ -162,21 +162,21 @@ function populateMedicationsTable(medicationStatementBundle){
 
 function populateLabsTable(observationBundle){
 	if(observationBundle.total > 0){
-		var obs = observationBundle.entry;
-		var labRow = null;
-		for(var i=0;i<obs.length;i++){			
-			var categoryVal = "";						
+		let obs = observationBundle.entry;
+		let labRow = null;
+		for(let i=0;i<obs.length;i++){			
+			let categoryVal = "";						
 			if(obs[i].resource.category && obs[i].resource.category[0].coding){
 				categoryVal = obs[i].resource.category[0].coding[0].code;
 				if('laboratory' === categoryVal.toLowerCase()){						
-					var effectiveDate = tableDataWrapper(formatDate(obs[i].resource.effectiveDateTime));
-					var category = tableDataWrapper(categoryVal);
-					var entry = tableDataWrapper(obs[i].resource.code.text);
-					var quantityValUnit = "";
+					let effectiveDate = tableDataWrapper(formatDate(obs[i].resource.effectiveDateTime));
+					let category = tableDataWrapper(categoryVal);
+					let entry = tableDataWrapper(obs[i].resource.code.text);
+					let quantityValUnit = "";
 			
 					if(obs[i].resource.valueQuantity){
-						var qtValue = "";
-						var qtUnit = "";
+						let qtValue = "";
+						let qtUnit = "";
 						if(obs[i].resource.valueQuantity.value != undefined){
 							qtValue = obs[i].resource.valueQuantity.value;
 						}
@@ -186,7 +186,7 @@ function populateLabsTable(observationBundle){
 						quantityValUnit = qtValue + " " + qtUnit;
 					}
 			
-					var value = tableDataWrapper(quantityValUnit);
+					let value = tableDataWrapper(quantityValUnit);
 					labRow = effectiveDate + category + entry + value
 					labRow = tableRowWrapper(labRow);
 					setDomElement('observationEntries',labRow);
@@ -590,11 +590,7 @@ function formatDate(dateToFormat){
 	}
 	var yyyy = date.getFullYear();
 	return mm + '-' + dd + '-' + yyyy;
-}  
- 
-function sortByDateDesc(resourceList){	
-	return resourceList.sort((a, b) => (a.resource.onsetDateTime < b.resource.onsetDateTime) ? 1 : -1);	
-}	
+}  	
  
 function display(data) {
     const output = document.getElementById("display");
