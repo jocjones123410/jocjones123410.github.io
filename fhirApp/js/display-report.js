@@ -16,7 +16,7 @@ function renderReport(client, patientId){
 	});
 }
 
-function renderReportSections(client, patientId){
+async function renderReportSections(client, patientId){
 	renderPatientDemographics(client, patientId);
 	renderConditions(client, patientId);
 	renderAllergies(client, patientId);
