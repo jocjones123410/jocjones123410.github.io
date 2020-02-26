@@ -230,6 +230,11 @@ th{
 	line-height:1.5;
 }
 
+.noData{
+	padding:10px;
+	visibility: hidden;
+}
+
 footer#reportFooter{
 	height: 20px;
 	width: 100%;

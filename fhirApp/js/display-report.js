@@ -102,9 +102,10 @@ function populateConditionTable(conditionBundle){
 				setDomElement('conditionEntries',conditionRow);			
 			}
 		}
-	}else{		
-		hide('conditionTable');	
-		setDomElement('noCondData', NO_DATA_AVAILABLE);
+	}else{
+		noDataMessage('conditionTable', 'noCondData');
+		//hide('conditionTable');	
+		//setDomElement('noCondData', NO_DATA_AVAILABLE);
 	}
 }
 
@@ -132,8 +133,9 @@ function populateAllergyTable(allergyBundle){
 			}	
 		}
 	}else{
-		hide('allergyTable');
-		setDomElement('noAllergyData', NO_DATA_AVAILABLE);
+		noDataMessage('allergyTable', 'noAllergyData');
+		//hide('allergyTable');
+		//setDomElement('noAllergyData', NO_DATA_AVAILABLE);
 	}
 }
 
@@ -155,8 +157,9 @@ function populateMedicationsTable(medicationStatementBundle){
 		}
 		//if(medRow == null)hide('medicationSection');
 	}else{
-		hide('medsTable');
-		setDomElement('noMedData',NO_DATA_AVAILABLE);		
+		noDataMessage('medsTable', 'noMedData');
+		//hide('medsTable');
+		//setDomElement('noMedData',NO_DATA_AVAILABLE);		
 	}
 }
 
@@ -195,8 +198,9 @@ function populateLabsTable(observationBundle){
 		}
 		//if(labRow == null)hide('labSection');
 	}else{
-		hide('labsTable');
-		setDomElement('noLabData', NO_DATA_AVAILABLE);
+		noDataMessage('labsTable', 'noLabData');
+		//hide('labsTable');
+		//setDomElement('noLabData', NO_DATA_AVAILABLE);
 	}
 }
 
@@ -303,8 +307,9 @@ function populateVitalsTable(observationBundle){
 		}
 		//if(vitalRow == null)hide('vitalSection');
 	}else{
-		hide('vitalsTable');
-		setDomElement('noVitalsData', NO_DATA_AVAILABLE);
+		noDataMessage('vitalsTable', 'noVitalsData');
+		//hide('vitalsTable');
+		//setDomElement('noVitalsData', NO_DATA_AVAILABLE);
 	}
 }
 
@@ -369,7 +374,6 @@ function populatePersonalContactSection(patient){
 		}
 	}else{
 		setDomElement('contactInfoId', NO_DATA_AVAILABLE);
-		//hide('contactInfoSection');
 	}
 }
 
@@ -379,8 +383,9 @@ function populateContactSection(patient){
 		populateOrganizationSection(patient.managingOrganization);
 	}else{
 		hide('organizationHeader');
-		hide('practitionerHeader');
-		setDomElement('nursingHomeId', NO_DATA_AVAILABLE);
+		noDataMessage('practitionerHeader', 'nursingHomeId');
+		//hide('practitionerHeader');
+		//setDomElement('nursingHomeId', NO_DATA_AVAILABLE);
 	}
 }
 
@@ -418,7 +423,6 @@ function populatePractitionerSection(practitioner){
 		setDomElement('practionerId', practitionerLabelsAndValues);
 	}else{
 		setDomElement('practionerId', NO_DATA_AVAILABLE);
-		//hide('practitionerSubSection');
 	}
 }
 
@@ -594,6 +598,12 @@ function hide(elementId){
 
 function show(elementId){
 	document.getElementById(elementId).style.display = "block";
+}
+
+function noDataMessage(hideId, showId){
+	hide(hideId);
+	setDomElement(showId, NO_DATA_AVAILABLE);
+	show(showId);
 }
 
 function initReportDisplay(){
