@@ -1,7 +1,7 @@
 #report{
 	width:65%;
 	margin:auto;
-	border:#333 1px solid;	
+	//border:#333 1px solid;	
 	overflow:hidden;
 	display:none;
 }
@@ -115,7 +115,7 @@ a#searchButton:hover{
 	display:none;
 }
 
-header#patientName{
+header{
 	background-color: #0747a6;
 	color:#FFFFFF;
 	padding:15px;	
