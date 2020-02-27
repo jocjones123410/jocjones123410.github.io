@@ -37,6 +37,20 @@
 			<div id="maritalStatusId"></div>
 		</section>
 		<section id="resourceColumns">
+			<div class="sectionContainer" id="vitalSection">
+				<div class="sectionHeader">Vitals</div>
+				<table id="vitalsTable">
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Value</th>
+							<th>Date</th>
+						</tr>
+					</thead>
+					<tbody id="vitalEntries"></tbody>
+				</table>
+				<div class="sectionBody" id="noVitalsData"></div>
+			</div>
 			<div class="sectionContainer" id="conditionSection">
 				<div class="sectionHeader">Conditions</div>
 				<table id="conditionTable">
@@ -69,21 +83,6 @@
 				</table>
 				<div class="sectionBody" id="noAllergyData"></div>
 			</div>
-			<div class="sectionContainer" id="medicationSection">
-				<div class="sectionHeader">Medications</div>
-				<table id="medsTable">
-					<thead>
-						<tr>
-							<th>Date Asserted</th>
-							<th>Status</th>
-							<th>Medication Item</th>
-							<th>Taken</th>
-						</tr>
-					</thead>
-					<tbody id="medicationStatmentEntries"></tbody>
-				</table>
-				<div class="sectionBody" id="noMedData"></div>
-			</div>
 			<div class="sectionContainer" id="labSection">
 				<div class="sectionHeader">Labs</div>
 				<table id="labsTable">
@@ -99,6 +98,21 @@
 				</table>
 				<div class="sectionBody" id="noLabData"></div>
 			</div>
+			<div class="sectionContainer" id="medicationSection">
+				<div class="sectionHeader">Medications</div>
+				<table id="medsTable">
+					<thead>
+						<tr>
+							<th>Date Asserted</th>
+							<th>Status</th>
+							<th>Medication Item</th>
+							<th>Taken</th>
+						</tr>
+					</thead>
+					<tbody id="medicationStatmentEntries"></tbody>
+				</table>
+				<div class="sectionBody" id="noMedData"></div>
+			</div>			
 			<div class="sectionContainer" id="coverageSection">
 				<div class="sectionHeader">Coverage</div>
 				<div class="sectionBody" id="coverageId"></div>
@@ -106,21 +120,7 @@
 			<div class="sectionContainer" id="advDirSection">
 				<div class="sectionHeader">Advanced Directive</div>
 				<div class="sectionBody" id="advDirId"></div>
-			</div>
-			<div class="sectionContainer" id="vitalSection">
-				<div class="sectionHeader">Vitals</div>
-				<table id="vitalsTable">
-					<thead>
-						<tr>
-							<th>Name</th>
-							<th>Value</th>
-							<th>Date</th>
-						</tr>
-					</thead>
-					<tbody id="vitalEntries"></tbody>
-				</table>
-				<div class="sectionBody" id="noVitalsData"></div>
-			</div>
+			</div>			
 		</section>
 		<section id="resource">
 			<div id="contactInfoSection">
