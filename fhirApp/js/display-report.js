@@ -484,11 +484,11 @@ function populateOrganizationSection(org){
 function populatePatientDemographics(patient){
 	setPatientName(patient);
 	setMrn(patient);
-	setRace(patient);
+	//setRace(patient);
 	setGender(patient);
 	setBirthDate(patient);
-	setAddress(patient);
-	setTelecom(patient);
+	//setAddress(patient);
+	//setTelecom(patient);
 	setMarried(patient);	
 }
 
