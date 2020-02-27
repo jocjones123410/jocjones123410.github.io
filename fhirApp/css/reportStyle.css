@@ -239,7 +239,15 @@ div.sectionBody:empty{
 	margin-bottom: 15px;
 }
 
-#contactInfoSection, #nursingHomeContactSection .sectionHeader { 
+#nursingHomeContactSection .sectionHeader { 
+    position: relative; 
+    top : -0.7em;
+    margin-left: 1em;
+    display: inline; 
+    background-color: white; 
+}
+
+#contactInfoSection .sectionHeader { 
     position: relative; 
     top : -0.7em;
     margin-left: 1em;
