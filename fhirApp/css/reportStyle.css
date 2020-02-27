@@ -133,7 +133,6 @@ section#patientDemographics{
 	display: grid;
 	grid-template-columns:repeat(6, auto);
 	border:#35929a 2px solid;
-	//border-color:#35929a;
 	border-radius: 5px;
 	margin-top: 10px;
 	margin-bottom: 10px;
@@ -195,7 +194,7 @@ tr:nth-child(even){
 
 table{
 	width:100%;
-	//border-collapse: collapse;
+	border-collapse: collapse;
 	margin-bottom: 10px;
 }
 
@@ -237,4 +236,11 @@ th{
 
 div.sectionBody:empty{
 	display:none;
+}
+
+#contactInfoSection{
+	border:#35929a 2px solid;
+	border-radius: 5px;
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
