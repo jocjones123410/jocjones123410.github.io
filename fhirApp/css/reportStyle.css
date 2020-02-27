@@ -134,7 +134,9 @@ section#patientDemographics{
 	grid-template-columns:repeat(6, auto);
 	border:#333 1px solid;
 	border-color:#35929a;
-	border-radius: 10px;
+	border-radius: 5px;
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 
 section#patientDemographics > div{
