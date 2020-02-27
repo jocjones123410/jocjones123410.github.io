@@ -144,7 +144,7 @@ section#patientDemographics > div{
 section#resourceColumns{
 	display:grid;
 	grid-template-columns:repeat(2, 1fr);
-	grid-gap: 10px 10px;
+	grid-gap: 15px 10px;
 }
 
 .fieldLabel{
@@ -155,8 +155,8 @@ section#resourceColumns{
 .sectionContainer{
 	border:#35929a 2px solid;
 	border-radius: 5px;
-	margin-bottom:10px;
-	padding-bottom:20px;
+	//margin-bottom:10px;
+	//padding-bottom:20px;
 }
 
 .sectionHeader{
@@ -166,6 +166,11 @@ section#resourceColumns{
 	font-size: .7rem;
     font-weight: bold;
     font-family: "Arial Black", Gadget, sans-serif;
+	position: relative; 
+    top : -0.7em;
+    margin-left: 1em;
+    display: inline; 
+    background-color: white; 
 }
 
 .sectionBody{
