@@ -134,7 +134,7 @@ section#patientDemographics{
 	border:#35929a 2px solid;
 	border-radius: 5px;
 	margin-top: 10px;
-	margin-bottom: 10px;
+	margin-bottom: 15px;
 }
 
 section#patientDemographics > div{
@@ -241,21 +241,5 @@ div.sectionBody:empty{
 #contactInfoSection, #nursingHomeContactSection{
 	border:#35929a 2px solid;
 	border-radius: 5px;
-	margin-bottom: 15px;
-}
-
-#nursingHomeContactSection .sectionHeader { 
-    position: relative; 
-    top : -0.7em;
-    margin-left: 1em;
-    display: inline; 
-    background-color: white; 
-}
-
-#contactInfoSection .sectionHeader { 
-    position: relative; 
-    top : -0.7em;
-    margin-left: 1em;
-    display: inline; 
-    background-color: white; 
+	margin-top: 15px;
 }
