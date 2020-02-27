@@ -163,7 +163,9 @@ section#resourceColumns{
 	text-align:left;
 	color: #35929a;
 	padding:5px;
-	font-size:15px;
+	font-size: .8rem;
+    font-weight: bold;
+    font-family: "Arial Black", Gadget, sans-serif;
 }
 
 .sectionBody{
