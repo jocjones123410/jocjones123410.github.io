@@ -160,18 +160,11 @@ section#resourceColumns{
 
 .sectionHeader{
 	text-align:left;
-	//background-color: #0747a6;
-	//color:#FFFFFF;
 	color:#35929a;
 	padding: 5px;
 	font-size:18px;
 	border-top:#333 1px solid;
 	border-bottom:#333 1px solid;
-	/*text-shadow:
-		-1px -1px 0 #000,
-		1px -1px 0 #000,
-		-1px 1px 0 #000,
-		1px 1px 0 #000;*/
 }
 
 .sectionBody{
