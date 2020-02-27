@@ -238,3 +238,11 @@ div.sectionBody:empty{
 	border-radius: 5px;
 	margin-bottom: 10px;
 }
+
+#nursingHomeContactSection .sectionHeader { 
+    position: relative; 
+    top : -0.5em;
+    margin-left: 1em;
+    display: inline; 
+    background-color: white; 
+}
