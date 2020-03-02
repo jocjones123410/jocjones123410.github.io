@@ -247,6 +247,6 @@ input[type="checkbox"][readonly] {
   pointer-events: none;
 }
 
-.checkboxDisplay:checked{
+.checkboxDisplay:checked + .checkboxLabel:before{
 	background: #fff;
 }
