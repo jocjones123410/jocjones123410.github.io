@@ -144,7 +144,7 @@ section#patientDemographics > div{
 section#resourceColumns{
 	display:grid;
 	grid-template-columns:repeat(2, 1fr);
-	grid-gap: 15px 10px;
+	grid-gap: 0px 10px;
 }
 
 .fieldLabel{
@@ -156,6 +156,7 @@ section#resourceColumns{
 	border:#35929a 2px solid;
 	border-radius: 5px;
 	//margin-bottom:10px;
+	margin-top:15px;
 	//padding-bottom:20px;
 }
 
