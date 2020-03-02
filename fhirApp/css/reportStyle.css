@@ -247,6 +247,10 @@ input[type="checkbox"][readonly] {
   pointer-events: none;
 }
 
+.hideme {
+  display: none;
+}
+
 .hideme + .woo:before {
   width: 10px;
   height: 10px;
