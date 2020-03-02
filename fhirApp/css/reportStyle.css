@@ -247,6 +247,19 @@ input[type="checkbox"][readonly] {
   pointer-events: none;
 }
 
-.checkboxDisplay:checked + .checkboxLabel:before{
-	background: #fff;
+.hideme + .woo:before {
+  width: 10px;
+  height: 10px;
+  border: 2px solid gray;
+  border-radius: 2px;
+  box-shadow: -1px 1px 2px 2px rgba(0,0,0,0.2);
+  background: red;
+  position: relative;
+  display: inline-block;
+  margin-right: 1ex;
+  content: "";
+}
+
+.hideme:checked + .woo:before {
+  background: green;
 }
