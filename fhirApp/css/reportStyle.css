@@ -246,3 +246,7 @@ div.sectionBody:empty{
 input[type="checkbox"][readonly] {
   pointer-events: none;
 }
+
+.checkboxDisplay:checked{
+	background: #fff;
+}
