@@ -242,3 +242,7 @@ div.sectionBody:empty{
 	border-radius: 5px;
 	margin-top: 15px;
 }
+
+input[type="checkbox"][readonly] {
+  pointer-events: none;
+}
