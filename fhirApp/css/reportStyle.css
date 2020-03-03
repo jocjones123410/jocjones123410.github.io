@@ -265,7 +265,7 @@ input[type="checkbox"][readonly] {
 .checkbox-custom + .checkbox-custom-label:before{
     content: '';
     background: #fff;
-    border: 1px solid #ddd;
+    border: 1px solid gray;
     display: inline-block;
     vertical-align: middle;
     width: 10px;
@@ -273,9 +273,9 @@ input[type="checkbox"][readonly] {
     padding: 2px;
     margin-right: 5px;
     text-align: center;
-	border-radius: 5px;
+	border-radius: 3px;
 }
 
 .checkbox-custom:checked + .checkbox-custom-label:before {
-    background: #000;
+    background: gray;
 }
