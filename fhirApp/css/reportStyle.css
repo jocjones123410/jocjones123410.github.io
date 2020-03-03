@@ -137,7 +137,7 @@ section#patientDemographics{
 	margin-bottom: 15px;
 }
 
-section#patientDemographics > div{
+section#patientDemographics > div, div#keyClinicalInfo > div{
 	padding:2px;
 	display: flex;
 }
@@ -321,3 +321,4 @@ div#keyClinicalInfo{
 	grid-template-rows:50%;
 	height:90%;
 }
+
