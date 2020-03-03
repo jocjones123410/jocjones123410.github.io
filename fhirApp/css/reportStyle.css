@@ -310,3 +310,8 @@ div#onsiteCapabilities{
 	display:grid;
 	grid-template-columns:repeat(4, auto);
 }
+
+div#ltcFacilityInfo{
+	display:grid;
+	grid-template-columns:repeat(2, auto);
+}
