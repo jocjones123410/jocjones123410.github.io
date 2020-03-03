@@ -256,7 +256,6 @@ input[type="checkbox"][readonly] {
     display: inline-block;
     vertical-align: middle;
     margin: 5px;
-    cursor: pointer;
 }
 
 .checkbox-custom-label{
@@ -266,7 +265,7 @@ input[type="checkbox"][readonly] {
 .checkbox-custom + .checkbox-custom-label:before{
     content: '';
     background: #fff;
-    border: 2px solid #ddd;
+    border: 1px solid #ddd;
     display: inline-block;
     vertical-align: middle;
     width: 10px;
@@ -274,7 +273,7 @@ input[type="checkbox"][readonly] {
     padding: 2px;
     margin-right: 5px;
     text-align: center;
-	border-radius: 50%;
+	border-radius: 5px;
 }
 
 .checkbox-custom:checked + .checkbox-custom-label:before {
