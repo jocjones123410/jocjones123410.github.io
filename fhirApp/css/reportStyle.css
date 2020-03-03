@@ -315,3 +315,13 @@ div#keyClinicalInfo{
 	height:90%;
 }
 
+div#nursingHomeId{
+	display:grid;
+	grid-template-columns:repeat(4, auto);
+	
+}
+
+#nursingHomeName{
+	grid-column: 2/5;
+}
+

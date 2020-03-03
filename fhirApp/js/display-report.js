@@ -377,7 +377,7 @@ function populatePersonalContactSection(patient){
 			setDomElement('contactInfoId', contactLabelsAndValues);
 		}
 	}else{
-		setDomElement('contactInfoId', NO_DATA_AVAILABLE);
+		//setDomElement('contactInfoId', NO_DATA_AVAILABLE);
 	}
 }
 
@@ -386,8 +386,8 @@ function populateContactSection(patient){
 		populatePractitionerSection(patient.generalPractitioner);
 		populateOrganizationSection(patient.managingOrganization);
 	}else{
-		hide('organizationHeader');
-		noDataMessage('practitionerHeader', 'nursingHomeId');
+		//hide('organizationHeader');
+		//noDataMessage('practitionerHeader', 'nursingHomeId');
 		//hide('practitionerHeader');
 		//setDomElement('nursingHomeId', NO_DATA_AVAILABLE);
 	}
