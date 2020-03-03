@@ -139,6 +139,7 @@ section#patientDemographics{
 
 section#patientDemographics > div{
 	padding:2px;
+	display: flex;
 }
 
 section.resourceColumns{
@@ -149,6 +150,7 @@ section.resourceColumns{
 
 .fieldLabel{
 	font-weight: bold;
+	margin-right:7px;
 	//justify-self:end;
 }
 
@@ -280,17 +282,17 @@ input[type="checkbox"][readonly] {
     background: gray;
 }
 
-/*#mrnId{
-	grid-column: 2/5;
+#mrnDiv{
+	grid-column: 1/2;
 }
 
-#transferedFromId{
-	grid-column: 6/9;
+#transferedFromDiv{
+	grid-column: 2/4;
 }
 
-#healtheLinkConsent{
-	grid-column: 2/6;
-}*/
+#ealtheLinkConsentDiv{
+	grid-column: 1/4;
+}
 
 div#codeStatus{
 	display:grid;
