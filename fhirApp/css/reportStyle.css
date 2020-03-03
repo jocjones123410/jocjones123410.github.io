@@ -23,7 +23,7 @@ body{
 	border-radius:3px;
 	padding:15px;
 	background-color: rgba(0, 0, 0, 0.1);
-	width: 40%;
+	width: 30%;
 }
 .input-container{
 	position:relative;
@@ -149,7 +149,7 @@ section.resourceColumns{
 
 .fieldLabel{
 	font-weight: bold;
-	justify-self:end;
+	//justify-self:end;
 }
 
 .sectionContainer{
