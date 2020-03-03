@@ -251,7 +251,6 @@ input[type="checkbox"][readonly] {
 }
 
 .checkbox-custom, .checkbox-custom-label{
-    //vertical-align: middle;
     margin: 5px;
 }
 
@@ -288,10 +287,6 @@ input[type="checkbox"][readonly] {
 div#codeStatus{
 	display:grid;
 	grid-template-columns:repeat(12, auto);
-}
-
-#healtheLinkConsentLabel{
-	vertical-align: middle;
 }
 
 div#riskAlerts{
