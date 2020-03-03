@@ -292,7 +292,7 @@ input[type="checkbox"][readonly] {
 	grid-column: 2/6;
 }
 
-div#codeStatus{
+div#codeStatus.sectionBody{
 	grid-template-columns:repeat(12, auto);
 }
 
