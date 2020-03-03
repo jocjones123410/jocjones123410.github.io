@@ -139,7 +139,7 @@ section#patientDemographics{
 	margin-bottom: 15px;
 }
 
-section#patientDemographics > div, div#keyClinicalInfo > div, div#ltcFacilityInfo > div, div#ltcNotes > div, div#coverageId > div, div#advDirId > div{
+section#patientDemographics > div, div#keyClinicalInfo > div, div#ltcFacilityInfo > div, div#ltcNotes > div, div#coverageId > div, div#advDirId > div, div#contactInfoId > div{
 	padding:2px;
 	display: flex;
 }
@@ -322,6 +322,15 @@ div#nursingHomeId{
 }
 
 #nursingHomeName{
-	grid-column: 2/5;
+	grid-column: 1/5;
 }
 
+div#contactInfoId{
+	display:grid;
+	grid-template-columns:repeat(4, auto);
+	
+}
+
+#contactedCheckboxes{
+	grid-column: 2/5;
+}
