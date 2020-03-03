@@ -281,5 +281,9 @@ input[type="checkbox"][readonly] {
 }
 
 #mrnId{
-	grid-column: 2/6;
+	grid-column: 2/5;
+}
+
+#transferedFromId{
+	grid-column: 6/8;
 }
