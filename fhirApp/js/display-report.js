@@ -236,8 +236,6 @@ function populateCoverageSection(coverageBundle){
 				}
 			}			
 		}
-	}else{
-		setDomElement('coverageId', NO_DATA_AVAILABLE);		
 	}
 }
 
@@ -271,7 +269,7 @@ function populateAdvancedDirectiveSection(consentBundle){
 		let dnrLabelsAndValues = consentDate + consentSource + scope + category + provision;
 		setDomElement('advDirId', dnrLabelsAndValues);
 	}else{
-		setDomElement('advDirId', NO_DATA_AVAILABLE);
+		//setDomElement('advDirId', NO_DATA_AVAILABLE);
 	}
 }
 
