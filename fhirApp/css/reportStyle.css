@@ -141,7 +141,7 @@ section#patientDemographics > div{
 	padding:2px;
 }
 
-section#resourceColumns{
+section.resourceColumns{
 	display:grid;
 	grid-template-columns:repeat(2, 1fr);
 	grid-gap: 0px 10px;
