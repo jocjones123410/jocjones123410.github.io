@@ -157,20 +157,18 @@ section.resourceColumns{
 .sectionContainer{
 	border:#35929a 2px solid;
 	border-radius: 5px;
-	//margin-bottom:10px;
-	margin-top:15px;
-	//padding-bottom:20px;
+	margin-top:21px;
 }
 
 .sectionHeader{
 	text-align:left;
 	color: #35929a;
 	padding:5px;
-	font-size: .7rem;
+	font-size: .9rem;
     font-weight: bold;
     font-family: "Arial Black", Gadget, sans-serif;
 	position: relative; 
-    top : -0.7em;
+    top : -0.9em;
     margin-left: 1em;
     display: inline; 
     background-color: white; 
@@ -244,7 +242,7 @@ div.sectionBody:empty{
 #contactInfoSection, #nursingHomeContactSection{
 	border:#35929a 2px solid;
 	border-radius: 5px;
-	margin-top: 15px;
+	margin-top: 21px;
 }
 
 input[type="checkbox"][readonly] {
