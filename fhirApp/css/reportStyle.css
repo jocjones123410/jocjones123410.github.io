@@ -292,6 +292,10 @@ input[type="checkbox"][readonly] {
 	grid-column: 2/6;
 }
 
-#codeStatus{
+div#codeStatus{
 	grid-template-columns:repeat(12, auto);
+}
+
+#healtheLinkConsentLabel{
+	vertical-align: middle;
 }
