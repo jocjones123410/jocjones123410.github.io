@@ -139,7 +139,8 @@ section#patientDemographics{
 	margin-bottom: 15px;
 }
 
-section#patientDemographics > div, div#keyClinicalInfo > div, div#ltcFacilityInfo > div, div#ltcNotes > div{
+//section#patientDemographics > div, div#keyClinicalInfo > div, div#ltcFacilityInfo > div, div#ltcNotes > div{
+div.sectionBody > div{
 	padding:2px;
 	display: flex;
 }
