@@ -285,5 +285,9 @@ input[type="checkbox"][readonly] {
 }
 
 #transferedFromId{
-	grid-column: 6/8;
+	grid-column: 6/9;
+}
+
+#healtheLinkConsent{
+	grid-column: 2/6;
 }
