@@ -179,6 +179,8 @@ section.resourceColumns{
 .sectionBody{
 	line-height: 1.5;
 	padding:10px;
+	position: relative;
+    top: -10px;
 }
 
 #allergyListId{
@@ -317,4 +319,5 @@ div#ltcFacilityInfo{
 div#keyClinicalInfo{
 	display:grid;
 	grid-template-rows:50%;
+	height:90%;
 }
