@@ -185,6 +185,8 @@ function populateLabsTable(observationBundle){
 						let qtUnit = "";
 						if(obs[i].resource.valueQuantity.value != undefined){
 							qtValue = obs[i].resource.valueQuantity.value;
+							//Format result to 4 decimal places
+							qtValue = qtValue.toFixed(4);
 						}
 						if(obs[i].resource.valueQuantity.unit != undefined){
 							qtUnit = obs[i].resource.valueQuantity.unit;
