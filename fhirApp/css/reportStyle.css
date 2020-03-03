@@ -130,7 +130,7 @@ header{
 section#patientDemographics{
 	padding:15px;
 	display: grid;
-	grid-template-columns:repeat(8, auto);
+	grid-template-columns:repeat(4, auto);
 	border:#35929a 2px solid;
 	border-radius: 5px;
 	margin-top: 10px;
@@ -280,7 +280,7 @@ input[type="checkbox"][readonly] {
     background: gray;
 }
 
-#mrnId{
+/*#mrnId{
 	grid-column: 2/5;
 }
 
@@ -290,7 +290,7 @@ input[type="checkbox"][readonly] {
 
 #healtheLinkConsent{
 	grid-column: 2/6;
-}
+}*/
 
 div#codeStatus{
 	display:grid;
