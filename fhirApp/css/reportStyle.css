@@ -130,7 +130,7 @@ header{
 section#patientDemographics{
 	padding:15px;
 	display: grid;
-	grid-template-columns:repeat(6, auto);
+	grid-template-columns:repeat(8, auto);
 	border:#35929a 2px solid;
 	border-radius: 5px;
 	margin-top: 10px;
@@ -278,4 +278,8 @@ input[type="checkbox"][readonly] {
 
 .checkbox-custom:checked + .checkbox-custom-label:before {
     background: gray;
+}
+
+#mrnId{
+	grid-column: 2/6;
 }
