@@ -291,3 +291,7 @@ input[type="checkbox"][readonly] {
 #healtheLinkConsent{
 	grid-column: 2/6;
 }
+
+#codeStatus{
+	grid-template-columns:repeat(12, auto);
+}
