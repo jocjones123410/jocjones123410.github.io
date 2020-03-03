@@ -266,7 +266,7 @@ input[type="checkbox"][readonly] {
     content: '';
     background: #fff;
     border: 1px solid gray;
-    display: inline-block;
+    //display: inline-block;
     vertical-align: middle;
     width: 10px;
     height: 10px;
@@ -299,4 +299,9 @@ div#codeStatus{
 
 #healtheLinkConsentLabel{
 	vertical-align: middle;
+}
+
+div#riskAlerts{
+	display:grid;
+	grid-template-columns:repeat(4, auto);
 }
