@@ -1,5 +1,3 @@
-const appMode = 'test';
-
 const PATIENT_TYPE = 'Patient';
 const CONDITION_TYPE = 'Condition';	
 const ALLERGY_INTOLERANCE_TYPE = 'AllergyIntolerance';
@@ -49,7 +47,7 @@ const organizationResource = 'Organization';
 		return getResourceFromBundle(bundle, organizationResource);
 	}
 	
-	if('test' === appMode){
+	if('test' === properties.appMode){
 		client = new FHIR.client(properties.baseUrl);
 		show('patientSearch');
 		document.getElementById("searchButton").onclick = function(){getReport(client)};		

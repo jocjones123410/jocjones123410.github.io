@@ -501,7 +501,7 @@ function setPatientName (pt) {
 function setMrn (pt){
 	if(pt.identifier){
 		if(pt.identifier[0].system){
-			if("https://github.com/synthetichealth/synthea" === pt.identifier[0].system){
+			if(properties.mrnSystem === pt.identifier[0].system){
 				setDomElement('mrnId', pt.identifier[0].value);
 			}
 		}
@@ -510,7 +510,7 @@ function setMrn (pt){
 
 function setRace (pt){
 	if(pt.extension){
-		if("http://hl7.org/fhir/us/core/StructureDefinition/us-core-race" === pt.extension[0].url){
+		if(properties.patientRaceUrl === pt.extension[0].url){
 			if(pt.extension[0].valueCodeableConcept.coding){
 				setDomElement('raceId', pt.extension[0].valueCodeableConcept.coding[0].display);
 			}
