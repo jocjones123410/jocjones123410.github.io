@@ -76,7 +76,6 @@ function populateVitalsTable(observationBundle){
 	if(observationBundle.total > 0){
 		let obs = observationBundle.entry;
 		obs.sort((a, b) => (a.resource.issued < b.resource.issued) ? 1 : -1);
-		let vitalRow = null;
 		for(let i=0;i<obs.length;i++){			
 			if(obs[i].resource.category && obs[i].resource.category[0].coding[0]){
 				let categoryVal = obs[i].resource.category[0].coding[0].code;
@@ -100,8 +99,9 @@ function populateVitalsTable(observationBundle){
 							value = comp[x].valueQuantity.value + unit;							 
 						}
 						
-						vitalRow = tableDataWrapper(name) + tableDataWrapper(value) + tableDataWrapper(issuedDate);
-						vitalRow = tableRowWrapper(vitalRow);
+						//let vitalRow = tableDataWrapper(name) + tableDataWrapper(value) + tableDataWrapper(issuedDate);
+						//vitalRow = tableRowWrapper(vitalRow);
+						let vitalRow = tableRowWrapper(name, value, issuedDate);
 						setDomElement('vitalEntries',vitalRow);
 					}
 				}
@@ -127,9 +127,10 @@ function populateConditionTable(conditionBundle){
 					onsetDate = formatDate(conditions[i].resource.onsetDateTime);								
 					clinicalStatus = conditions[i].resource.clinicalStatus;
 					verificationStatus = conditions[i].resource.verificationStatus;
-				}
-				if(conditions[i].resource.code.coding[0]){
-					display = conditions[i].resource.code.coding[0].display;
+				
+					if(conditions[i].resource.code.coding[0]){
+						display = conditions[i].resource.code.coding[0].display;
+					}
 				}
 				let conditionRow = tableDataWrapper(onsetDate) + tableDataWrapper(display) + tableDataWrapper(clinicalStatus) + tableDataWrapper(verificationStatus);
 				conditionRow = tableRowWrapper(conditionRow);
@@ -184,15 +185,14 @@ function populateLabsTable(observationBundle){
 	if(observationBundle.total > 0){
 		let obs = observationBundle.entry;
 		obs.sort((a, b) => (a.resource.effectiveDateTime < b.resource.effectiveDateTime) ? 1 : -1);
-		let labRow = null;
 		for(let i=0;i<obs.length;i++){			
 			let categoryVal = "";						
-			if(obs[i].resource.category && obs[i].resource.category[0].coding){
+			if(obs[i].resource.category && obs[i].resource.category[0].coding[0]){
 				categoryVal = obs[i].resource.category[0].coding[0].code;
 				if('laboratory' === categoryVal.toLowerCase()){						
-					let effectiveDate = tableDataWrapper(formatDate(obs[i].resource.effectiveDateTime));
-					let category = tableDataWrapper(categoryVal);
-					let entry = tableDataWrapper(obs[i].resource.code.text);
+					let effectiveDate = formatDate(obs[i].resource.effectiveDateTime);
+					let category = categoryVal;
+					let entry = obs[i].resource.code.text;
 					let quantityValUnit = "";
 			
 					if(obs[i].resource.valueQuantity){
@@ -209,18 +209,15 @@ function populateLabsTable(observationBundle){
 						quantityValUnit = qtValue + " " + qtUnit;
 					}
 			
-					let value = tableDataWrapper(quantityValUnit);
-					labRow = effectiveDate + category + entry + value
+					let value = quantityValUnit;
+					let labRow = tableDataWrapper(effectiveDate) + tableDataWrapper(category) + tableDataWrapper(entry) + tableDataWrapper(value);
 					labRow = tableRowWrapper(labRow);
 					setDomElement('observationEntries',labRow);
 				}
 			}
 		}
-		//if(labRow == null)hide('labSection');
 	}else{
-		toggleNoDataDisplay('labsTable', 'noLabData');
-		//hide('labsTable');
-		//setDomElement('noLabData', NO_DATA_AVAILABLE);
+		toggleNoDataDisplay('labsTable', 'noLabData');		
 	}
 }
 
@@ -228,24 +225,23 @@ function populateMedicationsTable(medicationStatementBundle){
 	if(medicationStatementBundle.total > 0){
 		let medications = medicationStatementBundle.entry;
 		medications.sort((a, b) => (a.resource.dateAsserted < b.resource.dateAsserted) ? 1 : -1);
-		let medRow = null;
 		for(let i=0;i<medications.length;i++){
-			let status = medications[i].resource.status;
-			if(medications[i].status && 'active' === status.toLowerCase()){ 
-				let statusElement = tableDataWrapper(status);
-				let assertedDate = tableDataWrapper(medications[i].resource.dateAsserted);			
-				let medication = tableDataWrapper(medications[i].resource.medicationCodeableConcept.text);
-				let taken = tableDataWrapper(medications[i].resource.taken);
-				medRow = assertedDate + statusElement + medication + taken;
-				medRow = tableRowWrapper(medRow);
-				setDomElement('medicationStatmentEntries',medRow);
+			if(medications[i].resource){
+				let status = medications[i].resource.status;
+				if(medications[i].status && 'active' === status.toLowerCase()){ 
+					let statusElement = tableDataWrapper(status);
+					let assertedDate = tableDataWrapper(medications[i].resource.dateAsserted);			
+					let medication = tableDataWrapper(medications[i].resource.medicationCodeableConcept.text);
+					let taken = tableDataWrapper(medications[i].resource.taken);
+					let medRow = assertedDate + statusElement + medication + taken;
+					
+					medRow = tableRowWrapper(medRow);
+					setDomElement('medicationStatmentEntries',medRow);
+				}
 			}
 		}
-		//if(medRow == null)hide('medicationSection');
 	}else{
-		toggleNoDataDisplay('medsTable', 'noMedData');
-		//hide('medsTable');
-		//setDomElement('noMedData',NO_DATA_AVAILABLE);		
+		toggleNoDataDisplay('medsTable', 'noMedData');	
 	}
 }
 
@@ -554,6 +550,19 @@ function tableDataWrapper(value){
 
 function tableRowWrapper(tableData){
 	return '<tr>' + tableData + '</tr>';
+}
+
+function tableRowWrapper(){
+	if(arguments.length == 0){
+		return '<tr>' + tableData + '</tr>';
+	}else{
+		let row = '<tr>';
+		for(i = 0; i < arguments.length; i++) {
+			row += tableDataWrapper(arguments[i]);
+		}
+		row += '</tr>'
+		return row;
+	}
 }	
 
 function divWrapper(value){
