@@ -175,8 +175,7 @@ function populateAllergyTable(allergyBundle){
 				setDomElement('allergyEntries', allergyRow);
 				}
 			}	
-		}
-	}else{
+		}else{
 		toggleNoDataDisplay('allergyTable', 'noAllergyData');
 	}
 }
