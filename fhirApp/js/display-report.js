@@ -132,8 +132,9 @@ function populateConditionTable(conditionBundle){
 						display = conditions[i].resource.code.coding[0].display;
 					}
 				}
-				let conditionRow = tableDataWrapper(onsetDate) + tableDataWrapper(display) + tableDataWrapper(clinicalStatus) + tableDataWrapper(verificationStatus);
-				conditionRow = tableRowWrapper(conditionRow);
+				//let conditionRow = tableDataWrapper(onsetDate) + tableDataWrapper(display) + tableDataWrapper(clinicalStatus) + tableDataWrapper(verificationStatus);
+				//conditionRow = tableRowWrapper(conditionRow);
+				let conditionRow = tableRowWrapper(onsetDate, display, clinicalStatus, verificationStatus);
 				setDomElement('conditionEntries',conditionRow);			
 			}
 		}
@@ -171,8 +172,9 @@ function populateAllergyTable(allergyBundle){
 					verificationSts = allergies[i].resource.verificationStatus;
 				}
 				
-				let allergyRow = tableDataWrapper(assertedDate) + tableDataWrapper(category) + tableDataWrapper(entry) + tableDataWrapper(criticality) + tableDataWrapper(clinicalSts) + tableDataWrapper(verificationSts);					
-				allergyRow = tableRowWrapper(allergyRow);
+				//let allergyRow = tableDataWrapper(assertedDate) + tableDataWrapper(category) + tableDataWrapper(entry) + tableDataWrapper(criticality) + tableDataWrapper(clinicalSts) + tableDataWrapper(verificationSts);					
+				//allergyRow = tableRowWrapper(allergyRow);
+				let allergyRow = tableRowWrapper(assertedDate, category, entry, criticality, clinicalSts, verificationSts);
 				setDomElement('allergyEntries', allergyRow);
 				}
 			}	
@@ -210,8 +212,9 @@ function populateLabsTable(observationBundle){
 					}
 			
 					let value = quantityValUnit;
-					let labRow = tableDataWrapper(effectiveDate) + tableDataWrapper(category) + tableDataWrapper(entry) + tableDataWrapper(value);
-					labRow = tableRowWrapper(labRow);
+					//let labRow = tableDataWrapper(effectiveDate) + tableDataWrapper(category) + tableDataWrapper(entry) + tableDataWrapper(value);
+					//labRow = tableRowWrapper(labRow);
+					let labRow = tableRowWrapper(effectiveDate, category, entry, value);
 					setDomElement('observationEntries',labRow);
 				}
 			}
@@ -229,13 +232,19 @@ function populateMedicationsTable(medicationStatementBundle){
 			if(medications[i].resource){
 				let status = medications[i].resource.status;
 				if(medications[i].status && 'active' === status.toLowerCase()){ 
-					let statusElement = tableDataWrapper(status);
-					let assertedDate = tableDataWrapper(medications[i].resource.dateAsserted);			
-					let medication = tableDataWrapper(medications[i].resource.medicationCodeableConcept.text);
-					let taken = tableDataWrapper(medications[i].resource.taken);
-					let medRow = assertedDate + statusElement + medication + taken;
+					let statusElement = status;
+					let assertedDate = medications[i].resource.dateAsserted;			
+					let medication = '';
 					
-					medRow = tableRowWrapper(medRow);
+					if(medications[i].resource.medicationCodeableConcept){
+						medication = medications[i].resource.medicationCodeableConcept.text;
+					}
+					
+					let taken = tableDataWrapper(medications[i].resource.taken);
+					//let medRow = assertedDate + statusElement + medication + taken;
+					
+					//medRow = tableRowWrapper(medRow);
+					let medRow = tableRowWrapper(assertedDate, statusElement, medication, taken);
 					setDomElement('medicationStatmentEntries',medRow);
 				}
 			}
@@ -548,9 +557,9 @@ function tableDataWrapper(value){
 	}
 }
 
-function tableRowWrapper(tableData){
+/*function tableRowWrapper(tableData){
 	return '<tr>' + tableData + '</tr>';
-}
+}*/
 
 function tableRowWrapper(){
 	if(arguments.length == 0){
