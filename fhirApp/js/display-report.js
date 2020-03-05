@@ -14,16 +14,6 @@ async function renderReport(client, patientId){
 	show('report');
 }
 
-/*async function renderReportSections(client, patientId){
-	renderPatientDemographics(client, patientId);
-	renderConditions(client, patientId);
-	renderAllergies(client, patientId);
-	renderMedications(client, patientId);
-	renderObservations(client, patientId);
-	renderCoverage(client, patientId);
-	renderAdvancedDirective(client, patientId);
-}*/
-
 function renderPatientDemographics(client, patientId){
 	getPatient(client, patientId).then(function(data){
 		populatePatientDemographics(data);
@@ -82,6 +72,46 @@ async function getReport(client){
 			}).catch(function(data){show('inputError')});			
 }
 
+function populateVitalsTable(observationBundle){
+	if(observationBundle.total > 0){
+		let obs = observationBundle.entry;
+		obs.sort((a, b) => (a.resource.issued < b.resource.issued) ? 1 : -1);
+		let vitalRow = null;
+		for(let i=0;i<obs.length;i++){			
+			if(obs[i].resource.category && obs[i].resource.category[0].coding){
+				let categoryVal = obs[i].resource.category[0].coding[0].code;
+				if('vital-signs' === categoryVal.toLowerCase() && obs[i].resource.component){
+					let comp = obs[i].resource.component;					
+					let issuedDate = tableDataWrapper(formatDate(obs[i].resource.issued));					
+					
+					for(let x=0;x<comp.length;x++){					
+						let name = "";
+						if(comp[x].code && comp[x].code.coding && comp[x].code.coding[0].display){
+							name = tableDataWrapper(comp[x].code.coding[0].display);
+						}
+						
+						let value = "";
+						if(comp[x].valueString){
+							value = comp[x].valueString;
+						}else if(comp[x].valueQuantity && comp[x].valueQuantity.value){
+							let unit = "";
+							if(comp[x].valueQuantity.unit)
+								unit = " " + comp[x].valueQuantity.unit;
+							value = comp[x].valueQuantity.value + unit;							 
+						}
+						value = tableDataWrapper(value);
+						vitalRow = name + value + issuedDate;
+						vitalRow = tableRowWrapper(vitalRow);
+						setDomElement('vitalEntries',vitalRow);
+					}
+				}
+			}
+		}
+	}else{
+		toggleNoDataDisplay('vitalsTable', 'noVitalsData');		
+	}
+}
+
 function populateConditionTable(conditionBundle){
 	if(conditionBundle.total > 0){		
 		let conditions = conditionBundle.entry;		
@@ -103,7 +133,7 @@ function populateConditionTable(conditionBundle){
 			}
 		}
 	}else{
-		noDataMessage('conditionTable', 'noCondData');
+		toggleNoDataDisplay('conditionTable', 'noCondData');
 		//hide('conditionTable');	
 		//setDomElement('noCondData', NO_DATA_AVAILABLE);
 	}
@@ -134,34 +164,9 @@ function populateAllergyTable(allergyBundle){
 			}	
 		}
 	}else{
-		noDataMessage('allergyTable', 'noAllergyData');
+		toggleNoDataDisplay('allergyTable', 'noAllergyData');
 		//hide('allergyTable');
 		//setDomElement('noAllergyData', NO_DATA_AVAILABLE);
-	}
-}
-
-function populateMedicationsTable(medicationStatementBundle){
-	if(medicationStatementBundle.total > 0){
-		let medications = medicationStatementBundle.entry;
-		medications.sort((a, b) => (a.resource.dateAsserted < b.resource.dateAsserted) ? 1 : -1);
-		let medRow = null;
-		for(let i=0;i<medications.length;i++){
-			let status = medications[i].resource.status;
-			if(medications[i].status && 'active' === status.toLowerCase()){ 
-				let statusElement = tableDataWrapper(status);
-				let assertedDate = tableDataWrapper(medications[i].resource.dateAsserted);			
-				let medication = tableDataWrapper(medications[i].resource.medicationCodeableConcept.text);
-				let taken = tableDataWrapper(medications[i].resource.taken);
-				medRow = assertedDate + statusElement + medication + taken;
-				medRow = tableRowWrapper(medRow);
-				setDomElement('medicationStatmentEntries',medRow);
-			}
-		}
-		//if(medRow == null)hide('medicationSection');
-	}else{
-		noDataMessage('medsTable', 'noMedData');
-		//hide('medsTable');
-		//setDomElement('noMedData',NO_DATA_AVAILABLE);		
 	}
 }
 
@@ -203,9 +208,34 @@ function populateLabsTable(observationBundle){
 		}
 		//if(labRow == null)hide('labSection');
 	}else{
-		noDataMessage('labsTable', 'noLabData');
+		toggleNoDataDisplay('labsTable', 'noLabData');
 		//hide('labsTable');
 		//setDomElement('noLabData', NO_DATA_AVAILABLE);
+	}
+}
+
+function populateMedicationsTable(medicationStatementBundle){
+	if(medicationStatementBundle.total > 0){
+		let medications = medicationStatementBundle.entry;
+		medications.sort((a, b) => (a.resource.dateAsserted < b.resource.dateAsserted) ? 1 : -1);
+		let medRow = null;
+		for(let i=0;i<medications.length;i++){
+			let status = medications[i].resource.status;
+			if(medications[i].status && 'active' === status.toLowerCase()){ 
+				let statusElement = tableDataWrapper(status);
+				let assertedDate = tableDataWrapper(medications[i].resource.dateAsserted);			
+				let medication = tableDataWrapper(medications[i].resource.medicationCodeableConcept.text);
+				let taken = tableDataWrapper(medications[i].resource.taken);
+				medRow = assertedDate + statusElement + medication + taken;
+				medRow = tableRowWrapper(medRow);
+				setDomElement('medicationStatmentEntries',medRow);
+			}
+		}
+		//if(medRow == null)hide('medicationSection');
+	}else{
+		toggleNoDataDisplay('medsTable', 'noMedData');
+		//hide('medsTable');
+		//setDomElement('noMedData',NO_DATA_AVAILABLE);		
 	}
 }
 
@@ -270,50 +300,6 @@ function populateAdvancedDirectiveSection(consentBundle){
 		setDomElement('advDirId', dnrLabelsAndValues);
 	}else{
 		//setDomElement('advDirId', NO_DATA_AVAILABLE);
-	}
-}
-
-function populateVitalsTable(observationBundle){
-	if(observationBundle.total > 0){
-		let obs = observationBundle.entry;
-		obs.sort((a, b) => (a.resource.issued < b.resource.issued) ? 1 : -1);
-		let vitalRow = null;
-		for(let i=0;i<obs.length;i++){			
-			let categoryVal = "";						
-			if(obs[i].resource.category && obs[i].resource.category[0].coding){
-				categoryVal = obs[i].resource.category[0].coding[0].code;
-				if('vital-signs' === categoryVal.toLowerCase() && obs[i].resource.component){
-					let comp = obs[i].resource.component;					
-					let issuedDate = tableDataWrapper(formatDate(obs[i].resource.issued));					
-					
-					for(let x=0;x<comp.length;x++){					
-						let name = "";
-						if(comp[x].code && comp[x].code.coding && comp[x].code.coding[0].display){
-							name = tableDataWrapper(comp[x].code.coding[0].display);
-						}
-						
-						let value = "";
-						if(comp[x].valueString){
-							value = comp[x].valueString;
-						}else if(comp[x].valueQuantity && comp[x].valueQuantity.value){
-							let unit = "";
-							if(comp[x].valueQuantity.unit)
-								unit = " " + comp[x].valueQuantity.unit;
-							value = comp[x].valueQuantity.value + unit;							 
-						}
-						value = tableDataWrapper(value);
-						vitalRow = name + value + issuedDate;
-						vitalRow = tableRowWrapper(vitalRow);
-						setDomElement('vitalEntries',vitalRow);
-					}
-				}
-			}
-		}
-		//if(vitalRow == null)hide('vitalSection');
-	}else{
-		noDataMessage('vitalsTable', 'noVitalsData');
-		//hide('vitalsTable');
-		//setDomElement('noVitalsData', NO_DATA_AVAILABLE);
 	}
 }
 
@@ -549,7 +535,7 @@ function setMarried(pt){
 }
 
 function tableDataWrapper(value){
-	if(value == null || value == ''){
+	if(value == null || value == '' || value ===undefined){
 		return '<td>' + '' + '</td>';
 	}else{
 		return '<td>' + value + '</td>';
@@ -604,7 +590,7 @@ function show(elementId){
 	document.getElementById(elementId).style.display = "block";
 }
 
-function noDataMessage(hideId, showId){
+function toggleNoDataDisplay(hideId, showId){
 	hide(hideId);
 	setDomElement(showId, NO_DATA_AVAILABLE);
 }
