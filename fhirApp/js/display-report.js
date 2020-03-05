@@ -98,9 +98,7 @@ function populateVitalsTable(observationBundle){
 								unit = " " + comp[x].valueQuantity.unit;
 							value = comp[x].valueQuantity.value + unit;							 
 						}
-						
-						//let vitalRow = tableDataWrapper(name) + tableDataWrapper(value) + tableDataWrapper(issuedDate);
-						//vitalRow = tableRowWrapper(vitalRow);
+												
 						let vitalRow = tableRowWrapper(name, value, issuedDate);
 						setDomElement('vitalEntries',vitalRow);
 					}
@@ -132,8 +130,7 @@ function populateConditionTable(conditionBundle){
 						display = conditions[i].resource.code.coding[0].display;
 					}
 				}
-				//let conditionRow = tableDataWrapper(onsetDate) + tableDataWrapper(display) + tableDataWrapper(clinicalStatus) + tableDataWrapper(verificationStatus);
-				//conditionRow = tableRowWrapper(conditionRow);
+
 				let conditionRow = tableRowWrapper(onsetDate, display, clinicalStatus, verificationStatus);
 				setDomElement('conditionEntries',conditionRow);			
 			}
@@ -172,8 +169,6 @@ function populateAllergyTable(allergyBundle){
 					verificationSts = allergies[i].resource.verificationStatus;
 				}
 				
-				//let allergyRow = tableDataWrapper(assertedDate) + tableDataWrapper(category) + tableDataWrapper(entry) + tableDataWrapper(criticality) + tableDataWrapper(clinicalSts) + tableDataWrapper(verificationSts);					
-				//allergyRow = tableRowWrapper(allergyRow);
 				let allergyRow = tableRowWrapper(assertedDate, category, entry, criticality, clinicalSts, verificationSts);
 				setDomElement('allergyEntries', allergyRow);
 				}
@@ -212,8 +207,7 @@ function populateLabsTable(observationBundle){
 					}
 			
 					let value = quantityValUnit;
-					//let labRow = tableDataWrapper(effectiveDate) + tableDataWrapper(category) + tableDataWrapper(entry) + tableDataWrapper(value);
-					//labRow = tableRowWrapper(labRow);
+					
 					let labRow = tableRowWrapper(effectiveDate, category, entry, value);
 					setDomElement('observationEntries',labRow);
 				}
@@ -240,10 +234,8 @@ function populateMedicationsTable(medicationStatementBundle){
 						medication = medications[i].resource.medicationCodeableConcept.text;
 					}
 					
-					let taken = tableDataWrapper(medications[i].resource.taken);
-					//let medRow = assertedDate + statusElement + medication + taken;
+					let taken = tableDataWrapper(medications[i].resource.taken);					
 					
-					//medRow = tableRowWrapper(medRow);
 					let medRow = tableRowWrapper(assertedDate, statusElement, medication, taken);
 					setDomElement('medicationStatmentEntries',medRow);
 				}
