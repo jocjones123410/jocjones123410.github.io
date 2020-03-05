@@ -118,15 +118,20 @@ function populateConditionTable(conditionBundle){
 		conditions.sort((a, b) => (a.resource.onsetDateTime < b.resource.onsetDateTime) ? 1 : -1);
 		for(let i=0;i<conditions.length;i++){ 
 			if("active" === conditions[i].resource.clinicalStatus){
+				let onsetDate = '';
 				let display = '';
 				let clinicalStatus = '';
 				let verificationStatus = '';
 				
-				let onsetDate = tableDataWrapper(formatDate(conditions[i].error.resource.onsetDateTime));				
-				display = tableDataWrapper(conditions[i].resource.code.coding[0].display);
-				clinicalStatus = tableDataWrapper(conditions[i].resource.clinicalStatus);
-				verificationStatus = tableDataWrapper(conditions[i].resource.verificationStatus);
-				let conditionRow = onsetDate + display + clinicalStatus + verificationStatus;
+				if(conditions[i].resource){
+					onsetDate = formatDate(conditions[i].resource.onsetDateTime);								
+					clinicalStatus = conditions[i].resource.clinicalStatus;
+					verificationStatus = conditions[i].resource.verificationStatus;
+				}
+				if(conditions[i].resource.code.coding[0]){
+					display = conditions[i].resource.code.coding[0].display;
+				}
+				let conditionRow = tableDataWrapper(onsetDate) + tableDataWrapper(display) + tableDataWrapper(clinicalStatus) + tableDataWrapper(verificationStatus);
 				conditionRow = tableRowWrapper(conditionRow);
 				setDomElement('conditionEntries',conditionRow);			
 			}
@@ -142,28 +147,37 @@ function populateAllergyTable(allergyBundle){
 		allergies.sort((a, b) => (a.resource.assertedDate < b.resource.assertedDate) ? 1 : -1);
 		for(let i=0;i<allergies.length;i++){
 			if("active" === allergies[i].resource.clinicalStatus){
-				if(allergies[i].resource.code.coding){
-					let assertedDate = tableDataWrapper(formatDate(allergies[i].resource.assertedDate));
-					let categoryVal = "";
+				let assertedDate = '';
+				let category = '';
+				let entry = '';
+				let criticality = '';
+				let clinicalSts = '';
+				let verificationSts	= '';
+				
+				if(allergies[i].resource){
+					assertedDate = formatDate(allergies[i].resource.assertedDate);					
 					
 					if(allergies[i].resource.category){
-						categoryVal = allergies[i].resource.category[0];
+						category = allergies[i].resource.category[0];
 					}						
-					let category = tableDataWrapper(categoryVal);
-					let entry = tableDataWrapper(allergies[i].resource.code.coding[0].display);
-					let criticality = tableDataWrapper(allergies[i].resource.criticality);
-					let clinicalSts = tableDataWrapper(allergies[i].resource.clinicalStatus);
-					let verificationSts = tableDataWrapper(allergies[i].resource.verificationStatus);
-					let allergyRow = assertedDate + category + entry + criticality + clinicalSts + verificationSts;					
-					allergyRow = tableRowWrapper(allergyRow);
-					setDomElement('allergyEntries', allergyRow);
+				
+					if(allergies[i].resource.code.coding){
+						entry = allergies[i].resource.code.coding[0].display;
+					}
+				
+					criticality = allergies[i].resource.criticality;
+					clinicalSts = allergies[i].resource.clinicalStatus;
+					verificationSts = allergies[i].resource.verificationStatus;
+				}
+				
+				let allergyRow = tableDataWrapper(assertedDate) + tableDataWrapper(category) + tableDataWrapper(entry) + tableDataWrapper(criticality) + tableDataWrapper(clinicalSts) + tableDataWrapper(verificationSts);					
+				allergyRow = tableRowWrapper(allergyRow);
+				setDomElement('allergyEntries', allergyRow);
 				}
 			}	
 		}
 	}else{
 		toggleNoDataDisplay('allergyTable', 'noAllergyData');
-		//hide('allergyTable');
-		//setDomElement('noAllergyData', NO_DATA_AVAILABLE);
 	}
 }
 
