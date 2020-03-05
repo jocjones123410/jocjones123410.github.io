@@ -81,7 +81,8 @@ function populateVitalsTable(observationBundle){
 			if(obs[i].resource.category && obs[i].resource.category[0].coding[0]){
 				let categoryVal = obs[i].resource.category[0].coding[0].code;
 				if('vital-signs' === categoryVal.toLowerCase() && obs[i].resource.component){
-					let comp = obs[i].resource.component;										
+					let comp = obs[i].resource.component;					
+					let issuedDate = formatDate(obs[i].resource.issued);					
 					
 					for(let x=0;x<comp.length;x++){					
 						let name = "";
@@ -98,7 +99,7 @@ function populateVitalsTable(observationBundle){
 								unit = " " + comp[x].valueQuantity.unit;
 							value = comp[x].valueQuantity.value + unit;							 
 						}
-												
+						
 						vitalRow = tableDataWrapper(name) + tableDataWrapper(value) + tableDataWrapper(issuedDate);
 						vitalRow = tableRowWrapper(vitalRow);
 						setDomElement('vitalEntries',vitalRow);
