@@ -118,12 +118,11 @@ function populateConditionTable(conditionBundle){
 		conditions.sort((a, b) => (a.resource.onsetDateTime < b.resource.onsetDateTime) ? 1 : -1);
 		for(let i=0;i<conditions.length;i++){ 
 			if("active" === conditions[i].resource.clinicalStatus){
-				let onsetDate = '';
 				let display = '';
 				let clinicalStatus = '';
 				let verificationStatus = '';
 				
-				onsetDate = tableDataWrapper(formatDate(conditions[i].resource.onsetDateTime));				
+				let onsetDate = tableDataWrapper(formatDate(conditions[i].error.resource.onsetDateTime));				
 				display = tableDataWrapper(conditions[i].resource.code.coding[0].display);
 				clinicalStatus = tableDataWrapper(conditions[i].resource.clinicalStatus);
 				verificationStatus = tableDataWrapper(conditions[i].resource.verificationStatus);
@@ -134,8 +133,6 @@ function populateConditionTable(conditionBundle){
 		}
 	}else{
 		toggleNoDataDisplay('conditionTable', 'noCondData');
-		//hide('conditionTable');	
-		//setDomElement('noCondData', NO_DATA_AVAILABLE);
 	}
 }
 
@@ -535,7 +532,7 @@ function setMarried(pt){
 }
 
 function tableDataWrapper(value){
-	if(value == null || value == '' || value ===undefined){
+	if(value == null || value == '' || value === undefined){
 		return '<td>' + '' + '</td>';
 	}else{
 		return '<td>' + value + '</td>';
