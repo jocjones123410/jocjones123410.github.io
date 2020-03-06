@@ -247,38 +247,37 @@ function populateMedicationsTable(medicationStatementBundle){
 }
 
 function populateCoverageSection(coverageBundle){
-	if(coverageBundle.total > 0){
-		let type = '';
-		if(coverage.type && coverage.type.coding && coverage.type.coding[0].display){
-			type = coverage.type.coding[0].display;
-		}
-		populateDataItem('coverageType',type);
-		
-		let relationship = '';
-		if(coverage.relationship && coverage.relationship.coding && coverage.relationship.coding[0].code){			
-			relationship = divWrapper(createLabel('Relationship: ') + coverage.relationship.coding[0].code);
-		}
-		populateDataItem('coverageRelationship',relationship);
-		
-		let period = '';
-		if(coverage.period){
-			period = coverage.period.start + " - " + coverage.period.end;
-		}
-		populateDataItem('coverageSpan', period);
-		
-		//let detailsLabel = divWrapper(createLabel('Details: '));
-		//setDomElement('coverageId', type + relationship + period + detailsLabel);
-		let detailName = '';
-		if(coverage.class){
-			for(let i=0;i<coverage.class.length;i++){
-				if(coverage.class[i].name){
-					detailName = '<div style="padding-left:30px">' + coverage.class[i].name + '</div>';
-					//setDomElement('coverageId', detailName);
-				}
-			}			
-		}
-		populateDataItem('coverageDetails',detailName);
+	let type = '';
+	if(coverage.type && coverage.type.coding && coverage.type.coding[0].display){
+		type = coverage.type.coding[0].display;
 	}
+	populateDataItem('coverageType',type);
+		
+	let relationship = '';
+	if(coverage.relationship && coverage.relationship.coding && coverage.relationship.coding[0].code){			
+		relationship = divWrapper(createLabel('Relationship: ') + coverage.relationship.coding[0].code);
+	}
+	populateDataItem('coverageRelationship',relationship);
+	
+	let period = '';
+	if(coverage.period){
+		period = coverage.period.start + " - " + coverage.period.end;
+	}
+	populateDataItem('coverageSpan', period);
+	
+	//let detailsLabel = divWrapper(createLabel('Details: '));
+	//setDomElement('coverageId', type + relationship + period + detailsLabel);
+	let detailName = '';
+	if(coverage.class){
+		for(let i=0;i<coverage.class.length;i++){
+			if(coverage.class[i].name){
+				detailName = '<div style="padding-left:30px">' + coverage.class[i].name + '</div>';
+				//setDomElement('coverageId', detailName);
+			}
+		}			
+	}
+	populateDataItem('coverageDetails',detailName);
+	
 }
 
 function populateAdvancedDirectiveSection(consentBundle){
