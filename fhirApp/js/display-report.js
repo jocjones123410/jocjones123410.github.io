@@ -416,20 +416,22 @@ function populatePatientDemographics(patient){
 }
 
 function getName(resource){
-	if(resource.name.text){
-		return resource.name.text;
-	}else if(resource.name){
-		let prefix = '';
-		let given = '';
-		let family = '';
+	if(resource){
+		if(resource.name[0].text){
+			return resource.name.text;
+		}else if(resource.name){
+			let prefix = '';
+			let given = '';
+			let family = '';
 		
-		if(resource.name.prefix)
-			prefix = resource.name.prefix + ' ';
-		if(resource.name.given)
-			given = resource.name.given + ' ';
-		if(resource.name.family)
-			family = resource.name.family;
-		return prefix + given + family;
+			if(resource.name[0].prefix)
+				prefix = resource.name[0].prefix + ' ';
+			if(resource.name[0].given)
+				given = resource.name[0].given[0] + ' ';
+			if(resource.name.family)
+				family = resource.name[0].family;
+			return prefix + given + family;
+		}
 	}
 	return '';
 }
