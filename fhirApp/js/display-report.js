@@ -323,7 +323,7 @@ function populatePersonalContactSection(contact){
 	
 	if (contact) {					
 		if(patient.contact[0].relationship && patient.contact[0].relationship[0]){
-			relationship = patient.contact[0].relationship[0].text);
+			relationship = patient.contact[0].relationship[0].text;
 		}
 			
 		if(patient.contact[0].telecom){
