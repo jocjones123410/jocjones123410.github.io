@@ -407,7 +407,8 @@ function populateOrganizationSection(org){
 }
 
 function populatePatientDemographics(patient){
-	setPatientName(patient);
+	populateDataItem('patientName', getName(patient));
+	//setPatientName(patient);
 	setMrn(patient);	
 	setGender(patient);
 	setBirthDate(patient);
@@ -465,7 +466,7 @@ function getAddress(resource){
 
 function setPatientName (pt) {
 	if (pt.name) {
-		setDomElement('patientName', pt.name[0].given.join(" ") + " " + pt.name[0].family);
+		setDomElement('patientName', pt.name[0].given.join(" ") + " " + pt.name[0].family);		
 	}
 }
 
