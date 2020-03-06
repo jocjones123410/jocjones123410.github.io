@@ -18,7 +18,7 @@ function renderPatientDemographics(client, patientId){
 	getPatient(client, patientId).then(function(data){
 		populatePatientDemographics(data);
 		populatePersonalContactSection(data);
-		populatePractitionerSection(data);
+		populatePractitionerSection(data.generalPractitioner);
 		populateContactSection(data);
 	});
 }
