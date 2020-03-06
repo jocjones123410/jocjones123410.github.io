@@ -3,7 +3,7 @@ const NO_DATA_AVAILABLE = 'No data available';
 async function renderReport(client, patientId){	
 	initReportDisplay();
 		
-	renderPatientDemographics(client, patientId);
+	renderPatientDemoAndContacts(client, patientId);
 	renderConditions(client, patientId);
 	renderAllergies(client, patientId);
 	renderMedications(client, patientId);
@@ -14,12 +14,12 @@ async function renderReport(client, patientId){
 	show('report');
 }
 
-function renderPatientDemographics(client, patientId){
+function renderPatientDemoAndContacts(client, patientId){
 	getPatient(client, patientId).then(function(data){
 		populatePatientDemographics(data);
 		populatePractitionerSection(data.generalPractitioner);
-		populatePersonalContactSection(data.contact);		
-		populateContactSection(data);
+		populatePersonalContactSection(data.contact);	
+		populateOrganizationSection(data.managingOrganization);		
 	});
 }
 
@@ -358,12 +358,6 @@ function populatePersonalContactSection(contact){
 	populateDataItem('alternateContactPhone', phone);
 }
 
-function populateContactSection(patient){
-	if(patient.generalPractitioner || patient.managingOrganization){
-		populateOrganizationSection(patient.managingOrganization);
-	}
-}
-
 function populatePractitionerSection(practitioner){
 	let name = '';
 	let phone = '';
@@ -405,54 +399,26 @@ function populatePractitionerSection(practitioner){
 }
 
 function populateOrganizationSection(org){
-	if(org){
-		let name = "";
-		if(org.name){
-			name = divWrapper(createLabel('Name: ') + org.name);
+	let name = '';
+	let role = '';
+	let phone = '';
+	
+	if(org.contact){
+		if(org.contact.name){
+			name = getName(org.contact);
 		}
 		
-		let type = "";
-		if(org.type && org.type[0].coding && org.type[0].coding[0].display){
-			type = divWrapper(createLabel('Type: ') + org.type[0].coding[0].display);
+		if(org.contact.purpose){
+			role = org.contact.purpose;
 		}
-		
-		let address = "";
-		if(org.address){
-			let line = "";
-			let city = "";
-			let state = "";
-			let postalCode = "";
-			
-			if(org.address[0].line){
-				line = org.address[0].line[0] + " ";
-			}
-			if(org.address[0].city){
-				city = org.address[0].city;
-			}
-			if(org.address[0].state){
-				let comma = "";
-				if(city !== ""){
-					comma = ", ";
-				}
-				state = comma + org.address[0].state + " ";
-			}
-			if(org.address[0].postalCode){
-				postalCode = org.address[0].postalCode;
-			}
-			
-			address = divWrapper(createLabel('Address: ') + line + city + state + postalCode);
-		}
-		
-		let phone = "";
-		if(org.telecom && org.telecom[0].value){
-			phone = divWrapper(createLabel('Phone: ') + org.telecom[0].value);
-		}
-		
-		let orgLabelsAndValues = name + type + address + phone;
-		setDomElement('organizationId', orgLabelsAndValues);
-	}else{		
-		setDomElement('organizationId', NO_DATA_AVAILABLE);
+						
+		if(org.contact.telecom){
+			phone = org.contact.telecom[0].value);
+		}		
 	}
+	populateDataItem('nursingHomeContactName', name);
+	populateDataItem('nursingHomeContactRole', role);
+	populateDataItem('nursingHomeContactPhone', phone);
 }
 
 function populatePatientDemographics(patient){
@@ -464,6 +430,25 @@ function populatePatientDemographics(patient){
 	//setAddress(patient);
 	//setTelecom(patient);
 	setMarried(patient);	
+}
+
+function getName(resource){
+	if(resource.name.text){
+		return resource.name.text;
+	}else if(resource.name){
+		let prefix = '';
+		let given = '';
+		let family = '';
+		
+		if(resource.name.prefix)
+			prefix = resource.name.prefix + ' ';
+		if(resource.name.given)
+			given = resource.name.given + ' ';
+		if(resource.name.family)
+			family = resource.name.family;
+		return prefix + given + family;
+	}
+	return '';
 }
 
 function getAddress(resource){
