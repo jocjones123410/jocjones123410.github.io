@@ -418,7 +418,7 @@ function populatePatientDemographics(patient){
 function getName(resource){
 	if(resource){
 		if(resource.name[0].text){
-			return resource.name.text;
+			return resource.name[0].text;
 		}else if(resource.name){
 			let prefix = '';
 			let given = '';
@@ -428,7 +428,7 @@ function getName(resource){
 				prefix = resource.name[0].prefix + ' ';
 			if(resource.name[0].given)
 				given = resource.name[0].given[0] + ' ';
-			if(resource.name.family)
+			if(resource.name[0].family)
 				family = resource.name[0].family;
 			return prefix + given + family;
 		}
@@ -466,17 +466,11 @@ function getAddress(resource){
 	return address;
 }
 
-function setPatientName (pt) {
-	if (pt.name) {
-		setDomElement('patientName', pt.name[0].given.join(" ") + " " + pt.name[0].family);		
-	}
-}
-
 function setMrn (pt){
 	if(pt.identifier){
 		if(pt.identifier[0].system){
 			if(properties.mrnSystem === pt.identifier[0].system){
-				setDomElement('mrnId', pt.identifier[0].value);
+				populateDataItem('mrnId', pt.identifier[0].value);
 			}
 		}
 	}
@@ -486,7 +480,7 @@ function setRace (pt){
 	if(pt.extension){
 		if(properties.patientRaceUrl === pt.extension[0].url){
 			if(pt.extension[0].valueCodeableConcept.coding){
-				setDomElement('raceId', pt.extension[0].valueCodeableConcept.coding[0].display);
+				populateDataItem('raceId', pt.extension[0].valueCodeableConcept.coding[0].display);
 			}
 		}	
 	}
@@ -494,31 +488,31 @@ function setRace (pt){
 
 function setGender (pt) {
 	if(pt.gender){
-		setDomElement('genderId', pt.gender);
+		populateDataItem('genderId', pt.gender);
 	}
 }
 
 function setBirthDate (pt){
 	if(pt.birthDate){
-		setDomElement('dobId', pt.birthDate);
+		populateDataItem('dobId', pt.birthDate);
 	}
 }
 	
 function setAddress (pt){
 	if(pt.address){
-		setDomElement('addressId', pt.address[0].line + " " + pt.address[0].city + ", " + pt.address[0].state + " " + pt.address[0].postalCode);
+		populateDataItem('addressId', pt.address[0].line + " " + pt.address[0].city + ", " + pt.address[0].state + " " + pt.address[0].postalCode);
 	}
 }
 		
 function setTelecom (pt) {
 	if(pt.telecom){
-		setDomElement('contactId', pt.telecom[0].use + " " + pt.telecom[0].system + ":" + pt.telecom[0].value);
+		populateDataItem('contactId', pt.telecom[0].use + " " + pt.telecom[0].system + ":" + pt.telecom[0].value);
 	}
 }
 
 function setMarried(pt){
 	if(pt.maritalStatus){
-		setDomElement('maritalStatusId', pt.maritalStatus.text);
+		populateDataItem('maritalStatusId', pt.maritalStatus.text);
 	}
 }
 
