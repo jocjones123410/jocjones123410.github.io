@@ -18,6 +18,7 @@ function renderPatientDemographics(client, patientId){
 	getPatient(client, patientId).then(function(data){
 		populatePatientDemographics(data);
 		populatePersonalContactSection(data);
+		populatePractitionerSection(data);
 		populateContactSection(data);
 	});
 }
@@ -385,7 +386,7 @@ function populatePersonalContactSection(patient){
 
 function populateContactSection(patient){
 	if(patient.generalPractitioner || patient.managingOrganization){
-		populatePractitionerSection(patient.generalPractitioner);
+		//populatePractitionerSection(patient.generalPractitioner);
 		populateOrganizationSection(patient.managingOrganization);
 	}else{
 		//hide('organizationHeader');
@@ -396,12 +397,16 @@ function populateContactSection(patient){
 }
 
 function populatePractitionerSection(practitioner){
-	if(practitioner) {
-		let name = "";
-		if(practitioner.name){
-			let prefix = "";
-			let given = "";
-			let family = "";
+	let name = '';
+	let phone = '';
+	let practice = '';
+	let address = '';
+	
+	if(practitioner) {		
+		if(practitioner.name){						
+			let prefix = '';
+			let given = '';
+			let family = '';
 			
 			if(practitioner.name[0].prefix){
 				prefix = practitioner.name[0].prefix + " ";
@@ -412,24 +417,23 @@ function populatePractitionerSection(practitioner){
 			if(practitioner.name[0].family){
 				family = practitioner.name[0].family;
 			}
-			name = divWrapper(createLabel('Name: ') + prefix + given + family);
+			name = prefix + given + family;
+		}
+				
+		if(practitioner.telecom && practitioner.telecom[0]){
+			phone = practitioner.telecom[0].value;
 		}
 		
-		let gender = "";
-		if(practitioner.gender){
-			gender = divWrapper(createLabel('Gender: ') + practitioner.gender);
-		}
-		
-		let phone = "";
-		if(practitioner.telecom && practitioner.telecom[0].value){
-			phone = divWrapper(createLabel('Phone: ') + practitioner.telecom[0].value);
-		}
-		
-		let practitionerLabelsAndValues = name + gender + phone;
-		setDomElement('practionerId', practitionerLabelsAndValues);
-	}else{
-		setDomElement('practionerId', NO_DATA_AVAILABLE);
+		if(practitioner.address){
+			address = getAddress(practitioner);
+		}	
+		//TODO:
+		//add practice
 	}
+	populateDataItem('pcpName', name);
+	populateDataItem('pcpPhone', phone);
+	populateDataItem('pcpPractice', practice);
+	populateDataItem('pcpAddress', address);
 }
 
 function populateOrganizationSection(org){
@@ -492,6 +496,36 @@ function populatePatientDemographics(patient){
 	//setAddress(patient);
 	//setTelecom(patient);
 	setMarried(patient);	
+}
+
+function getAddress(resource){
+	let address = "";
+		if(org.address){
+			let line = '';
+			let city = '';
+			let state = '';
+			let postalCode = '';
+			
+			if(resource.address[0].line){
+				line = org.address[0].line[0] + " ";
+			}
+			if(resource.address[0].city){
+				city = org.address[0].city;
+			}
+			if(resource.address[0].state){
+				let comma = "";
+				if(city !== ""){
+					comma = ", ";
+				}
+				state = comma + org.address[0].state + " ";
+			}
+			if(resource.address[0].postalCode){
+				postalCode = org.address[0].postalCode;
+			}
+			
+			address = line + city + state + postalCode;
+		}
+	return address;
 }
 
 function setPatientName (pt) {
