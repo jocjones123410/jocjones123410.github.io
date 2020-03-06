@@ -413,7 +413,7 @@ function populateOrganizationSection(org){
 		}
 						
 		if(org.contact.telecom){
-			phone = org.contact.telecom[0].value);
+			phone = org.contact.telecom[0].value;
 		}		
 	}
 	populateDataItem('nursingHomeContactName', name);
