@@ -248,31 +248,36 @@ function populateMedicationsTable(medicationStatementBundle){
 
 function populateCoverageSection(coverageBundle){
 	if(coverageBundle.total > 0){
-		let type = "";
+		let type = '';
 		if(coverage.type && coverage.type.coding && coverage.type.coding[0].display){
-			type = divWrapper(createLabel('Type: ') + coverage.type.coding[0].display);
+			type = coverage.type.coding[0].display;
 		}
+		populateDataItem('coverageType',type);
 		
-		let relationship = "";
+		let relationship = '';
 		if(coverage.relationship && coverage.relationship.coding && coverage.relationship.coding[0].code){			
 			relationship = divWrapper(createLabel('Relationship: ') + coverage.relationship.coding[0].code);
 		}
+		populateDataItem('coverageRelationship',relationship);
 		
-		let period = "";
+		let period = '';
 		if(coverage.period){
-			period = divWrapper(createLabel('Span: ') + coverage.period.start + " - " + coverage.period.end);
+			period = coverage.period.start + " - " + coverage.period.end;
 		}
+		populateDataItem('coverageSpan', period);
 		
-		let detailsLabel = divWrapper(createLabel('Details: '));
-		setDomElement('coverageId', type + relationship + period + detailsLabel);
+		//let detailsLabel = divWrapper(createLabel('Details: '));
+		//setDomElement('coverageId', type + relationship + period + detailsLabel);
+		let detailName = '';
 		if(coverage.class){
 			for(let i=0;i<coverage.class.length;i++){
 				if(coverage.class[i].name){
-					let detailName = '<div style="padding-left:30px">' + coverage.class[i].name + '</div>';
-					setDomElement('coverageId', detailName);
+					detailName = '<div style="padding-left:30px">' + coverage.class[i].name + '</div>';
+					//setDomElement('coverageId', detailName);
 				}
 			}			
 		}
+		populateDataItem('coverageDetails',detailName);
 	}
 }
 
@@ -541,6 +546,16 @@ function setMarried(pt){
 	}
 }
 
+function populateDataItem(elementId, dataItem){
+	let displayItem = 'No data available';
+	
+	if(dataItem == null || dataItem == '' || dataItem === undefined){
+		setDomElement(elementId, displayItem);
+	}else{
+		setDomElement(elementId, dataItem);
+	}
+}
+
 function tableDataWrapper(value){
 	if(value == null || value == '' || value === undefined){
 		return '<td>' + '' + '</td>';
@@ -549,9 +564,6 @@ function tableDataWrapper(value){
 	}
 }
 
-/*function tableRowWrapper(tableData){
-	return '<tr>' + tableData + '</tr>';
-}*/
 
 function tableRowWrapper(){
 	if(arguments.length == 0){
