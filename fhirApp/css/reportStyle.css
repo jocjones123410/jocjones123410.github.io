@@ -139,12 +139,7 @@ section#patientDemographics{
 	margin-bottom: 15px;
 }
 
-/*section#patientDemographics > div, div#keyClinicalInfo > div, div#ltcFacilityInfo > div, div#ltcNotes > div, div#coverageId > div, div#advDirId > div, div#contactInfoId > div, div#nursingHomeId > div{
-	padding:2px;
-	display: flex;
-}*/
-
-div.labelSection > div{
+section#patientDemographics > div, div.labelSection > div{
 	padding:2px;
 	display: flex;
 }
