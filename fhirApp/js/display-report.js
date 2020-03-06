@@ -225,7 +225,7 @@ function populateMedicationsTable(medicationStatementBundle){
 		for(let i=0;i<medications.length;i++){
 			if(medications[i].resource){
 				let status = medications[i].resource.status;
-				if(medications[i].status && 'active' === status.toLowerCase()){ 
+				if(status != undefined && 'active' === status.toLowerCase()){ 
 					let statusElement = status;
 					let assertedDate = medications[i].resource.dateAsserted;			
 					let medication = '';
