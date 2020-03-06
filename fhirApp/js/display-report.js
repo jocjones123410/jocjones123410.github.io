@@ -199,7 +199,7 @@ function populateLabsTable(observationBundle){
 						if(obs[i].resource.valueQuantity.value != undefined){
 							qtValue = obs[i].resource.valueQuantity.value;
 							//Format result to 4 decimal places
-							qtValue = qtValue.toFixed(4);
+							qtValue = roundToX(qtValue,4);
 						}
 						if(obs[i].resource.valueQuantity.unit != undefined){
 							qtUnit = obs[i].resource.valueQuantity.unit;
@@ -342,6 +342,7 @@ function populatePersonalContactSection(contact){
 		}
 			
 		if(contact[0].name){
+			name = getName(contact);
 			let givenName = "";
 			let familyName = "";
 			if(contact[0].name.given){
@@ -366,20 +367,7 @@ function populatePractitionerSection(practitioner){
 	
 	if(practitioner) {		
 		if(practitioner.name){						
-			let prefix = '';
-			let given = '';
-			let family = '';
-			
-			if(practitioner.name[0].prefix){
-				prefix = practitioner.name[0].prefix + " ";
-			}
-			if(practitioner.name[0].given){
-				given  = practitioner.name[0].given = " ";
-			}
-			if(practitioner.name[0].family){
-				family = practitioner.name[0].family;
-			}
-			name = prefix + given + family;
+			name = getName(practitioner);
 		}
 				
 		if(practitioner.telecom && practitioner.telecom[0]){
@@ -592,11 +580,15 @@ function formatDate(dateToFormat){
 	return mm + '-' + dd + '-' + yyyy;
 }  	
  
-function display(data) {
+/*function display(data) {
     const output = document.getElementById("display");
     output.innerText = data instanceof Error ?
         String(data) :
         JSON.stringify(data, null, 4);
+}*/
+
+function roundToX(num, X) {    
+    return +(Math.round(num + "e+"+X)  + "e-"+X);
 } 
 
 function hide(elementId){
