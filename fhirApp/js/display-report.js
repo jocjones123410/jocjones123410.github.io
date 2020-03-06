@@ -18,7 +18,7 @@ function renderPatientDemographics(client, patientId){
 	getPatient(client, patientId).then(function(data){
 		populatePatientDemographics(data);
 		populatePractitionerSection(data.generalPractitioner);
-		populatePersonalContactSection(data);		
+		populatePersonalContactSection(data.contact);		
 		populateContactSection(data);
 	});
 }
@@ -322,18 +322,18 @@ function populatePersonalContactSection(contact){
 	let phone = '';
 	
 	if (contact) {					
-		if(patient.contact[0].relationship && patient.contact[0].relationship[0]){
-			relationship = patient.contact[0].relationship[0].text;
+		if(contact[0].relationship && contact[0].relationship[0]){
+			relationship = contact[0].relationship[0].text;
 		}
 			
-		if(patient.contact[0].telecom){
+		if(contact[0].telecom){
 			let system = '';
 			let value = '';
-			if(patient.contact[0].telecom[0].system){
-				system = patient.contact[0].telecom[0].system;
+			if(contact[0].telecom[0].system){
+				system = contact[0].telecom[0].system;
 			}
-			if(patient.contact[0].telecom[0].value){
-				value = patient.contact[0].telecom[0].value;
+			if(contact[0].telecom[0].value){
+				value = contact[0].telecom[0].value;
 			}
 			if(system != undefined && system != null && system != '')
 				phone = system + ':' + value;
@@ -341,14 +341,14 @@ function populatePersonalContactSection(contact){
 				phone = value;
 		}
 			
-		if(patient.contact[0].name){
+		if(contact[0].name){
 			let givenName = "";
 			let familyName = "";
-			if(patient.contact[0].name.given){
-				givenName = patient.contact[0].name.given.join(" ");
+			if(contact[0].name.given){
+				givenName = contact[0].name.given.join(" ");
 			}
-			if(patient.contact[0].name.family){
-				familyName = patient.contact[0].name.family;
+			if(contact[0].name.family){
+				familyName = contact[0].name.family;
 			}
 			name = givenName + ' ' + familyName;
 		}	
