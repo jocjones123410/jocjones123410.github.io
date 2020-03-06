@@ -252,35 +252,35 @@ function populateCoverageSection(coverageBundle){
 	let period = '';
 	let detailName = '';
 	
-	let coverage = coverageBundle.entry;
-	if(coverage.type && coverage.type.coding && coverage.type.coding[0].display){
-		type = coverage.type.coding[0].display;
-	}
-	populateDataItem('coverageType',type);
-		
+	if(coverageBundle.entry){
+		let coverage = coverageBundle.entry;
+		if(coverage.type && coverage.type.coding && coverage.type.coding[0].display){
+			type = coverage.type.coding[0].display;
+		}			
 	
-	if(coverage.relationship && coverage.relationship.coding && coverage.relationship.coding[0].code){			
-		relationship = divWrapper(createLabel('Relationship: ') + coverage.relationship.coding[0].code);
-	}
-	populateDataItem('coverageRelationship',relationship);
+		if(coverage.relationship && coverage.relationship.coding && coverage.relationship.coding[0].code){			
+			relationship = divWrapper(createLabel('Relationship: ') + coverage.relationship.coding[0].code);
+		}			
 	
-	
-	if(coverage.period){
-		period = coverage.period.start + " - " + coverage.period.end;
-	}
-	populateDataItem('coverageSpan', period);
+		if(coverage.period){
+			period = coverage.period.start + " - " + coverage.period.end;
+		}	
 	
 	//let detailsLabel = divWrapper(createLabel('Details: '));
 	//setDomElement('coverageId', type + relationship + period + detailsLabel);
 	
-	if(coverage.class){
-		for(let i=0;i<coverage.class.length;i++){
-			if(coverage.class[i].name){
-				detailName = '<div style="padding-left:30px">' + coverage.class[i].name + '</div>';
-				//setDomElement('coverageId', detailName);
-			}
-		}			
-	}
+		if(coverage.class){
+			for(let i=0;i<coverage.class.length;i++){
+				if(coverage.class[i].name){
+					detailName = '<div style="padding-left:30px">' + coverage.class[i].name + '</div>';
+					//setDomElement('coverageId', detailName);
+				}
+			}			
+		}
+	}	
+	populateDataItem('coverageType',type);
+	populateDataItem('coverageRelationship',relationship);
+	populateDataItem('coverageSpan', period);
 	populateDataItem('coverageDetails',detailName);
 	
 }
