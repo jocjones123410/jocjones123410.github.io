@@ -403,18 +403,15 @@ function populateOrganizationSection(org){
 	let role = '';
 	let phone = '';
 	
-	if(org.contact){
-		if(org.contact.name){
-			name = getName(org.contact);
-		}
-		
-		if(org.contact.purpose){
+	if(org){
+		if(org.contact){
+			name = getName(org.contact);		
 			role = org.contact.purpose;
-		}
 						
-		if(org.contact.telecom){
-			phone = org.contact.telecom[0].value;
-		}		
+			if(org.contact.telecom){
+				phone = org.contact.telecom[0].value;
+			}
+		}			
 	}
 	populateDataItem('nursingHomeContactName', name);
 	populateDataItem('nursingHomeContactRole', role);
@@ -423,12 +420,9 @@ function populateOrganizationSection(org){
 
 function populatePatientDemographics(patient){
 	setPatientName(patient);
-	setMrn(patient);
-	//setRace(patient);
+	setMrn(patient);	
 	setGender(patient);
 	setBirthDate(patient);
-	//setAddress(patient);
-	//setTelecom(patient);
 	setMarried(patient);	
 }
 
