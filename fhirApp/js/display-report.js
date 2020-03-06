@@ -248,6 +248,7 @@ function populateMedicationsTable(medicationStatementBundle){
 
 function populateCoverageSection(coverageBundle){
 	let type = '';
+	let coverage = coverage.entry;
 	if(coverage.type && coverage.type.coding && coverage.type.coding[0].display){
 		type = coverage.type.coding[0].display;
 	}
