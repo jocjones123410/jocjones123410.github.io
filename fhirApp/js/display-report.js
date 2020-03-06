@@ -17,8 +17,8 @@ async function renderReport(client, patientId){
 function renderPatientDemographics(client, patientId){
 	getPatient(client, patientId).then(function(data){
 		populatePatientDemographics(data);
-		populatePersonalContactSection(data);
 		populatePractitionerSection(data.generalPractitioner);
+		populatePersonalContactSection(data);		
 		populateContactSection(data);
 	});
 }
@@ -267,14 +267,10 @@ function populateCoverageSection(coverageBundle){
 			period = coverage.period.start + " - " + coverage.period.end;
 		}	
 	
-	//let detailsLabel = divWrapper(createLabel('Details: '));
-	//setDomElement('coverageId', type + relationship + period + detailsLabel);
-	
 		if(coverage.class){
 			for(let i=0;i<coverage.class.length;i++){
 				if(coverage.class[i].name){
 					detailName = '<div style="padding-left:30px">' + coverage.class[i].name + '</div>';
-					//setDomElement('coverageId', detailName);
 				}
 			}			
 		}
@@ -320,79 +316,51 @@ function populateAdvancedDirectiveSection(consentBundle){
 	}
 }
 
-function populatePersonalContactSection(patient){
-	if (patient.contact) {
-		for(let i=0;i<patient.contact.length;i++){
-			let relationship = "";
-			if(patient.contact[i].relationship && patient.contact[i].relationship[0].text){
-				relationship = divWrapper(createLabel('Relationship: ') + patient.contact[i].relationship[0].text);
-			}
-			
-			let contactTele = "";
-			if(patient.contact[i].telecom){
-				let system = "";
-				let value = "";
-				if(patient.contact[i].telecom[0].system){
-					system = patient.contact[i].telecom[0].system;
-				}
-				if(patient.contact[i].telecom[0].value){
-					value = patient.contact[i].telecom[0].value;
-				}
-				contactTele = divWrapper(createLabel('Contact: ') + system + ':' + value);
-			}
-			
-			let contactName = "";
-			if(patient.contact[i].name){
-				let givenName = "";
-				let familyName = "";
-				if(patient.contact[i].name.given){
-					givenName = patient.contact[i].name.given.join(" ");
-				}
-				if(patient.contact[i].name.family){
-					familyName = patient.contact[i].name.family;
-				}
-				contactName = divWrapper(createLabel('Name: ') + givenName + ' ' + familyName);
-			}
-			
-			let contactAddress = "";
-			if(patient.contact[i].address){
-				let line = "";
-				let city = "";
-				let state = "";
-				let postalCode= "";
-				
-				if(patient.contact[i].address.line){
-					line = patient.contact[i].address.line;
-				}
-				if(patient.contact[i].address.city){
-					city = patient.contact[i].address.city;
-				}
-				if(patient.contact[i].address.state){
-					state = patient.contact[i].address.state;
-				}
-				if(patient.contact[i].address.postalCode){
-					postalCode = patient.contact[i].address.postalCode;
-				}
-				
-				contactAddress = divWrapper(createLabel('Address: ') + line + ' ' + city + ', ' + state + ' ' + postalCode);
-			}
-			let contactLabelsAndValues = contactName + relationship + contactTele + contactAddress;
-			setDomElement('contactInfoId', contactLabelsAndValues);
+function populatePersonalContactSection(contact){
+	let name = '';
+	let relationship = '';
+	let phone = '';
+	
+	if (contact) {					
+		if(patient.contact[0].relationship && patient.contact[0].relationship[0]){
+			relationship = patient.contact[0].relationship[0].text);
 		}
-	}else{
-		//setDomElement('contactInfoId', NO_DATA_AVAILABLE);
+			
+		if(patient.contact[0].telecom){
+			let system = '';
+			let value = '';
+			if(patient.contact[0].telecom[0].system){
+				system = patient.contact[0].telecom[0].system;
+			}
+			if(patient.contact[0].telecom[0].value){
+				value = patient.contact[0].telecom[0].value;
+			}
+			if(system != undefined && system != null && system != '')
+				phone = system + ':' + value;
+			else
+				phone = value;
+		}
+			
+		if(patient.contact[0].name){
+			let givenName = "";
+			let familyName = "";
+			if(patient.contact[0].name.given){
+				givenName = patient.contact[0].name.given.join(" ");
+			}
+			if(patient.contact[0].name.family){
+				familyName = patient.contact[0].name.family;
+			}
+			name = givenName + ' ' + familyName;
+		}	
 	}
+	populateDataItem('alternateContactName', name);
+	populateDataItem('alternateContactRelationship', relationship);
+	populateDataItem('alternateContactPhone', phone);
 }
 
 function populateContactSection(patient){
 	if(patient.generalPractitioner || patient.managingOrganization){
-		//populatePractitionerSection(patient.generalPractitioner);
 		populateOrganizationSection(patient.managingOrganization);
-	}else{
-		//hide('organizationHeader');
-		//noDataMessage('practitionerHeader', 'nursingHomeId');
-		//hide('practitionerHeader');
-		//setDomElement('nursingHomeId', NO_DATA_AVAILABLE);
 	}
 }
 
