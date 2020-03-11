@@ -6,6 +6,7 @@ const OBSERVATION_TYPE = 'Observation';
 const COVERAGE_TYPE = 'Coverage';
 const CONSENT_TYPE = 'Consent';
 const GENERAL_PRACTITIONER_TYPE = 'general-practitioner';
+const ID_PARAMETER = '?_id=';
 const SUBJECT_PARAMETER = '?subject=';
 const PATIENT_PARAMETER = '?patient=';
 const BENEFICIARY_PARAMETER = '?beneficiary=';
@@ -14,7 +15,8 @@ const practitionerResource = 'Practitioner';
 const organizationResource = 'Organization';		
 	
 	function getPatient(client, patientId){
-		return client.request(PATIENT_TYPE + "/" + patientId + INCLUDE + PATIENT_TYPE + ':' + GENERAL_PRACTITIONER_TYPE);		
+		//return client.request(PATIENT_TYPE + "/" + patientId + INCLUDE + PATIENT_TYPE + ':' + GENERAL_PRACTITIONER_TYPE);		
+		return client.request(PATIENT_TYPE + ID_PARAMETER + patientId + INCLUDE + PATIENT_TYPE + ':' + GENERAL_PRACTITIONER_TYPE);		
 	}
 	
 	function getConditions(client, patientId){
