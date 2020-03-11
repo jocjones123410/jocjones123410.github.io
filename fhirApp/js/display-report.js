@@ -376,7 +376,7 @@ function populatePatientDemographics(bundle){
 	let patient;
 	if(bundle && bundle.entry){
 		for(i = 0; i < bundle.entry.length; i++){
-			if('patient' === bundle.entry[i])
+			if(bundle.entry[i].resource && 'Patient' === bundle.entry[i].resource.resourceType)				
 				patient = bundle.entry[i];
 		}
 	}
