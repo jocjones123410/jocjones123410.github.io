@@ -17,7 +17,7 @@ async function renderReport(client, patientId){
 function renderPatientDemoAndContacts(client, patientId){
 	getPatient(client, patientId).then(function(data){
 		populatePatientDemographics(data);
-		populatePractitionerSection(data.generalPractitioner);
+		populatePractitionerSection(data);
 		populatePersonalContactSection(data.contact);	
 		populateOrganizationSection(data.managingOrganization);		
 	});
@@ -80,6 +80,7 @@ function populateVitalsTable(observationBundle){
 		for(let i=0;i<obs.length;i++){			
 			if(obs[i].resource.category && obs[i].resource.category[0].coding[0]){
 				let categoryVal = obs[i].resource.category[0].coding[0].code;
+				let vitalRow = '';
 				if('vital-signs' === categoryVal.toLowerCase() && obs[i].resource.component){
 					let comp = obs[i].resource.component;					
 					let issuedDate = formatDate(obs[i].resource.issued);					
@@ -100,9 +101,12 @@ function populateVitalsTable(observationBundle){
 							value = comp[x].valueQuantity.value + unit;							 
 						}
 												
-						let vitalRow = tableRowWrapper(name, value, issuedDate);
+						vitalRow = tableRowWrapper(name, value, issuedDate);
 						setDomElement('vitalEntries',vitalRow);
 					}
+				}
+				if(vitalRow === ''){
+					toggleNoDataDisplay('vitalsTable', 'noVitalsData');		
 				}
 			}
 		}
@@ -325,13 +329,14 @@ function populatePersonalContactSection(contact){
 	populateDataItem('alternateContactPhone', phone);
 }
 
-function populatePractitionerSection(practitioner){
+function populatePractitionerSection(bundle){
+	let practitioner = getResourceFromBundle(bundle, GENERAL_PRACTITIONER_TYPE);
 	let name = '';
 	let phone = '';
 	let practice = '';
 	let address = '';
 	
-	if(practitioner) {		
+	if(practitioner != null && practitioner != undefined) {		
 		if(practitioner.name){						
 			name = getName(practitioner);
 		}
@@ -373,13 +378,7 @@ function populateOrganizationSection(org){
 }
 
 function populatePatientDemographics(bundle){
-	let patient;
-	if(bundle && bundle.entry){
-		for(i = 0; i < bundle.entry.length; i++){
-			if(bundle.entry[i].resource && 'Patient' === bundle.entry[i].resource.resourceType)				
-				patient = bundle.entry[i];
-		}
-	}
+	let patient = getResourceFromBundle(bundle, PATIENT_TYPE);	
 	populateDataItem('patientName', getName(patient.resource));
 	setMrn(patient.resource);	
 	setGender(patient.resource);
@@ -436,6 +435,15 @@ function getAddress(resource){
 			address = line + city + state + postalCode;
 		}
 	return address;
+}
+
+function getResourceFromBundle(bundle, resource){
+	if(bundle && bundle.entry){
+		for(i = 0; i < bundle.entry.length; i++){
+			if(bundle.entry[i].resource && resource === bundle.entry[i].resource.resourceType)				
+				return bundle.entry[i].resource;
+		}
+	}
 }
 
 function setMrn (pt){
