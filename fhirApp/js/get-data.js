@@ -5,14 +5,16 @@ const MEDICATION_STATEMENT_TYPE = 'MedicationStatement';
 const OBSERVATION_TYPE = 'Observation';
 const COVERAGE_TYPE = 'Coverage';
 const CONSENT_TYPE = 'Consent';
+const GENERAL_PRACTITIONER_TYPE = 'general-practitioner';
 const SUBJECT_PARAMETER = '?subject=';
 const PATIENT_PARAMETER = '?patient=';
 const BENEFICIARY_PARAMETER = '?beneficiary=';
+const INCLUDE = '&_include=';
 const practitionerResource = 'Practitioner';
 const organizationResource = 'Organization';		
 	
 	function getPatient(client, patientId){
-		return client.request(PATIENT_TYPE + "/" + patientId);		
+		return client.request(PATIENT_TYPE + "/" + patientId + INCLUDE + PATIENT_TYPE + ':' + GENERAL_PRACTITIONER_TYPE);		
 	}
 	
 	function getConditions(client, patientId){
@@ -37,10 +39,6 @@ const organizationResource = 'Organization';
 	
 	function getConsent(client, patientId){
 		return client.request(CONSENT_TYPE + PATIENT_PARAMETER + patientId);
-	}
-	
-	function getPractitioner(bundle){
-		return getResourceFromBundle(bundle, practitionerResource);
 	}
 	
 	function getOrganization(bundle){

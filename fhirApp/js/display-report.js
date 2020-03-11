@@ -282,40 +282,6 @@ function populateCoverageSection(coverageBundle){
 	
 }
 
-function populateAdvancedDirectiveSection(consentBundle){
-	if(consentBundle.total > 0){
-		let consent = consentBundle.entry;
-		let consentDate = "";
-		if(consent.dateTime){
-			consentDate = divWrapper(createLabel('Consent Date: ') + formatDate(consent.dateTime));
-		}
-		
-		let consentSource = "";
-		if(consent.sourceAttachment && consent.sourceAttachment.title){
-			consentSource = divWrapper(createLabel('Consent Source: ') + consent.sourceAttachment.title);
-		}
-		
-		let scope = "";
-		if(consent.scope && consent.scope.coding && consent.scope.coding[0].display){
-			scope = divWrapper(createLabel('Scope: ') + consent.scope.coding[0].display);
-		}
-		 
-		let category = "";
-		if(consent.category && consent.category[0] && consent.category[0].coding && consent.category[0].coding[0].display){
-			category = divWrapper(createLabel('Category: ') + consent.category[0].coding[0].display);
-		}
-		
-		let provision = "";
-		if(consent.provision && consent.provision.type){
-			provision = divWrapper(createLabel('Provision: ') + consent.provision.type);
-		}
-		let dnrLabelsAndValues = consentDate + consentSource + scope + category + provision;
-		setDomElement('advDirId', dnrLabelsAndValues);
-	}else{
-		//setDomElement('advDirId', NO_DATA_AVAILABLE);
-	}
-}
-
 function populatePersonalContactSection(contact){
 	let name = '';
 	let relationship = '';
@@ -408,7 +374,6 @@ function populateOrganizationSection(org){
 
 function populatePatientDemographics(patient){
 	populateDataItem('patientName', getName(patient));
-	//setPatientName(patient);
 	setMrn(patient);	
 	setGender(patient);
 	setBirthDate(patient);
@@ -576,13 +541,6 @@ function formatDate(dateToFormat){
 	let yyyy = date.getFullYear();
 	return mm + '-' + dd + '-' + yyyy;
 }  	
- 
-/*function display(data) {
-    const output = document.getElementById("display");
-    output.innerText = data instanceof Error ?
-        String(data) :
-        JSON.stringify(data, null, 4);
-}*/
 
 function roundToX(num, X) {    
     return +(Math.round(num + "e+"+X)  + "e-"+X);
