@@ -379,11 +379,11 @@ function populateOrganizationSection(org){
 
 function populatePatientDemographics(bundle){
 	let patient = getResourceFromBundle(bundle, PATIENT_TYPE);	
-	populateDataItem('patientName', getName(patient.resource));
-	setMrn(patient.resource);	
-	setGender(patient.resource);
-	setBirthDate(patient.resource);
-	setMarried(patient.resource);	
+	populateDataItem('patientName', getName(patient));
+	setMrn(patient);	
+	setGender(patient);
+	setBirthDate(patient);
+	setMarried(patient);	
 }
 
 function getName(resource){
