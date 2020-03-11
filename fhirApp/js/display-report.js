@@ -372,7 +372,14 @@ function populateOrganizationSection(org){
 	populateDataItem('nursingHomeContactPhone', phone);
 }
 
-function populatePatientDemographics(patient){
+function populatePatientDemographics(bundle){
+	let patient;
+	if(bundle && bundle.entry){
+		for(i = 0; i < bundle.entry.length; i++){
+			if('patient' === bundle.entry[i])
+				patient = bundle.entry[i];
+		}
+	}
 	populateDataItem('patientName', getName(patient));
 	setMrn(patient);	
 	setGender(patient);
