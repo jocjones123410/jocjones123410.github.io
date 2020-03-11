@@ -77,10 +77,10 @@ function populateVitalsTable(observationBundle){
 	if(observationBundle.total > 0){
 		let obs = observationBundle.entry;
 		obs.sort((a, b) => (a.resource.issued < b.resource.issued) ? 1 : -1);
+		let vitalRow = '';
 		for(let i=0;i<obs.length;i++){			
 			if(obs[i].resource.category && obs[i].resource.category[0].coding[0]){
-				let categoryVal = obs[i].resource.category[0].coding[0].code;
-				let vitalRow = '';
+				let categoryVal = obs[i].resource.category[0].coding[0].code;				
 				if('vital-signs' === categoryVal.toLowerCase() && obs[i].resource.component){
 					let comp = obs[i].resource.component;					
 					let issuedDate = formatDate(obs[i].resource.issued);					
@@ -104,12 +104,11 @@ function populateVitalsTable(observationBundle){
 						vitalRow = tableRowWrapper(name, value, issuedDate);
 						setDomElement('vitalEntries',vitalRow);
 					}
-				}
-				if(vitalRow === ''){
-					toggleNoDataDisplay('vitalsTable', 'noVitalsData');		
-				}
+				}				
 			}
 		}
+		if(vitalRow === '')
+			toggleNoDataDisplay('vitalsTable', 'noVitalsData');						
 	}else{
 		toggleNoDataDisplay('vitalsTable', 'noVitalsData');		
 	}
