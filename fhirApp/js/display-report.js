@@ -409,27 +409,27 @@ function getName(resource){
 
 function getAddress(resource){
 	let address = "";
-		if(org.address){
+		if(resource.address){
 			let line = '';
 			let city = '';
 			let state = '';
 			let postalCode = '';
 			
 			if(resource.address[0].line){
-				line = org.address[0].line[0] + " ";
+				line = resource.address[0].line[0] + " ";
 			}
 			if(resource.address[0].city){
-				city = org.address[0].city;
+				city = resource.address[0].city;
 			}
 			if(resource.address[0].state){
 				let comma = "";
 				if(city !== ""){
 					comma = ", ";
 				}
-				state = comma + org.address[0].state + " ";
+				state = comma + resource.address[0].state + " ";
 			}
 			if(resource.address[0].postalCode){
-				postalCode = org.address[0].postalCode;
+				postalCode = resource.address[0].postalCode;
 			}
 			
 			address = line + city + state + postalCode;
