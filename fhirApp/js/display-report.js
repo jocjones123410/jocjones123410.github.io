@@ -9,7 +9,7 @@ async function renderReport(client, patientId){
 	renderMedications(client, patientId);
 	renderObservations(client, patientId);
 	renderCoverage(client, patientId);
-	renderAdvancedDirective(client, patientId);
+	//renderAdvancedDirective(client, patientId);
 	
 	show('report');
 }
@@ -54,11 +54,11 @@ function renderCoverage(client, patientId){
 	});
 }
 
-function renderAdvancedDirective(client, patientId){
+/*function renderAdvancedDirective(client, patientId){
 	getConsent(client, patientId).then(function(data){
 		populateAdvancedDirectiveSection(data);
 	});
-}
+}*/
 		
 	
 async function getReport(client){		
