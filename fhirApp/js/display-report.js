@@ -330,7 +330,7 @@ function populatePersonalContactSection(contact){
 }
 
 function populatePractitionerSection(bundle){
-	let practitioner = getResourceFromBundle(bundle, GENERAL_PRACTITIONER_TYPE);
+	let practitioner = getResourceFromBundle(bundle, PRACTITIONER_TYPE);
 	let name = '';
 	let phone = '';
 	let practice = '';
