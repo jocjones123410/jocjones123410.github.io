@@ -380,11 +380,11 @@ function populatePatientDemographics(bundle){
 				patient = bundle.entry[i];
 		}
 	}
-	populateDataItem('patientName', getName(patient));
-	setMrn(patient);	
-	setGender(patient);
-	setBirthDate(patient);
-	setMarried(patient);	
+	populateDataItem('patientName', getName(patient.resource));
+	setMrn(patient.resource);	
+	setGender(patient.resource);
+	setBirthDate(patient.resource);
+	setMarried(patient.resource);	
 }
 
 function getName(resource){
