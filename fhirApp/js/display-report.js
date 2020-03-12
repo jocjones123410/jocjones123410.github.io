@@ -190,7 +190,7 @@ function populateLabsTable(observationBundle){
 			let categoryVal = '';						
 			if(obs[i].resource.category && obs[i].resource.category[0].coding[0]){
 				categoryVal = obs[i].resource.category[0].coding[0].code;
-				if(categoryVal != '' && 'laboratory' === categoryVal.toLowerCase()){						
+				if(categoryVal != undefined && 'laboratory' === categoryVal.toLowerCase()){						
 					let effectiveDate = formatDate(obs[i].resource.effectiveDateTime);
 					let category = categoryVal;
 					let entry = obs[i].resource.code.text;
