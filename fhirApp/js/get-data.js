@@ -7,6 +7,7 @@ const COVERAGE_TYPE = 'Coverage';
 const CONSENT_TYPE = 'Consent';
 const PRACTITIONER_TYPE = 'Practitioner';
 const ORGANIZATION_TYPE = 'organization';
+
 const GENERAL_PRACTITIONER_REFERENCE = 'general-practitioner';
 const ID_PARAMETER = '?_id=';
 const SUBJECT_PARAMETER = '?subject=';
