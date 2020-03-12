@@ -360,7 +360,7 @@ function populateOrganizationSection(bundle){
 	let name = '';
 	let role = '';
 	let phone = '';
-	let org = getResourceFromBundle(bundle, OBSERVATION_TYPE);
+	let org = getResourceFromBundle(bundle, ORGANIZATION_TYPE);
 	
 	if(org){
 		if(org.contact){
