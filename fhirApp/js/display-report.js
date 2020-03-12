@@ -19,7 +19,7 @@ function renderPatientDemoAndContacts(client, patientId){
 		populatePatientDemographics(data);
 		populatePractitionerSection(data);
 		populatePersonalContactSection(data.contact);	
-		populateOrganizationSection(data.managingOrganization);		
+		populateOrganizationSection(data);		
 	});
 }
 
@@ -329,11 +329,11 @@ function populatePersonalContactSection(contact){
 }
 
 function populatePractitionerSection(bundle){
-	let practitioner = getResourceFromBundle(bundle, PRACTITIONER_TYPE);
 	let name = '';
 	let phone = '';
 	let practice = '';
 	let address = '';
+	let practitioner = getResourceFromBundle(bundle, PRACTITIONER_TYPE);
 	
 	if(practitioner != null && practitioner != undefined) {		
 		if(practitioner.name){						
@@ -356,10 +356,11 @@ function populatePractitionerSection(bundle){
 	populateDataItem('pcpAddress', address);
 }
 
-function populateOrganizationSection(org){
+function populateOrganizationSection(bundle){
 	let name = '';
 	let role = '';
 	let phone = '';
+	let org = getResourceFromBundle(bundle, OBSERVATION_TYPE);
 	
 	if(org){
 		if(org.contact){
