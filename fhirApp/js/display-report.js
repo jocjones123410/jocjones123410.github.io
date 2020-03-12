@@ -331,6 +331,8 @@ function populatePersonalContactSection(contact){
 function populatePractitionerSection(bundle){
 	let name = '';
 	let phone = '';
+	let otherContactSystem = '';
+	let otherContact = '';
 	let practice = '';
 	let address = '';
 	let practitioner = getResourceFromBundle(bundle, PRACTITIONER_TYPE);
@@ -340,8 +342,16 @@ function populatePractitionerSection(bundle){
 			name = getName(practitioner);
 		}
 				
-		if(practitioner.telecom && practitioner.telecom[0]){
-			phone = practitioner.telecom[0].value;
+		if(practitioner.telecom && practitioner.telecom){
+			for(i = 0; i < practitioner.telecom.length; i++){
+				if('phone' === practitioner.telecom[i].system){
+					phone = practitioner.telecom[i].value;
+					break;
+				}else{
+					otherContactSystem = practitioner.telecom[i].system;
+					otherContact = practitioner.telecom[i].value;
+				}
+			}
 		}
 		
 		if(practitioner.address){
@@ -350,8 +360,15 @@ function populatePractitionerSection(bundle){
 		//TODO:
 		//add practice
 	}
-	populateDataItem('pcpName', name);
-	populateDataItem('pcpPhone', phone);
+	
+	if(otherContactSystem != '' && otherContact != '' && phone == ''){
+		setDomElement('pcpPhoneLabel', otherContactSystem);
+		populateDataItem('pcpPhone', otherContact);
+	}else{
+		populateDataItem('pcpPhone', phone);
+	}
+	
+	populateDataItem('pcpName', name);	
 	populateDataItem('pcpPractice', practice);
 	populateDataItem('pcpAddress', address);
 }
@@ -451,9 +468,10 @@ function setMrn (pt){
 	if(pt.identifier){
 		for(x = 0; x < pt.identifier.length; x++) {
 			if(pt.identifier[x].type){
-				if('MedicalRecordNumber' === pt.identifier[x].type.text)
+				if('MedicalRecordNumber' === pt.identifier[x].type.text){
 					mrn = pt.identifier[x].value;
-				else if(pt.identifier[x].type.coding){
+					break;
+				}else if(pt.identifier[x].type.coding){
 					let coding = pt.identifier[x].type.coding;
 					for(i = 0; i < coding.length; i++) {
 						if('MR' === coding[i].code){
@@ -467,24 +485,6 @@ function setMrn (pt){
 	}
 	populateDataItem('mrnId', mrn);
 }
-
-/*function setMrn (pt){
-	let mrn;
-	if(pt.identifier){
-		if(pt.identifier[0].type){
-			if('MedicalRecordNumber' === pt.identifier[0].type.text)
-				mrn = pt.identifier[0].value;
-			else if(pt.identifier[0].type.coding){
-				let coding = pt.identifier[0].type.coding;
-				for(i = 0; i < coding.length; i++) {
-					if('MR' === coding[i].code)
-						mrn = pt.identifier[0].value;
-				}
-			}
-		}
-	}
-	populateDataItem('mrnId', mrn);
-}*/
 
 function setRace (pt){
 	if(pt.extension){
