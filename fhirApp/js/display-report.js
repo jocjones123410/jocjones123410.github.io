@@ -187,10 +187,10 @@ function populateLabsTable(observationBundle){
 		let obs = observationBundle.entry;
 		obs.sort((a, b) => (a.resource.effectiveDateTime < b.resource.effectiveDateTime) ? 1 : -1);
 		for(let i=0;i<obs.length;i++){			
-			let categoryVal = "";						
+			let categoryVal = '';						
 			if(obs[i].resource.category && obs[i].resource.category[0].coding[0]){
 				categoryVal = obs[i].resource.category[0].coding[0].code;
-				if(categoryVal && 'laboratory' === categoryVal.toLowerCase()){						
+				if(categoryVal != '' && 'laboratory' === categoryVal.toLowerCase()){						
 					let effectiveDate = formatDate(obs[i].resource.effectiveDateTime);
 					let category = categoryVal;
 					let entry = obs[i].resource.code.text;
