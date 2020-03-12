@@ -81,7 +81,7 @@ function populateVitalsTable(observationBundle){
 		for(let i=0;i<obs.length;i++){			
 			if(obs[i].resource.category && obs[i].resource.category[0].coding[0]){
 				let categoryVal = obs[i].resource.category[0].coding[0].code;				
-				if('vital-signs' === categoryVal.toLowerCase() && obs[i].resource.component){
+				if(categoryVal != undefined && 'vital-signs' === categoryVal.toLowerCase() && obs[i].resource.component){
 					let comp = obs[i].resource.component;					
 					let issuedDate = formatDate(obs[i].resource.issued);					
 					
