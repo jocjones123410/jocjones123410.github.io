@@ -320,7 +320,7 @@ function populatePersonalContactSection(contact){
 
 function populatePractitionerSection(bundle){
 	let name = '';
-	let contactInfo;
+	let contactInfo = '';
 	let practice = '';
 	let address = '';
 	let practitioner = getResourceFromBundle(bundle, PRACTITIONER_TYPE);
