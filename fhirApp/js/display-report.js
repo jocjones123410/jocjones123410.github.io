@@ -486,7 +486,7 @@ function setMrn (pt){
 
 function setContactInfo(labelId, valueId, telecom){
 	if(telecom){
-		if('phone' != telecom.system && label != '' && label != undefined && label != null){
+		if('phone' != telecom.system && labelId != '' && labelId != undefined && labelId != null){
 			replaceDomElement(labelId, telecom.system.toUpperCase() + ":");			
 		}
 		populateDataItem(valueId, telecom.value);
