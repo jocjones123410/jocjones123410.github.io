@@ -449,16 +449,20 @@ function getResourceFromBundle(bundle, resource){
 function setMrn (pt){
 	let mrn;
 	if(pt.identifier){
-		if(pt.identifier[0].type){
-			if('MedicalRecordNumber' === pt.identifier[0].type.text)
-				mrn = pt.identifier[0].value;
-			else if(pt.identifier[0].type.coding){
-				let coding = pt.identifier[0].type.coding;
-				for(i = 0; i < coding.length; i++) {
-					if('MR' === coding[i].code)
-						mrn = pt.identifier[0].value;
+		for(x = 0; x < pt.identifier.length; x++) {
+			if(pt.identifier[x].type){
+				if('MedicalRecordNumber' === pt.identifier[x].type.text)
+					mrn = pt.identifier[x].value;
+				else if(pt.identifier[x].type.coding){
+					let coding = pt.identifier[x].type.coding;
+					for(i = 0; i < coding.length; i++) {
+						if('MR' === coding[i].code){
+							mrn = pt.identifier[x].value;
+							break;
+						}
+					}
 				}
-			}
+			}	
 		}
 	}
 	populateDataItem('mrnId', mrn);
