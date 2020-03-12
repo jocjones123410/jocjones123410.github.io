@@ -478,9 +478,9 @@ function populateContactInfo(labelId, valueId, telecom){
 	if(telecom){
 		if('phone' != telecom.system && labelId != '' && labelId != undefined && labelId != null){
 			replaceDomElement(labelId, telecom.system.toUpperCase() + ":");			
-		}
-		populateDataItem(valueId, telecom.value);
+		}		
 	}
+	populateDataItem(valueId, telecom.value);
 }
 
 function setRace (pt){
