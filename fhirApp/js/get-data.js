@@ -6,17 +6,19 @@ const OBSERVATION_TYPE = 'Observation';
 const COVERAGE_TYPE = 'Coverage';
 const CONSENT_TYPE = 'Consent';
 const PRACTITIONER_TYPE = 'Practitioner';
+const ORGANIZATION_TYPE = 'Organization';
 const GENERAL_PRACTITIONER_REFERENCE = 'general-practitioner';
 const ID_PARAMETER = '?_id=';
 const SUBJECT_PARAMETER = '?subject=';
 const PATIENT_PARAMETER = '?patient=';
 const BENEFICIARY_PARAMETER = '?beneficiary=';
 const INCLUDE = '&_include=';
-const organizationResource = 'Organization';		
 	
 	function getPatient(client, patientId){
-		//return client.request(PATIENT_TYPE + "/" + patientId + INCLUDE + PATIENT_TYPE + ':' + GENERAL_PRACTITIONER_TYPE);		
-		return client.request(PATIENT_TYPE + ID_PARAMETER + patientId + INCLUDE + PATIENT_TYPE + ':' + GENERAL_PRACTITIONER_REFERENCE);		
+		return client.request(PATIENT_TYPE + "/" + patientId, resolveReferences: ["generalPractitioner"]);		
+		/*return client.request(PATIENT_TYPE + ID_PARAMETER + patientId + 
+								INCLUDE + PATIENT_TYPE + ':' + GENERAL_PRACTITIONER_REFERENCE +
+								INCLUDE + PATIENT_TYPE + ':' + ORGANIZATION_TYPE);*/
 	}
 	
 	function getConditions(client, patientId){
