@@ -289,6 +289,7 @@ function populatePersonalContactSection(contact){
 	let name = '';
 	let relationship = '';
 	let phone = '';
+	let contactInfo = '';
 	
 	if (contact) {					
 		if(contact[0].relationship && contact[0].relationship[0]){
@@ -296,18 +297,7 @@ function populatePersonalContactSection(contact){
 		}
 			
 		if(contact[0].telecom){
-			let system = '';
-			let value = '';
-			if(contact[0].telecom[0].system){
-				system = contact[0].telecom[0].system;
-			}
-			if(contact[0].telecom[0].value){
-				value = contact[0].telecom[0].value;
-			}
-			if(system != undefined && system != null && system != '')
-				phone = system + ':' + value;
-			else
-				phone = value;
+			contactInfo = getContactInfo(contact[0]);			
 		}
 			
 		if(contact[0].name){
@@ -323,9 +313,9 @@ function populatePersonalContactSection(contact){
 			name = givenName + ' ' + familyName;
 		}	
 	}
+	populateContactInfo('alternateContactPhoneLabel','alternateContactPhone',contactInfo);
 	populateDataItem('alternateContactName', name);
 	populateDataItem('alternateContactRelationship', relationship);
-	populateDataItem('alternateContactPhone', phone);
 }
 
 function populatePractitionerSection(bundle){
@@ -350,8 +340,7 @@ function populatePractitionerSection(bundle){
 		//TODO:
 		//add practice
 	}
-	setContactInfo('pcpPhoneLabel', 'pcpPhone', contactInfo);
-	
+	populateContactInfo('pcpPhoneLabel', 'pcpPhone', contactInfo);	
 	populateDataItem('pcpName', name);	
 	populateDataItem('pcpPractice', practice);
 	populateDataItem('pcpAddress', address);
@@ -361,6 +350,7 @@ function populateOrganizationSection(bundle){
 	let name = '';
 	let role = '';
 	let phone = '';
+	let contactInfo = '';
 	let org = getResourceFromBundle(bundle, ORGANIZATION_TYPE);
 	
 	if(org){
@@ -369,13 +359,13 @@ function populateOrganizationSection(bundle){
 			role = org.contact.purpose;
 						
 			if(org.contact.telecom){
-				phone = org.contact.telecom[0].value;
+				contactInfo = getContactInfo(org.contact);
 			}
 		}			
 	}
+	populateContactInfo('nursingHomeContactPhoneLabel', 'nursingHomeContactPhone', contactInfo);
 	populateDataItem('nursingHomeContactName', name);
 	populateDataItem('nursingHomeContactRole', role);
-	populateDataItem('nursingHomeContactPhone', phone);
 }
 
 function populatePatientDemographics(bundle){
@@ -484,7 +474,7 @@ function setMrn (pt){
 	populateDataItem('mrnId', mrn);
 }
 
-function setContactInfo(labelId, valueId, telecom){
+function populateContactInfo(labelId, valueId, telecom){
 	if(telecom){
 		if('phone' != telecom.system && labelId != '' && labelId != undefined && labelId != null){
 			replaceDomElement(labelId, telecom.system.toUpperCase() + ":");			
@@ -518,12 +508,6 @@ function setBirthDate (pt){
 function setAddress (pt){
 	if(pt.address){
 		populateDataItem('addressId', pt.address[0].line + " " + pt.address[0].city + ", " + pt.address[0].state + " " + pt.address[0].postalCode);
-	}
-}
-		
-function setTelecom (pt) {
-	if(pt.telecom){
-		populateDataItem('contactId', pt.telecom[0].use + " " + pt.telecom[0].system + ":" + pt.telecom[0].value);
 	}
 }
 
