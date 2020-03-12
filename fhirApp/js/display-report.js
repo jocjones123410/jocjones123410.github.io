@@ -330,9 +330,6 @@ function populatePersonalContactSection(contact){
 
 function populatePractitionerSection(bundle){
 	let name = '';
-	//let phone = '';
-	//let otherContactSystem = '';
-	//let otherContact = '';
 	let contactInfo;
 	let practice = '';
 	let address = '';
@@ -353,14 +350,6 @@ function populatePractitionerSection(bundle){
 		//TODO:
 		//add practice
 	}
-	
-	/*if(otherContactSystem != '' && otherContact != '' && phone == ''){
-		replaceDomElement('pcpPhoneLabel', otherContactSystem.toUpperCase() + ":");
-		populateDataItem('pcpPhone', otherContact);
-	}else{
-		populateDataItem('pcpPhone', phone);
-	}*/
-	
 	setContactInfo('pcpPhoneLabel', 'pcpPhone', contactInfo);
 	
 	populateDataItem('pcpName', name);	
@@ -497,10 +486,10 @@ function setMrn (pt){
 
 function setContactInfo(labelId, valueId, telecom){
 	if(telecom){
-		if('phone' != telecom[i].system && label != '' && label != undefined && label != null){
-			replaceDomElement(labelId, telecom[i].system.toUpperCase() + ":");			
+		if('phone' != telecom.system && label != '' && label != undefined && label != null){
+			replaceDomElement(labelId, telecom.system.toUpperCase() + ":");			
 		}
-		populateDataItem(valueId, telecom[i].value);
+		populateDataItem(valueId, telecom.value);
 	}
 }
 
