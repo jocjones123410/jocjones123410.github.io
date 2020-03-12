@@ -186,6 +186,7 @@ function populateLabsTable(observationBundle){
 	if(observationBundle.total > 0){
 		let obs = observationBundle.entry;
 		obs.sort((a, b) => (a.resource.effectiveDateTime < b.resource.effectiveDateTime) ? 1 : -1);
+		let labRow = '';
 		for(let i=0;i<obs.length;i++){			
 			let categoryVal = '';						
 			if(obs[i].resource.category && obs[i].resource.category[0].coding[0]){
@@ -212,11 +213,13 @@ function populateLabsTable(observationBundle){
 			
 					let value = quantityValUnit;
 					
-					let labRow = tableRowWrapper(effectiveDate, category, entry, value);
+					labRow = tableRowWrapper(effectiveDate, category, entry, value);
 					setDomElement('observationEntries',labRow);
 				}
 			}
 		}
+		if(labRow === '')
+			toggleNoDataDisplay('labsTable', 'noLabData');
 	}else{
 		toggleNoDataDisplay('labsTable', 'noLabData');		
 	}
