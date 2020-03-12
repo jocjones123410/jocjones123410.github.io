@@ -447,7 +447,6 @@ function getResourceFromBundle(bundle, resource){
 }
 
 function setMrn (pt){
-	
 	let mrn;
 	if(pt.identifier){
 		for(x = 0; x < pt.identifier.length; x++) {
