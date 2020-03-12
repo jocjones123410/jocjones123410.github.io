@@ -330,9 +330,10 @@ function populatePersonalContactSection(contact){
 
 function populatePractitionerSection(bundle){
 	let name = '';
-	let phone = '';
-	let otherContactSystem = '';
-	let otherContact = '';
+	//let phone = '';
+	//let otherContactSystem = '';
+	//let otherContact = '';
+	let contactInfo;
 	let practice = '';
 	let address = '';
 	let practitioner = getResourceFromBundle(bundle, PRACTITIONER_TYPE);
@@ -343,15 +344,7 @@ function populatePractitionerSection(bundle){
 		}
 				
 		if(practitioner.telecom){
-			for(i = 0; i < practitioner.telecom.length; i++){
-				if('phone' === practitioner.telecom[i].system){
-					phone = practitioner.telecom[i].value;
-					break;
-				}else{
-					otherContactSystem = practitioner.telecom[i].system;
-					otherContact = practitioner.telecom[i].value;
-				}
-			}
+			contactInfo = getContactInfo(practitioner);
 		}
 		
 		if(practitioner.address){
@@ -361,12 +354,14 @@ function populatePractitionerSection(bundle){
 		//add practice
 	}
 	
-	if(otherContactSystem != '' && otherContact != '' && phone == ''){
+	/*if(otherContactSystem != '' && otherContact != '' && phone == ''){
 		replaceDomElement('pcpPhoneLabel', otherContactSystem.toUpperCase() + ":");
 		populateDataItem('pcpPhone', otherContact);
 	}else{
 		populateDataItem('pcpPhone', phone);
-	}
+	}*/
+	
+	setContactInfo('pcpPhoneLabel', 'pcpPhone', contactInfo);
 	
 	populateDataItem('pcpName', name);	
 	populateDataItem('pcpPractice', practice);
@@ -401,6 +396,20 @@ function populatePatientDemographics(bundle){
 	setGender(patient);
 	setBirthDate(patient);
 	setMarried(patient);	
+}
+
+function getContactInfo(resource){
+	let otherContact;
+	if(resource.telecom){
+		for(i = 0; i < resource.telecom.length; i++){
+			if('phone' === resource.telecom[i].system){
+				return resource.telecom[i];				
+			}else{
+				otherContact = resource.telecom[i];				
+			}
+		}
+	}
+	return otherContact;
 }
 
 function getName(resource){
@@ -484,6 +493,15 @@ function setMrn (pt){
 		}
 	}
 	populateDataItem('mrnId', mrn);
+}
+
+function setContactInfo(labelId, valueId, telecom){
+	if(telecom){
+		if('phone' != telecom[i].system && label != '' && label != undefined && label != null){
+			replaceDomElement(labelId, telecom[i].system.toUpperCase() + ":");			
+		}
+		populateDataItem(valueId, telecom[i].value);
+	}
 }
 
 function setRace (pt){
