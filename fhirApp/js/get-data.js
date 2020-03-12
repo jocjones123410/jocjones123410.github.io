@@ -15,7 +15,7 @@ const BENEFICIARY_PARAMETER = '?beneficiary=';
 const INCLUDE = '&_include=';
 	
 	function getPatient(client, patientId){
-		return client.request(PATIENT_TYPE + "/" + patientId, resolveReferences: ["generalPractitioner"]);		
+		return client.request(PATIENT_TYPE + "/" + patientId);		
 		//return client.request(PATIENT_TYPE + ID_PARAMETER + patientId + 
 		//						INCLUDE + PATIENT_TYPE + ':' + GENERAL_PRACTITIONER_REFERENCE +
 		//						INCLUDE + PATIENT_TYPE + ':' + ORGANIZATION_TYPE);
