@@ -342,7 +342,7 @@ function populatePractitionerSection(bundle){
 			name = getName(practitioner);
 		}
 				
-		if(practitioner.telecom && practitioner.telecom){
+		if(practitioner.telecom){
 			for(i = 0; i < practitioner.telecom.length; i++){
 				if('phone' === practitioner.telecom[i].system){
 					phone = practitioner.telecom[i].value;
@@ -362,7 +362,7 @@ function populatePractitionerSection(bundle){
 	}
 	
 	if(otherContactSystem != '' && otherContact != '' && phone == ''){
-		setDomElement('pcpPhoneLabel', otherContactSystem);
+		replaceDomElement('pcpPhoneLabel', otherContactSystem.toUpperCase() + ":");
 		populateDataItem('pcpPhone', otherContact);
 	}else{
 		populateDataItem('pcpPhone', phone);
@@ -564,6 +564,10 @@ function divWrapper(value){
 
 function createLabel(label){
 	return '<span class="fieldLabel">' + label + '</span>';
+}
+
+function replaceDomElement(elementId, content){
+	document.getElementById(elementId).innerHTML = content;
 }
 
 function setDomElement(elementId, content){
